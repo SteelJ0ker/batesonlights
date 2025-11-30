@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Bateson Family Lights | Christmas Display</title>
+	<title>Bateson Family Lights | Coming Soon</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Bateson Family Lights Christmas display – synced lights, music, and an interactive song jukebox." />
+	<meta name="description" content="Bateson Family Lights Christmas display – updated website coming soon." />
 
 	<style>
 		:root {
@@ -179,6 +179,7 @@
 			to   { transform: rotate(6deg); }
 		}
 
+		/* HERO / COMING SOON */
 		.hero {
 			background: linear-gradient(
 					135deg,
@@ -188,10 +189,11 @@
 				);
 			border-radius: var(--radius-xl);
 			box-shadow: var(--shadow-soft);
-			padding: 12px 18px 20px;
+			padding: 24px 20px 26px;
 			border: 1px solid var(--border-subtle);
 			position: relative;
 			overflow: hidden;
+			margin-top: 10px;
 		}
 
 		.hero::before {
@@ -208,13 +210,16 @@
 		.hero-inner {
 			position: relative;
 			z-index: 1;
+			display: grid;
+			grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+			gap: 18px;
+			align-items: center;
 		}
 
-		.hero-top {
-			display: grid;
-			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-			gap: 14px;
-			align-items: stretch;
+		@media (max-width: 768px) {
+			.hero-inner {
+				grid-template-columns: minmax(0, 1fr);
+			}
 		}
 
 		.badge {
@@ -229,15 +234,15 @@
 			padding: 4px 10px;
 			color: var(--text-muted);
 			border: 1px solid rgba(255, 255, 255, 0.08);
-			margin-bottom: 2px;
+			margin-bottom: 6px;
 		}
 
 		.badge-dot {
 			width: 6px;
 			height: 6px;
 			border-radius: 50%;
-			background: #22c55e;
-			box-shadow: 0 0 10px #22c55e;
+			background: #fbbf24;
+			box-shadow: 0 0 10px #fbbf24;
 		}
 
 		.hero-title {
@@ -256,30 +261,46 @@
 			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
 		}
 
+		.hero-subtitle {
+			margin: 8px 0 10px;
+			font-size: 1rem;
+			color: var(--text-muted);
+			max-width: 34rem;
+		}
+
 		.hero-highlight {
 			display: inline-flex;
 			align-items: center;
-			gap: 6px;
-			font-size: 0.8rem;
+			gap: 8px;
+			font-size: 0.9rem;
 			color: #fef9c3;
 			background: rgba(248, 250, 252, 0.05);
-			padding: 5px 9px;
+			padding: 6px 11px;
 			border-radius: 999px;
 			border: 1px solid rgba(248, 250, 252, 0.18);
+			margin-top: 6px;
 		}
 
-		.hero-subtitle {
-			margin: 6px 0 10px;
-			font-size: 0.98rem;
+		.hero-highlight span.icon {
+			font-size: 1.1rem;
+		}
+
+		.hero-list {
+			margin: 10px 0 0;
+			padding-left: 18px;
 			color: var(--text-muted);
-			max-width: 36rem;
+			font-size: 0.9rem;
+		}
+
+		.hero-list li {
+			margin: 4px 0;
 		}
 
 		.hero-actions {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
-			margin: 8px 0 0;
+			margin-top: 14px;
 		}
 
 		.btn {
@@ -326,240 +347,86 @@
 			box-shadow: 0 18px 38px rgba(248, 113, 113, 0.7);
 		}
 
+		.btn-outline {
+			background: transparent;
+			color: var(--text-main);
+			border-color: rgba(148, 163, 184, 0.6);
+		}
+
+		.btn-outline:hover {
+			background: rgba(15, 23, 42, 0.9);
+			box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+		}
+
 		.btn-icon {
 			font-size: 1.05rem;
 			line-height: 1;
 		}
 
-		.hero-meta {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 10px;
-			margin-top: 10px;
-			font-size: 0.8rem;
-			color: var(--text-muted);
-		}
-
-		.pill {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			padding: 4px 10px;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px solid rgba(148, 163, 184, 0.25);
-		}
-
-		.pill-dot {
-			width: 7px;
-			height: 7px;
-			border-radius: 50%;
-			background: var(--accent-red);
-			box-shadow: 0 0 10px var(--accent-red);
-		}
-
-		/* NOW PLAYING CARD */
-		.now-playing-card {
+		/* SIDE CARD */
+		.side-card {
 			background: rgba(15, 23, 42, 0.96);
 			border-radius: 18px;
 			border: 1px solid rgba(148, 163, 184, 0.28);
-			padding: 10px 12px;
+			padding: 12px 12px 14px;
 			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-		}
-
-		.now-playing-header {
-			display: flex;
-			align-items: center;
-			gap: 6px;
-			font-size: 0.8rem;
-			text-transform: uppercase;
-			color: var(--text-muted);
-			letter-spacing: 0.08em;
-		}
-
-		.now-playing-dot {
-			width: 8px;
-			height: 8px;
-			border-radius: 999px;
-			background: #22c55e;
-			box-shadow: 0 0 12px #22c55e;
-		}
-
-		.now-playing-title {
-			font-size: 0.95rem;
-			font-weight: 600;
-			color: var(--text-main);
-		}
-
-		.now-playing-extra {
-			font-size: 0.8rem;
-			color: var(--text-muted);
-		}
-
-		.grid {
-			display: grid;
-			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-			gap: 18px;
-			margin-top: 22px;
-		}
-
-		.card {
-			background: var(--bg-alt);
-			border-radius: var(--radius-xl);
-			border: 1px solid var(--border-subtle);
-			padding: 14px 14px 16px;
-			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-		}
-
-		.card h2 {
-			font-size: 1rem;
-			margin: 0 0 8px;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-
-		.card h2 span.icon {
-			font-size: 1.1rem;
-		}
-
-		.card p {
-			margin: 4px 0;
-			font-size: 0.86rem;
-			color: var(--text-muted);
-		}
-
-		.schedule-list,
-		.info-list {
-			list-style: none;
-			padding: 0;
-			margin: 8px 0 0;
 			font-size: 0.86rem;
 		}
 
-		.schedule-list li,
-		.info-list li {
-			display: flex;
-			align-items: flex-start;
-			gap: 8px;
-			padding: 6px 0;
-			border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-		}
-
-		.schedule-list li:last-child,
-		.info-list li:last-child {
-			border-bottom: none;
-		}
-
-		.schedule-day {
-			font-weight: 600;
-			color: var(--text-main);
-			min-width: 80px;
-		}
-
-		.schedule-time {
-			color: var(--text-muted);
-		}
-
-		.info-label {
-			min-width: 72px;
-			font-weight: 600;
-			color: var(--text-main);
-		}
-
-		.info-value {
-			color: var(--text-muted);
-		}
-
-		.info-value a {
-			color: var(--accent-green);
-			text-decoration: none;
-		}
-
-		.info-value a:hover {
-			text-decoration: underline;
-		}
-
-		.rules {
-			margin-top: 8px;
-			font-size: 0.82rem;
-			color: var(--text-muted);
-			padding: 8px 10px;
-			border-radius: 14px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px dashed rgba(148, 163, 184, 0.32);
-		}
-
-		.rules ul {
-			margin: 4px 0 0;
-			padding-left: 18px;
-		}
-
-		.rules li {
-			margin: 1px 0;
-		}
-
-		.embed-section {
-			margin-top: 22px;
-		}
-
-		.embed-card {
-			background: var(--bg-alt);
-			border-radius: var(--radius-xl);
-			border: 1px solid var(--border-subtle);
-			padding: 14px 14px 16px;
-			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-			margin-bottom: 18px;
-		}
-
-		.embed-card h2 {
-			font-size: 1rem;
+		.side-card h2 {
+			font-size: 0.96rem;
 			margin: 0 0 6px;
 			display: flex;
 			align-items: center;
 			gap: 8px;
 		}
 
-		.embed-card h2 span.icon {
+		.side-card h2 span.icon {
 			font-size: 1.1rem;
 		}
 
-		.embed-card p {
-			margin: 4px 0 10px;
-			font-size: 0.86rem;
+		.side-card p {
+			margin: 4px 0;
 			color: var(--text-muted);
 		}
 
-		.embed-frame-wrapper {
-			position: relative;
-			width: 100%;
-			border-radius: 18px;
-			overflow: hidden;
-			border: 1px solid rgba(148, 163, 184, 0.28);
-			background: radial-gradient(circle at top, #020617, #020617);
+		.side-list {
+			list-style: none;
+			padding: 0;
+			margin: 8px 0 0;
 		}
 
-		.embed-frame-wrapper::before {
-			content: "";
-			display: block;
-			padding-top: 62%;
-		}
-
-		.embed-frame {
-			position: absolute;
-			inset: 0;
-			width: 100%;
-			height: 100%;
-			border: none;
-		}
-
-		.embed-note {
-			margin-top: 6px;
-			font-size: 0.78rem;
+		.side-list li {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin: 3px 0;
 			color: var(--text-muted);
+		}
+
+		.side-badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 18px;
+			height: 18px;
+			border-radius: 999px;
+			background: rgba(34, 197, 94, 0.12);
+			border: 1px solid rgba(34, 197, 94, 0.6);
+			font-size: 0.68rem;
+			color: #bbf7d0;
+		}
+
+		.side-card strong {
+			color: var(--text-main);
+		}
+
+		a.inline-link {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+		a.inline-link:hover {
+			text-decoration: underline;
 		}
 
 		.footer {
@@ -572,29 +439,18 @@
 			gap: 12px;
 			border-top: 1px solid rgba(148, 163, 184, 0.18);
 		}
-
 		.footer a {
 			color: var(--accent-green);
 			text-decoration: none;
 		}
-
 		.footer a:hover {
 			text-decoration: underline;
 		}
 
 		@media (max-width: 768px) {
 			.hero {
-				padding: 12px 12px 18px;
+				padding: 20px 14px 22px;
 			}
-
-			.hero-top {
-				grid-template-columns: minmax(0, 1fr);
-			}
-
-			.grid {
-				grid-template-columns: minmax(0, 1fr);
-			}
-
 			.footer {
 				flex-direction: column;
 				align-items: flex-start;
@@ -603,7 +459,7 @@
 	</style>
 </head>
 <body>
-	<main id="top">
+	<main>
 		<!-- NAV -->
 		<nav class="nav">
 			<div class="nav-title">
@@ -611,9 +467,7 @@
 				<span><span class="logo-em">Bateson</span> Family Lights</span>
 			</div>
 			<div class="nav-links">
-				<a href="#top">Home</a>
-				<a href="#listen">Listen</a>
-				<a href="#jukebox" class="nav-primary">Requests</a>
+				<a href="#" class="nav-primary">Coming Soon</a>
 			</div>
 		</nav>
 
@@ -626,303 +480,93 @@
 			<div class="bulb gold"></div>
 		</div>
 
-		<!-- HERO -->
 		<section class="hero">
 			<div class="hero-inner">
-				<div class="hero-top">
-					<div>
-						<div class="badge">
-							<span class="badge-dot"></span>
-							<span>Bateson Family Lights • Christmas Light Show</span>
-						</div>
-
-						<h1 class="hero-title">
-							<span class="em">Bateson Family Lights</span>
-							<span>🎄</span>
-						</h1>
-
-						<div class="hero-highlight">
-							✨ Synchronized Christmas lights set to music – fun for the whole family.
-						</div>
-
-						<p class="hero-subtitle">
-							Park, tune in, and enjoy the show. Use the buttons below to listen
-							on your phone and help choose what plays next — all from this page.
-						</p>
-
-						<div class="hero-actions">
-							<a class="btn btn-primary" href="#listen">
-								<span class="btn-icon">🎧</span>
-								<span>Listen Live</span>
-							</a>
-
-							<a class="btn btn-secondary" href="#jukebox">
-								<span class="btn-icon">🎶</span>
-								<span>Pick the Next Song</span>
-							</a>
-						</div>
-
-						<div class="hero-meta">
-							<div class="pill">
-								<span class="pill-dot"></span>
-								<span>FM Radio: <strong>93.1 FM</strong></span>
-							</div>
-							<div class="pill">
-								<span>📍</span>
-								<span>Bateson Family Lights • Swanton, Oh</span>
-							</div>
-						</div>
+				<div>
+					<div class="badge">
+						<span class="badge-dot"></span>
+						<span>Website Update In Progress</span>
 					</div>
 
-					<!-- NOW PLAYING -->
-					<div class="now-playing-card">
-						<div class="now-playing-header">
-							<span class="now-playing-dot"></span>
-							<span>Now Playing</span>
-						</div>
-						<div id="now-playing-title" class="now-playing-title">
-							Waiting for the next song to start…
-						</div>
-						<div id="now-playing-extra" class="now-playing-extra">
-							When the show is running, this will show the current song or
-							sequence title.
-						</div>
+					<h1 class="hero-title">
+						<span class="em">Bateson Family Lights</span>
+						<span>✨</span>
+					</h1>
+
+					<p class="hero-subtitle">
+						We’re rebuilding our website to make it easier than ever to check
+						show times, listen to the music, and pick your favorite songs.
+					</p>
+
+					<div class="hero-highlight">
+						<span class="icon">🛠️</span>
+						<span>Under construction – new experience coming soon.</span>
 					</div>
+
+					<ul class="hero-list">
+						<li>Show schedule & info in one place.</li>
+						<li>Mobile-friendly listening options.</li>
+						<li>Interactive song requests powered by Remote Falcon.</li>
+					</ul>
+
+					<div class="hero-actions">
+						<a
+							class="btn btn-primary"
+							href="https://www.facebook.com/batesonlights"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span class="btn-icon">📣</span>
+							<span>Follow Updates on Facebook</span>
+						</a>
+
+						<a class="btn btn-outline" href="mailto:batesonlights@gmail.com">
+							<span class="btn-icon">📬</span>
+							<span>Contact the Bateson Family</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="side-card">
+					<h2>
+						<span class="icon">🎁</span>
+						While You’re Here…
+					</h2>
+					<p>
+						The lights are still shining even while the website is getting a
+						makeover!
+					</p>
+					<ul class="side-list">
+						<li>
+							<span class="side-badge">1</span>
+							<span><strong>Visit us:</strong> 108 East St. Clair Street, Swanton, Oh</span>
+						</li>
+						<li>
+							<span class="side-badge">2</span>
+							<span><strong>Tune your radio:</strong> <span style="white-space: nowrap;">93.1 FM</span> to hear the show from your car.</span>
+						</li>
+						<li>
+							<span class="side-badge">3</span>
+							<span>Look for the <strong>QR code signs</strong> at the display to request songs when the full show is running.</span>
+						</li>
+					</ul>
+					<p style="margin-top: 10px;">
+						Thank you for stopping by and for supporting
+						<strong>Bateson Family Lights</strong>. Check back soon for the full
+						online experience!
+					</p>
 				</div>
 			</div>
-		</section>
-
-		<!-- SCHEDULE + INFO -->
-		<section class="grid">
-			<article class="card">
-				<h2>
-					<span class="icon">🕒</span>
-					Show Schedule
-				</h2>
-				<ul class="schedule-list">
-					<li>
-						<span class="schedule-day">Static Display</span>
-						<span class="schedule-time">4:00 AM - 7:00 AM / 4:00 PM – 6:00 PM Daily</span>
-					</li>
-					<li>
-						<span class="schedule-day">Sun–Thu</span>
-						<span class="schedule-time">6:00 PM – 9:30 PM</span>
-					</li>
-					<li>
-						<span class="schedule-day">Fri–Sat</span>
-						<span class="schedule-time">6:00 PM – 10:30 PM</span>
-					</li>
-					<li>
-						<span class="schedule-day">Christmas Eve</span>
-						<span class="schedule-time">Extended show 🎅</span>
-					</li>
-				</ul>
-
-				<div class="rules">
-					<strong>Friendly Reminders:</strong>
-					<ul>
-						<li>Please be respectful of our neighbors.</li>
-						<li>Do not block driveways or fire hydrants.</li>
-						<li>Dim your headlights while parked.</li>
-						<li>Enjoy the show & share your photos! #BatesonLights</li>
-					</ul>
-				</div>
-			</article>
-
-			<article class="card">
-				<h2>
-					<span class="icon">🎁</span>
-					Show Info
-				</h2>
-				<ul class="info-list">
-					<li>
-						<span class="info-label">Address</span>
-						<span class="info-value">108 East St. Clair Street, Swanton, Oh</span>
-					</li>
-					<li>
-						<span class="info-label">Listen</span>
-						<span class="info-value">
-							On-site: <strong>93.1 FM</strong><br />
-							Phone: Use the Listen Live section below.
-						</span>
-					</li>
-					<li>
-						<span class="info-label">Facebook</span>
-						<span class="info-value">
-							<a
-								href="https://www.facebook.com/batesonlights"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								facebook.com/batesonlights
-							</a>
-						</span>
-					</li>
-					<li>
-						<span class="info-label">Show Info</span>
-						<span class="info-value">
-							<ul>
-								<li>Over 10,000 LEDs programmed to 14 songs your family is sure to enjoy!</li>
-								<li>Utilizing 5 Light-O-Rama 16 Channel Controllers for 80 channels total!</li>
-								<li>On-site guests can unlock song requests by scanning the QR code
-								at the display.</li>
-							</ul>
-						</span>
-					</li>
-				</ul>
-				<p style="margin-top: 10px;">
-					Thank you for visiting and supporting Bateson Family Lights!
-				</p>
-			</article>
-		</section>
-
-		<!-- LISTEN LIVE (PULSEMESH DIRECT LINK) -->
-		<section id="listen" class="embed-section">
-			<article class="embed-card">
-				<h2>
-					<span class="icon">🎧</span>
-					Listen Live on Your Phone
-				</h2>
-				<p>
-					For the best experience on phones and tablets, tap the button below to
-					open the PulseMesh web player in a new tab. Once it starts playing, you
-					can lock your phone and keep listening.
-				</p>
-
-				<a
-					class="btn btn-primary"
-					href="https://pulsemesh.io/d/SGVT/smart"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<span class="btn-icon">📡</span>
-					<span>Open PulseMesh Player</span>
-				</a>
-
-				<p class="embed-note">
-					Direct link (if the button above doesn’t work):
-					<a
-						href="https://pulsemesh.io/d/SGVT/smart"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						https://pulsemesh.io/d/SGVT/smart
-					</a>
-				</p>
-			</article>
-		</section>
-
-		<!-- JUKEBOX (REMOTE FALCON) -->
-		<section id="jukebox" class="embed-section">
-			<article class="embed-card">
-				<h2>
-					<span class="icon">🎶</span>
-					Pick the Next Song (Remote Falcon)
-				</h2>
-				<p id="jukebox-locked-message">
-					Song requests are reserved for on-site visitors. If you’re at the
-					display, scan the QR code sign to unlock the request panel.
-				</p>
-
-				<div
-					id="jukebox-frame-wrapper"
-					class="embed-frame-wrapper"
-					style="display: none;"
-				>
-					<iframe
-						class="embed-frame"
-						src="https://batesonfamilylights.remotefalcon.com"
-						title="Remote Falcon Viewer"
-					></iframe>
-				</div>
-
-				<p id="jukebox-open-link" class="embed-note" style="display: none;">
-					If the control panel doesn't appear, you can also open it in a new tab:
-					<a href="https://batesonfamilylights.remotefalcon.com" target="_blank" rel="noopener noreferrer">
-						Open Remote Falcon Viewer
-					</a>
-				</p>
-			</article>
 		</section>
 
 		<footer class="footer">
 			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
-			<div>
-				Created by the Bateson family • Merry Christmas & Happy Holidays! 🎅
-			</div>
+			<div>Website under construction • Merry Christmas & Happy Holidays! 🎅</div>
 		</footer>
 	</main>
 
 	<script>
-		// Auto-set year in footer
 		document.getElementById("year").textContent = new Date().getFullYear();
-
-		// OPTIONAL: Now Playing integration
-		// Set NOW_PLAYING_API to a JSON endpoint if you build one later.
-		const NOW_PLAYING_API = "NOW_PLAYING_STATUS_URL";
-
-		async function updateNowPlaying() {
-			if (!NOW_PLAYING_API || NOW_PLAYING_API === "NOW_PLAYING_STATUS_URL") {
-				return;
-			}
-
-			try {
-				const response = await fetch(NOW_PLAYING_API, { cache: "no-store" });
-				if (!response.ok) return;
-
-				const data = await response.json();
-
-				const titleEl = document.getElementById("now-playing-title");
-				const extraEl = document.getElementById("now-playing-extra");
-
-				if (data && (data.title || data.song || data.sequence)) {
-					const title =
-						data.title || data.song || data.sequence || "Currently playing";
-					const artist = data.artist || data.show || "";
-					const extra = data.extra || data.subtitle || "";
-
-					titleEl.textContent = title;
-					if (artist || extra) {
-						extraEl.textContent = [artist, extra].filter(Boolean).join(" • ");
-					} else {
-						extraEl.textContent = "Enjoy the lights!";
-					}
-				}
-			} catch (err) {
-				console.error("Now playing fetch failed:", err);
-			}
-		}
-
-		setInterval(updateNowPlaying, 15000);
-		updateNowPlaying();
-
-		// TOKEN-BASED UNLOCK FOR REQUESTS
-		const REQUEST_TOKEN = "SANTASLILHELPER";
-
-		function unlockRequestsIfToken() {
-			const params = new URLSearchParams(window.location.search);
-			const token = params.get("token");
-			const hasToken =
-				token && token.toUpperCase() === REQUEST_TOKEN.toUpperCase();
-
-			const frameWrapper = document.getElementById("jukebox-frame-wrapper");
-			const lockedMsg = document.getElementById("jukebox-locked-message");
-			const openLink = document.getElementById("jukebox-open-link");
-
-			if (!frameWrapper || !lockedMsg) return;
-
-			if (hasToken) {
-				frameWrapper.style.display = "block";
-				lockedMsg.textContent =
-					"You’re on-site and unlocked to request songs! Use the panel below to pick what plays next.";
-				if (openLink) openLink.style.display = "block";
-			} else {
-				frameWrapper.style.display = "none";
-				if (openLink) openLink.style.display = "none";
-			}
-		}
-
-		unlockRequestsIfToken();
 	</script>
 </body>
 </html>
