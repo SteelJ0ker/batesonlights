@@ -763,7 +763,7 @@
 						<span class="info-value">
 							<ul>
 								<li>Over 10,000 LEDs programmed to 14 songs your family is sure to enjoy!</li>
-								<li>Utilizing 5 Light-O-Rama 16 Channel Controllers for 80 channels total!</li>				
+								<li>Utilizing 5 Light-O-Rama 16 Channel Controllers for 80 channels total!</li>
 								<li>On-site guests can unlock song requests by scanning the QR code
 								at the display.</li>
 							</ul>
@@ -776,38 +776,37 @@
 			</article>
 		</section>
 
-		<!-- LISTEN LIVE (PULSEMESH) -->
+		<!-- LISTEN LIVE (PULSEMESH DIRECT LINK) -->
 		<section id="listen" class="embed-section">
 			<article class="embed-card">
 				<h2>
 					<span class="icon">🎧</span>
-					Listen Live on Your Phone (PulseMesh)
+					Listen Live on Your Phone
 				</h2>
 				<p>
-					Tap below to start the PulseMesh web player. Audio may open inside this
-					box or in a small browser overlay depending on your device. Once
-					playing, you can lock your phone and keep listening.
+					For the best experience on phones and tablets, tap the button below to
+					open the PulseMesh web player in a new tab. Once it starts playing, you
+					can lock your phone and keep listening.
 				</p>
 
-				<div class="embed-frame-wrapper">
-					<!--
-						IMPORTANT:
-						Replace https://player.pulsemesh.io/d/SGVT with the full PulseMesh web player URL
-						for your display. Example:
-						src="https://player.pulsemesh.io/d/SGVTdisplay/ABCD"
-					-->
-					<iframe
-						class="embed-frame"
-						src="https://player.pulsemesh.io/d/SGVT"
-						title="PulseMesh Web Player"
-						allow="autoplay; encrypted-media"
-					></iframe>
-				</div>
+				<a
+					class="btn btn-primary"
+					href="https://pulsemesh.io/d/SGVT/smart"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<span class="btn-icon">📡</span>
+					<span>Open PulseMesh Player</span>
+				</a>
 
 				<p class="embed-note">
-					If the player does not load here, you can also open it in a new tab:
-					<a href="https://player.pulsemesh.io/d/SGVT" target="_blank" rel="noopener noreferrer">
-						Open PulseMesh Player
+					Direct link (if the button above doesn’t work):
+					<a
+						href="https://pulsemesh.io/d/SGVT/smart"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						https://pulsemesh.io/d/SGVT/smart
 					</a>
 				</p>
 			</article>
@@ -830,12 +829,6 @@
 					class="embed-frame-wrapper"
 					style="display: none;"
 				>
-					<!--
-						IMPORTANT:
-						Replace https://batesonfamilylights.remotefalcon.com with your Remote Falcon viewer URL.
-						Example:
-						src="https://yourshow.remotefalcon.com"
-					-->
 					<iframe
 						class="embed-frame"
 						src="https://batesonfamilylights.remotefalcon.com"
@@ -865,7 +858,7 @@
 		document.getElementById("year").textContent = new Date().getFullYear();
 
 		// OPTIONAL: Now Playing integration
-		// Set NOW_PLAYING_STATUS_URL to a JSON endpoint if you build one later.
+		// Set NOW_PLAYING_API to a JSON endpoint if you build one later.
 		const NOW_PLAYING_API = "NOW_PLAYING_STATUS_URL";
 
 		async function updateNowPlaying() {
@@ -904,10 +897,6 @@
 		updateNowPlaying();
 
 		// TOKEN-BASED UNLOCK FOR REQUESTS
-		// Only show the Remote Falcon embed if the URL has
-		//   ?token=SANTASLILHELPER
-		// You can change this token string if you want a different secret.
-
 		const REQUEST_TOKEN = "SANTASLILHELPER";
 
 		function unlockRequestsIfToken() {
