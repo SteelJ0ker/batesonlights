@@ -248,7 +248,6 @@
 			font-size: clamp(2.1rem, 4vw, 2.6rem);
 			font-weight: 800;
 			letter-spacing: 0.03em;
-			/* text-transform: uppercase; */
 			margin: 0;
 			display: flex;
 			align-items: center;
@@ -605,114 +604,148 @@
 			}
 		}
 		
-	/* Pacifico for logo + hero title */
-	.logo-script,
-	.hero-title .em {
-		font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-		font-weight: 400;
-		letter-spacing: 0.04em;
-	}
-
-	/* Let the script header use normal case, a bit bigger */
-	.hero-title .em {
-		text-transform: none;
-		font-size: clamp(2.4rem, 4.6vw, 3rem);
-		color: var(--accent-green);
-		text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
-	}
-	
-	/* --- Special styling for the Listen Live button --- */
-	.btn-listen {
-		position: relative;
-		overflow: hidden;
-		animation: buttonGlow 2.4s ease-in-out infinite;
-	}
-
-	/* Extra glowing halo */
-	.btn-listen::before {
-		content: "";
-		position: absolute;
-		inset: -4px;
-		border-radius: inherit;
-		box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
-		opacity: 0;
-		z-index: -1;
-		animation: buttonHalo 2.4s ease-in-out infinite;
-	}
-
-	/* Round play icon with subtle animation */
-	.btn-icon-play {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 1.7em;
-		height: 1.7em;
-		border-radius: 999px;
-		background: rgba(15, 23, 42, 0.95);
-		box-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.btn-icon-play::before {
-		content: "▶";
-		font-size: 0.9rem;
-		transform: translateX(0);
-		animation: playNudge 1.2s ease-in-out infinite;
-	}
-
-	/* Pulsing glow like Christmas lights */
-	@keyframes buttonGlow {
-		0%, 100% {
-			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.45);
+		/* Pacifico for logo + hero title */
+		.logo-script,
+		.hero-title .em {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-weight: 400;
+			letter-spacing: 0.04em;
 		}
-		50% {
-			box-shadow: 0 18px 40px rgba(34, 197, 94, 0.9);
-		}
-	}
 
-	/* Outer halo pulse */
-	@keyframes buttonHalo {
-		0%, 100% {
+		/* Let the script header use normal case, a bit bigger */
+		.hero-title .em {
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+		
+		/* --- Special styling for the Listen Live button --- */
+		.btn-listen {
+			position: relative;
+			overflow: hidden;
+			animation: buttonGlow 2.4s ease-in-out infinite;
+		}
+
+		/* Extra glowing halo */
+		.btn-listen::before {
+			content: "";
+			position: absolute;
+			inset: -4px;
+			border-radius: inherit;
+			box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
 			opacity: 0;
-			transform: scale(0.95);
+			z-index: -1;
+			animation: buttonHalo 2.4s ease-in-out infinite;
 		}
-		50% {
-			opacity: 1;
-			transform: scale(1.05);
-		}
-	}
 
-	/* Little “press forward” motion on the play triangle */
-	@keyframes playNudge {
-		0%, 100% {
+		/* Round play icon with subtle animation */
+		.btn-icon-play {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.7em;
+			height: 1.7em;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.95);
+			box-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-icon-play::before {
+			content: "▶";
+			font-size: 0.9rem;
 			transform: translateX(0);
-		}
-		50% {
-			transform: translateX(2px);
-		}
-	}
-
-	// Adjust Listen button label on mobile devices
-	document.addEventListener("DOMContentLoaded", function () {
-		const labelEl = document.getElementById("listen-live-label");
-		if (!labelEl) {
-			console.log("Label element not found.");
-			return;
+			animation: playNudge 1.2s ease-in-out infinite;
 		}
 
-		const isMobile =
-			/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-				navigator.userAgent
-			);
-
-		console.log("Mobile detected:", isMobile);
-
-		if (isMobile) {
-			labelEl.textContent = "Tap to Listen";
+		/* Pulsing glow like Christmas lights */
+		@keyframes buttonGlow {
+			0%, 100% {
+				box-shadow: 0 14px 30px rgba(34, 197, 94, 0.45);
+			}
+			50% {
+				box-shadow: 0 18px 40px rgba(34, 197, 94, 0.9);
+			}
 		}
-	});
 
+		/* Outer halo pulse */
+		@keyframes buttonHalo {
+			0%, 100% {
+				opacity: 0;
+				transform: scale(0.95);
+			}
+			50% {
+				opacity: 1;
+				transform: scale(1.05);
+			}
+		}
+
+		/* Little “press forward” motion on the play triangle */
+		@keyframes playNudge {
+			0%, 100% {
+				transform: translateX(0);
+			}
+			50% {
+				transform: translateX(2px);
+			}
+		}
+
+		/* Remote Falcon on-air/off-air layout */
+		#remote-falcon-live {
+			display: none;
+			margin-top: 10px;
+		}
+
+		#remote-falcon-offair {
+			display: none;
+			margin-top: 10px;
+			justify-content: center;
+		}
+
+		.offair-card {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 1.5rem 1.75rem;
+			border-radius: 1rem;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.4);
+			text-align: center;
+			box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+		}
+
+		.offair-icon {
+			font-size: 2.5rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.offair-card h3 {
+			margin: 0 0 0.5rem 0;
+			font-size: 1.4rem;
+		}
+
+		.offair-card p {
+			margin: 0.25rem 0;
+			font-size: 0.95rem;
+			color: var(--text-muted);
+		}
+
+		.offair-card ul {
+			list-style: none;
+			padding: 0;
+			margin: 0.5rem 0 0.5rem 0;
+			font-size: 0.95rem;
+		}
+
+		.offair-card li {
+			margin: 0.15rem 0;
+		}
+
+		.offair-timezone-note {
+			opacity: 0.8;
+			font-size: 0.85rem;
+		}
 	</style>
 </head>
 <body>
@@ -823,7 +856,7 @@
 					</li>
 					<li>
 						<span class="schedule-day">Fri–Sat</span>
-						<span class="schedule-time">6:00 PM – 10:30 PM</span>
+						<span class="schedule-time">6:00 PM – 11:00 PM</span>
 					</li>
 					<li>
 						<span class="schedule-day">Christmas Eve</span>
@@ -891,34 +924,51 @@
 
 		<!-- JUKEBOX (REMOTE FALCON) -->
 		<section id="jukebox" class="embed-section">
-			<article class="embed-card">
+			<article class="embed-card" id="remote-falcon-section">
 				<h2>
 					<span class="icon">🎶</span>
 					Pick the Next Song (Remote Falcon)
 				</h2>
-				<p id="jukebox-locked-message">
-					Song requests are reserved for on-site visitors. If you’re at the
-					display, scan the QR code sign to unlock the request panel.
+				<p class="embed-note">
+					Song requests are available during show hours:
+					Sun–Thu 6:00–9:30 PM, Fri–Sat 6:00–11:00 PM (Eastern).
 				</p>
 
-				<div
-					id="jukebox-frame-wrapper"
-					class="embed-frame-wrapper"
-					style="display: none;"
-				>
-					<iframe
-						class="embed-frame"
-						src="https://batesonfamilylights.remotefalcon.com"
-						title="Remote Falcon Viewer"
-					></iframe>
+				<!-- LIVE (during show hours in Eastern time) -->
+				<div id="remote-falcon-live">
+					<div class="embed-frame-wrapper">
+						<iframe
+							class="embed-frame"
+							src="https://batesonfamilylights.remotefalcon.com"
+							title="Remote Falcon Viewer"
+						></iframe>
+					</div>
+
+					<p class="embed-note">
+						If the control panel doesn't appear, you can also open it in a new tab:
+						<a href="https://batesonfamilylights.remotefalcon.com" target="_blank" rel="noopener noreferrer">
+							Open Remote Falcon Viewer
+						</a>
+					</p>
 				</div>
 
-				<p id="jukebox-open-link" class="embed-note" style="display: none;">
-					If the control panel doesn't appear, you can also open it in a new tab:
-					<a href="https://batesonfamilylights.remotefalcon.com" target="_blank" rel="noopener noreferrer">
-						Open Remote Falcon Viewer
-					</a>
-				</p>
+				<!-- OFF AIR (outside show hours or outside season) -->
+				<div id="remote-falcon-offair">
+					<div class="offair-card">
+						<div class="offair-icon">📻</div>
+						<h3>Jukebox Offline</h3>
+						<p>
+							Our Remote Falcon song request panel is only available during show hours.
+						</p>
+						<ul>
+							<li>Sunday–Thursday: 6:00 PM – 9:30 PM</li>
+							<li>Friday–Saturday: 6:00 PM – 11:00 PM</li>
+						</ul>
+						<p class="offair-timezone-note">
+							All times are Eastern (US). Show season runs Nov 30, 2025 – Jan 2, 2026.
+						</p>
+					</div>
+				</div>
 			</article>
 		</section>
 
@@ -933,6 +983,21 @@
 	<script>
 		// Auto-set year in footer
 		document.getElementById("year").textContent = new Date().getFullYear();
+
+		// Adjust Listen button label on mobile devices
+		document.addEventListener("DOMContentLoaded", function () {
+			const labelEl = document.getElementById("listen-live-label");
+			if (!labelEl) return;
+
+			const isMobile =
+				/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				);
+
+			if (isMobile) {
+				labelEl.textContent = "Tap to Listen";
+			}
+		});
 
 		// OPTIONAL: Now Playing integration
 		// Set NOW_PLAYING_API to a JSON endpoint if you build one later.
@@ -973,33 +1038,89 @@
 		setInterval(updateNowPlaying, 15000);
 		updateNowPlaying();
 
-		// TOKEN-BASED UNLOCK FOR REQUESTS
-		const REQUEST_TOKEN = "SANTASLILHELPER";
+		// ----- Remote Falcon show-hours control (Eastern time) -----
 
-		function unlockRequestsIfToken() {
-			const params = new URLSearchParams(window.location.search);
-			const token = params.get("token");
-			const hasToken =
-				token && token.toUpperCase() === REQUEST_TOKEN.toUpperCase();
+		// Helper: get current date/time in America/New_York as a JS Date
+		function getEasternNow() {
+			const now = new Date();
+			const parts = new Intl.DateTimeFormat("en-US", {
+				timeZone: "America/New_York",
+				year: "numeric",
+				month: "numeric",
+				day: "numeric",
+				hour: "numeric",
+				minute: "numeric",
+				second: "numeric",
+				hour12: false
+			}).formatToParts(now);
 
-			const frameWrapper = document.getElementById("jukebox-frame-wrapper");
-			const lockedMsg = document.getElementById("jukebox-locked-message");
-			const openLink = document.getElementById("jukebox-open-link");
-
-			if (!frameWrapper || !lockedMsg) return;
-
-			if (hasToken) {
-				frameWrapper.style.display = "block";
-				lockedMsg.textContent =
-					"You’re on-site and unlocked to request songs! Use the panel below to pick what plays next.";
-				if (openLink) openLink.style.display = "block";
-			} else {
-				frameWrapper.style.display = "none";
-				if (openLink) openLink.style.display = "none";
+			const values = {};
+			for (const p of parts) {
+				if (p.type !== "literal") {
+					values[p.type] = parseInt(p.value, 10);
+				}
 			}
+
+			return new Date(
+				values.year,
+				values.month - 1,
+				values.day,
+				values.hour,
+				values.minute,
+				values.second
+			);
 		}
 
-		unlockRequestsIfToken();
+		function isWithinShowWindow(easternNow) {
+			// Date range: 2025-11-30 through 2026-01-02 (inclusive)
+			const year = easternNow.getFullYear();
+			const month = easternNow.getMonth() + 1; // 1–12
+			const day = easternNow.getDate();
+
+			const ymd = year * 10000 + month * 100 + day;
+			const SHOW_START = 20251130;
+			const SHOW_END   = 20260102;
+
+			const inSeason = ymd >= SHOW_START && ymd <= SHOW_END;
+			if (!inSeason) return false;
+
+			// 0 = Sunday, 1 = Monday, ... 6 = Saturday
+			const dow = easternNow.getDay();
+			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+			const SHOW_START_MINUTES = 18 * 60; // 18:00
+			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
+			const WEEKEND_END        = 23 * 60; // 23:00
+
+			let endMinutes;
+
+			// Sunday–Thursday: 18:00–21:30
+			if (dow >= 0 && dow <= 4) {
+				endMinutes = WEEKDAY_END;
+			}
+			// Friday–Saturday: 18:00–23:00
+			else {
+				endMinutes = WEEKEND_END;
+			}
+
+			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
+		}
+
+		function updateRemoteFalconVisibility() {
+			const liveEl = document.getElementById("remote-falcon-live");
+			const offEl = document.getElementById("remote-falcon-offair");
+			if (!liveEl || !offEl) return;
+
+			const easternNow = getEasternNow();
+			const onAir = isWithinShowWindow(easternNow);
+
+			liveEl.style.display = onAir ? "block" : "none";
+			offEl.style.display = onAir ? "none" : "flex";
+		}
+
+		// Run on load and then every minute
+		updateRemoteFalconVisibility();
+		setInterval(updateRemoteFalconVisibility, 60 * 1000);
 	</script>
 </body>
 </html>
