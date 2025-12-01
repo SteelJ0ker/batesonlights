@@ -496,8 +496,18 @@
 			transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
 		}
 
+		/* FM dot is RED when off-air, turns GREEN when on-air */
+		.pill-dot-fm {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--accent-red); /* offline = red */
+			box-shadow: 0 0 8px rgba(251, 113, 133, 0.6);
+			transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
+		}
+
 		.pill-dot-fm.on-air {
-			background: #22c55e;
+			background: #22c55e;           /* online = green */
 			box-shadow: 0 0 10px #22c55e;
 		}
 
