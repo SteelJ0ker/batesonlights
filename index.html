@@ -527,6 +527,7 @@
 			color: var(--text-muted);
 		}
 
+		/* RF wrapper: simple container, no aspect-ratio tricks */
 		.embed-frame-wrapper {
 			position: relative;
 			width: 100%;
@@ -536,24 +537,12 @@
 			background: radial-gradient(circle at top, #020617, #020617);
 		}
 
-		.embed-frame-wrapper::before {
-			content: "";
-			display: block;
-			padding-top: 52%;       /* a bit shorter on desktop */
-		}
-
-		/* Mobile: give the RF iframe more vertical room */
-		@media (max-width: 768px) {
-			.embed-frame-wrapper::before {
-				padding-top: 120%;   /* taller on phones so more songs are visible */
-			}
-		}
-
+		/* iframe: controls its own height */
 		.embed-frame {
 			width: 100%;
 			border: none;
 			display: block;
-			min-height: 700px;   /* adjust as needed */
+			height: 700px;   /* desktop height */
 		}
 
 		.embed-note {
@@ -594,6 +583,11 @@
 			.footer {
 				flex-direction: column;
 				align-items: flex-start;
+			}
+
+			/* give RF a bit more room on phones */
+			.embed-frame {
+				height: 820px;
 			}
 		}
 		
