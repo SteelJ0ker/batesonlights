@@ -54,7 +54,7 @@
 			width: 100%;
 			max-width: 960px;
 			padding: 16px 16px 40px;
-			margin: 0 auto 40px;
+			margin: 24px auto 40px; /* moved down a bit */
 		}
 
 		/* NAV */
@@ -460,6 +460,52 @@
 			margin: 1px 0;
 		}
 
+		/* Show Schedule header meta (FM + Location) */
+		.schedule-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 4px 0 6px;
+		}
+
+		.pill-fm {
+			transition: box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+		}
+
+		.pill-location {
+			text-decoration: none;
+			color: var(--text-main);
+			transition:
+				background 0.15s ease-out,
+				border-color 0.15s ease-out,
+				box-shadow 0.15s ease-out;
+		}
+
+		.pill-location:hover {
+			border-color: rgba(148, 163, 184, 0.6);
+			background: rgba(15, 23, 42, 0.95);
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+		}
+
+		.pill-dot-fm {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #4b5563; /* gray when off-air */
+			box-shadow: none;
+			transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
+		}
+
+		.pill-dot-fm.on-air {
+			background: #22c55e;
+			box-shadow: 0 0 10px #22c55e;
+		}
+
+		.pill-fm.on-air {
+			border-color: rgba(34, 197, 94, 0.8);
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.55);
+		}
+
 		.embed-section {
 			margin-top: 22px;
 		}
@@ -563,7 +609,6 @@
 			letter-spacing: 0.04em;
 		}
 
-		/* Let the script header use normal case, a bit bigger */
 		.hero-title .em {
 			text-transform: none;
 			font-size: clamp(2.4rem, 4.6vw, 3rem);
@@ -578,7 +623,6 @@
 			animation: buttonGlow 2.4s ease-in-out infinite;
 		}
 
-		/* Extra glowing halo */
 		.btn-listen::before {
 			content: "";
 			position: absolute;
@@ -590,7 +634,6 @@
 			animation: buttonHalo 2.4s ease-in-out infinite;
 		}
 
-		/* Round play icon with subtle animation */
 		.btn-icon-play {
 			display: inline-flex;
 			align-items: center;
@@ -611,7 +654,6 @@
 			animation: playNudge 1.2s ease-in-out infinite;
 		}
 
-		/* Pulsing glow like Christmas lights */
 		@keyframes buttonGlow {
 			0%, 100% {
 				box-shadow: 0 14px 30px rgba(34, 197, 94, 0.45);
@@ -621,7 +663,6 @@
 			}
 		}
 
-		/* Outer halo pulse */
 		@keyframes buttonHalo {
 			0%, 100% {
 				opacity: 0;
@@ -633,7 +674,6 @@
 			}
 		}
 
-		/* Little “press forward” motion on the play triangle */
 		@keyframes playNudge {
 			0%, 100% {
 				transform: translateX(0);
@@ -755,17 +795,6 @@
 								<span>Pick the Next Song</span>
 							</a>
 						</div>
-
-						<div class="hero-meta">
-							<div class="pill">
-								<span class="pill-dot"></span>
-								<span>FM Radio: <strong>93.1 FM</strong></span>
-							</div>
-							<div class="pill">
-								<span>📍</span>
-								<span>Bateson Family Lights • Swanton, Oh</span>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -778,6 +807,24 @@
 					<span class="icon">🕒</span>
 					Show Schedule
 				</h2>
+
+				<div class="schedule-meta">
+					<div class="pill pill-fm" id="fm-radio-pill">
+						<span class="pill-dot-fm" id="fm-radio-dot"></span>
+						<span>FM Radio: <strong>93.1 FM</strong></span>
+					</div>
+
+					<a
+						class="pill pill-location"
+						href="https://www.google.com/maps/search/?api=1&query=108+East+St+Clair+Street%2C+Swanton%2C+OH+43558"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<span>📍</span>
+						<span>Bateson Family Lights • Swanton, Oh</span>
+					</a>
+				</div>
+
 				<ul class="schedule-list">
 					<li>
 						<span class="schedule-day">Static Display</span>
@@ -914,10 +961,8 @@
 	<script>
 		// --------- BASIC UI SETUP ---------
 
-		// Auto-set year in footer
 		document.getElementById("year").textContent = new Date().getFullYear();
 
-		// Adjust Listen button label on mobile devices
 		document.addEventListener("DOMContentLoaded", function () {
 			const labelEl = document.getElementById("listen-live-label");
 			if (!labelEl) return;
@@ -932,14 +977,14 @@
 			}
 		});
 
-		// --------- REMOTE FALCON SCHEDULING ---------
+		// --------- REMOTE FALCON + FM BULLET SCHEDULING ---------
+
 		// Override modes:
 		// "auto"     = follow season + schedule (normal)
-		// "forceOn"  = always show Remote Falcon (ignore schedule)
-		// "forceOff" = always show Off-Air (ignore schedule)
+		// "forceOn"  = always on-air
+		// "forceOff" = always off-air
 		const RF_OVERRIDE_MODE = "auto";
 
-		// Helper: get current date/time in America/New_York as a JS Date
 		function getEasternNow() {
 			const now = new Date();
 			const parts = new Intl.DateTimeFormat("en-US", {
@@ -970,19 +1015,16 @@
 			);
 		}
 
-		// Helper: convert a Date to YYYYMMDD number
 		function dateToYMDInt(d) {
 			return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
 		}
 
-		// Helper: get US Thanksgiving (4th Thursday of November) for a given year
 		function getThanksgiving(year) {
-			// November is month 10 (0-based)
-			const novFirst = new Date(year, 10, 1);
-			const dayOfWeek = novFirst.getDay(); // 0 = Sun, ..., 4 = Thu
+			const novFirst = new Date(year, 10, 1); // November
+			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 4 = Thu
 			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
 			const firstThursdayDate = 1 + offsetToThursday;
-			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday = first + 3 weeks
+			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
 			return new Date(year, 10, thanksgivingDate);
 		}
 
@@ -990,12 +1032,9 @@
 			const year = easternNow.getFullYear();
 			const ymdNow = dateToYMDInt(easternNow);
 
-			// Current season: Thanksgiving of this year -> Jan 2 of next year
 			const thisThanks = getThanksgiving(year);
 			const nextJan2 = new Date(year + 1, 0, 2);
 
-			// Previous season: Thanksgiving of last year -> Jan 2 of this year
-			// (handles Jan 1–2 as part of the previous season)
 			const prevThanks = getThanksgiving(year - 1);
 			const thisJan2 = new Date(year, 0, 2);
 
@@ -1007,9 +1046,7 @@
 			const inSeason = inSeasonCurrent || inSeasonPrevious;
 			if (!inSeason) return false;
 
-			// Time-of-day schedule
-			// 0 = Sunday, 1 = Monday, ... 6 = Saturday
-			const dow = easternNow.getDay();
+			const dow = easternNow.getDay(); // 0=Sun..6=Sat
 			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
 
 			const SHOW_START_MINUTES = 18 * 60; // 18:00
@@ -1018,13 +1055,10 @@
 
 			let endMinutes;
 
-			// Sunday–Thursday: 18:00–21:30
 			if (dow >= 0 && dow <= 4) {
-				endMinutes = WEEKDAY_END;
-			}
-			// Friday–Saturday: 18:00–23:00
-			else {
-				endMinutes = WEEKEND_END;
+				endMinutes = WEEKDAY_END; // Sun–Thu
+			} else {
+				endMinutes = WEEKEND_END; // Fri–Sat
 			}
 
 			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
@@ -1035,27 +1069,30 @@
 			const offEl = document.getElementById("remote-falcon-offair");
 			if (!liveEl || !offEl) return;
 
-			// Overrides first
-			if (RF_OVERRIDE_MODE === "forceOn") {
-				liveEl.style.display = "block";
-				offEl.style.display = "none";
-				return;
-			}
-			if (RF_OVERRIDE_MODE === "forceOff") {
-				liveEl.style.display = "none";
-				offEl.style.display = "block";
-				return;
-			}
+			let onAir;
 
-			// Normal auto mode
-			const easternNow = getEasternNow();
-			const onAir = isWithinShowWindow(easternNow);
+			if (RF_OVERRIDE_MODE === "forceOn") {
+				onAir = true;
+			} else if (RF_OVERRIDE_MODE === "forceOff") {
+				onAir = false;
+			} else {
+				const easternNow = getEasternNow();
+				onAir = isWithinShowWindow(easternNow);
+			}
 
 			liveEl.style.display = onAir ? "block" : "none";
 			offEl.style.display = onAir ? "none" : "block";
+
+			const fmDot = document.getElementById("fm-radio-dot");
+			const fmPill = document.getElementById("fm-radio-pill");
+			if (fmDot) {
+				fmDot.classList.toggle("on-air", onAir);
+			}
+			if (fmPill) {
+				fmPill.classList.toggle("on-air", onAir);
+			}
 		}
 
-		// Run on load and then every minute
 		updateRemoteFalconVisibility();
 		setInterval(updateRemoteFalconVisibility, 60 * 1000);
 	</script>
