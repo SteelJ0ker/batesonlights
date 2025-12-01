@@ -751,6 +751,17 @@
 			font-size: 0.85rem;
 			color: var(--text-muted);
 		}
+		
+		/* ---- Hero overlay override (make it shorter & more transparent) ---- */
+		.hero {
+			background: rgba(7, 10, 25, 0.55);   /* much more see-through */
+			padding: 6px 18px 10px;              /* shorter box */
+		}
+
+		/* Remove extra glowing overlay inside hero so the background shows better */
+		.hero::before {
+			display: none;
+		}
 	</style>
 </head>
 <body>
