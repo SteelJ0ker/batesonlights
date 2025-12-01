@@ -122,6 +122,13 @@
 			color: var(--text-main);
 		}
 
+		/* Disabled nav link state for Listen Live when show is off */
+		.disabled-nav {
+			opacity: 0.4;
+			pointer-events: none;
+			cursor: default;
+		}
+
 		@media (max-width: 640px) {
 			.nav {
 				flex-direction: column;
@@ -445,7 +452,7 @@
 			</div>
 			<div class="nav-links">
 				<a href="index.html">Home</a>
-				<a href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
 				<a href="index.html#jukebox">Requests</a>
 				<a href="contact.html" class="nav-contact">Contact Us</a>
 			</div>
@@ -499,51 +506,50 @@
 					Please include your email address so we can reply if needed.
 				</p>
 
-			<form
-  class="contact-form"
-  action="https://formsubmit.co/contactus@batesonlights.com"
-  method="POST"
->
-  <!-- ✅ FormSubmit options -->
-  <input type="hidden" name="_captcha" value="false">
+				<form
+					class="contact-form"
+					action="https://formsubmit.co/contactus@batesonlights.com"
+					method="POST"
+				>
+					<!-- ✅ FormSubmit options -->
+					<input type="hidden" name="_captcha" value="false">
 
-  <!-- Where to go after submit -->
-  <input type="hidden" name="_next" value="https://batesonlights.com/thankyou.html">
+					<!-- Where to go after submit -->
+					<input type="hidden" name="_next" value="https://batesonlights.com/thankyou.html">
 
-  <!-- ✅ Subject line that stands out in YOUR inbox -->
-  <input type="hidden" name="_subject" value="Bateson Lights Message">
+					<!-- ✅ Subject line that stands out in YOUR inbox -->
+					<input type="hidden" name="_subject" value="Bateson Lights Message">
 
-  <!-- ✅ Cleaner email layout (table format) -->
-  <input type="hidden" name="_template" value="table">
+					<!-- ✅ Cleaner email layout (table format) -->
+					<input type="hidden" name="_template" value="table">
 
-  <!-- ✅ Auto-reply (only works if visitor provides an email) -->
-  <input
-    type="hidden"
-    name="_autoresponse"
-    value="Thank you for contacting Bateson Family Lights! We’ve received your message and will get back to you as soon as we can. 
+					<!-- ✅ Auto-reply (only works if visitor provides an email) -->
+					<input
+						type="hidden"
+						name="_autoresponse"
+						value="Thank you for contacting Bateson Family Lights! We’ve received your message and will get back to you as soon as we can. 
 If you’d like to follow along with updates, photos, and show announcements, you can also visit our Facebook page:
 https://www.facebook.com/batesonlights"
-  >
+					>
 
-  <!-- FORM FIELDS -->
-  <div class="field">
-    <label for="name">Your Name (optional)</label>
-    <input id="name" type="text" name="name">
-  </div>
+					<!-- FORM FIELDS -->
+					<div class="field">
+						<label for="name">Your Name (optional)</label>
+						<input id="name" type="text" name="name">
+					</div>
 
-  <div class="field">
-    <label for="email">Your Email (optional, add if you want a reply)</label>
-    <input id="email" type="email" name="email">
-  </div>
+					<div class="field">
+						<label for="email">Your Email (optional, add if you want a reply)</label>
+						<input id="email" type="email" name="email">
+					</div>
 
-  <div class="field">
-    <label for="message">Your Message *</label>
-    <textarea id="message" name="message" required></textarea>
-  </div>
+					<div class="field">
+						<label for="message">Your Message *</label>
+						<textarea id="message" name="message" required></textarea>
+					</div>
 
-  <button type="submit">Send Message</button>
-</form>
-
+					<button type="submit">Send Message</button>
+				</form>
 			</article>
 
 			<article class="card">
@@ -581,9 +587,126 @@ https://www.facebook.com/batesonlights"
 		</footer>
 	</main>
 
+	<!-- Shared override config -->
+	<script src="rf-config.js"></script>
 	<script>
 		// Footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
+
+		// Nav Listen Live enable/disable based on show status + override
+		(function () {
+			const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
+
+			function getEasternNow() {
+				const now = new Date();
+				const parts = new Intl.DateTimeFormat("en-US", {
+					timeZone: "America/New_York",
+					year: "numeric",
+					month: "numeric",
+					day: "numeric",
+					hour: "numeric",
+					minute: "numeric",
+					second: "numeric",
+					hour12: false
+				}).formatToParts(now);
+
+				const v = {};
+				for (const p of parts) {
+					if (p.type !== "literal") {
+						v[p.type] = parseInt(p.value, 10);
+					}
+				}
+
+				return new Date(
+					v.year,
+					v.month - 1,
+					v.day,
+					v.hour,
+					v.minute,
+					v.second
+				);
+			}
+
+			function dateToYMDInt(d) {
+				return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+			}
+
+			function getThanksgiving(year) {
+				const novFirst = new Date(year, 10, 1); // November
+				const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 4 = Thu
+				const offsetToThursday = (4 - dayOfWeek + 7) % 7;
+				const firstThursdayDate = 1 + offsetToThursday;
+				const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
+				return new Date(year, 10, thanksgivingDate);
+			}
+
+			function isWithinShowWindow(easternNow) {
+				const year = easternNow.getFullYear();
+				const ymdNow = dateToYMDInt(easternNow);
+
+				const thisThanks = getThanksgiving(year);
+				const nextJan2 = new Date(year + 1, 0, 2);
+
+				const prevThanks = getThanksgiving(year - 1);
+				const thisJan2 = new Date(year, 0, 2);
+
+				const inSeasonCurrent =
+					ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
+				const inSeasonPrevious =
+					ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
+
+				const inSeason = inSeasonCurrent || inSeasonPrevious;
+				if (!inSeason) return false;
+
+				const dow = easternNow.getDay(); // 0=Sun..6=Sat
+				const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+				const SHOW_START_MINUTES = 18 * 60; // 18:00
+				const WEEKDAY_END = 21 * 60 + 30;   // 21:30
+				const WEEKEND_END = 23 * 60;        // 23:00
+
+				let endMinutes;
+
+				if (dow >= 0 && dow <= 4) {
+					endMinutes = WEEKDAY_END; // Sun–Thu
+				} else {
+					endMinutes = WEEKEND_END; // Fri–Sat
+				}
+
+				return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
+			}
+
+			function updateNavListen() {
+				let onAir;
+
+				if (RF_OVERRIDE_MODE === "forceon") {
+					onAir = true;
+				} else if (RF_OVERRIDE_MODE === "forceoff") {
+					onAir = false;
+				} else {
+					const easternNow = getEasternNow();
+					onAir = isWithinShowWindow(easternNow);
+				}
+
+				const navListen = document.getElementById("nav-listen-link");
+				if (!navListen) return;
+
+				if (onAir) {
+					navListen.classList.remove("disabled-nav");
+					navListen.href = "https://pulsemesh.io/d/SGVT/smart";
+					navListen.target = "_blank";
+					navListen.rel = "noopener noreferrer";
+				} else {
+					navListen.classList.add("disabled-nav");
+					navListen.href = "#";
+					navListen.removeAttribute("target");
+					navListen.removeAttribute("rel");
+				}
+			}
+
+			updateNavListen();
+			setInterval(updateNavListen, 60 * 1000);
+		})();
 	</script>
 </body>
 </html>
