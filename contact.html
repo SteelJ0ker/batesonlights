@@ -472,7 +472,9 @@
 			<div class="hero-inner">
 				<div class="hero-top">
 					<div>
-						<div class="badge">
+					
+
+								<div class="badge">
 							<span class="badge-dot"></span>
 							<span>Get in Touch</span>
 						</div>
@@ -593,9 +595,42 @@ https://www.facebook.com/batesonlights"
 		// Footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
 
+		// Helper to read override mode (same behavior as index.html)
+		function getRfOverrideMode() {
+			let mode = "auto";
+
+			// 1) URL param ?rf=forceOn / ?rf=forceOff for quick testing
+			try {
+				const params = new URLSearchParams(window.location.search);
+				const paramMode = params.get("rf");
+				if (paramMode) {
+					mode = paramMode;
+				}
+			} catch (e) {
+				// ignore
+			}
+
+			// 2) Global from rf-config.js
+			if (!mode || mode.toString().trim() === "") {
+				// If rf-config.js used: window.RF_OVERRIDE_MODE = "forceOn";
+				if (typeof window !== "undefined" && typeof window.RF_OVERRIDE_MODE !== "undefined") {
+					mode = window.RF_OVERRIDE_MODE;
+				}
+				// If rf-config.js used: const RF_OVERRIDE_MODE = "forceOn";
+				else if (typeof RF_OVERRIDE_MODE !== "undefined") {
+					mode = RF_OVERRIDE_MODE;
+				}
+				else {
+					mode = "auto";
+				}
+			}
+
+			mode = String(mode).trim() || "auto";
+			return mode.toLowerCase();
+		}
+
 		// Nav Listen Live enable/disable based on show status + override
 		(function () {
-			const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 			function getEasternNow() {
 				const now = new Date();
@@ -677,11 +712,12 @@ https://www.facebook.com/batesonlights"
 			}
 
 			function updateNavListen() {
+				const overrideMode = getRfOverrideMode();
 				let onAir;
 
-				if (RF_OVERRIDE_MODE === "forceon") {
+				if (overrideMode === "forceon") {
 					onAir = true;
-				} else if (RF_OVERRIDE_MODE === "forceoff") {
+				} else if (overrideMode === "forceoff") {
 					onAir = false;
 				} else {
 					const easternNow = getEasternNow();
@@ -702,6 +738,9 @@ https://www.facebook.com/batesonlights"
 					navListen.removeAttribute("target");
 					navListen.removeAttribute("rel");
 				}
+
+				// Optional: log for debugging
+				console.log("Contact page RF override mode:", overrideMode, "| onAir:", onAir);
 			}
 
 			updateNavListen();
