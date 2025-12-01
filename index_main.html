@@ -965,7 +965,7 @@
 							<li>Friday–Saturday: 6:00 PM – 11:00 PM</li>
 						</ul>
 						<p class="offair-timezone-note">
-							All times are Eastern (US). Show season runs Nov 30, 2025 – Jan 2, 2026.
+							All times are Eastern (US). Show season runs from Thanksgiving through January 2 each year.
 						</p>
 					</div>
 				</div>
@@ -1071,26 +1071,50 @@
 			);
 		}
 
+		// Helper: convert a Date to YYYYMMDD number
+		function dateToYMDInt(d) {
+			return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+		}
+
+		// Helper: get US Thanksgiving (4th Thursday of November) for a given year
+		function getThanksgiving(year) {
+			// November is month 10 (0-based)
+			const novFirst = new Date(year, 10, 1);
+			const dayOfWeek = novFirst.getDay(); // 0 = Sun, ..., 4 = Thu
+			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
+			const firstThursdayDate = 1 + offsetToThursday;
+			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday = first + 3 weeks
+			return new Date(year, 10, thanksgivingDate);
+		}
+
 		function isWithinShowWindow(easternNow) {
-			// Date range: 2025-11-30 through 2026-01-02 (inclusive)
 			const year = easternNow.getFullYear();
-			const month = easternNow.getMonth() + 1; // 1–12
-			const day = easternNow.getDate();
+			const ymdNow = dateToYMDInt(easternNow);
 
-			const ymd = year * 10000 + month * 100 + day;
-			const SHOW_START = 20251130;
-			const SHOW_END   = 20260102;
+			// Season that starts this year's Thanksgiving and ends Jan 2 next year
+			const thisThanks = getThanksgiving(year);
+			const nextJan2 = new Date(year + 1, 0, 2); // Jan 2 of next year
 
-			const inSeason = ymd >= SHOW_START && ymd <= SHOW_END;
+			// Season that started last year (needed for Jan 1–2)
+			const prevThanks = getThanksgiving(year - 1);
+			const thisJan2 = new Date(year, 0, 2); // Jan 2 of this year
+
+			const inSeasonCurrent =
+				ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
+			const inSeasonPrevious =
+				ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
+
+			const inSeason = inSeasonCurrent || inSeasonPrevious;
 			if (!inSeason) return false;
 
+			// Time-of-day logic (unchanged)
 			// 0 = Sunday, 1 = Monday, ... 6 = Saturday
 			const dow = easternNow.getDay();
 			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
 
 			const SHOW_START_MINUTES = 18 * 60; // 18:00
 			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
-			const WEEKEND_END        = 23 * 60; // 23:00
+			const WEEKEND_END        = 23 * 60;      // 23:00
 
 			let endMinutes;
 
