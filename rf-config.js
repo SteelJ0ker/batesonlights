@@ -4,6 +4,6 @@
 // "forceOn"  = always on-air
 // "forceOff" = always off-air
 
-window.RF_OVERRIDE_MODE = "auto";
-// window.RF_OVERRIDE_MODE = "forceOn";
+//window.RF_OVERRIDE_MODE = "auto";
+window.RF_OVERRIDE_MODE = "forceOn";
 // window.RF_OVERRIDE_MODE = "forceOff";
