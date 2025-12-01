@@ -650,6 +650,13 @@
 			z-index: -1;
 			animation: buttonHalo 2.4s ease-in-out infinite;
 		}
+		
+		.btn-listen.disabled {
+		    opacity: 0.4;
+		    cursor: default;
+		    pointer-events: none;
+		    box-shadow: none;
+		}
 
 		.btn-icon-play {
 			display: inline-flex;
@@ -763,6 +770,12 @@
 		.hero::before {
 			display: none;
 		}
+
+		.disabled-nav {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+}
 	</style>
 </head>
 <body>
@@ -775,7 +788,7 @@
 			</div>
 			<div class="nav-links">
 				<a href="#top">Home</a>
-				<a href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
 				<a href="#jukebox">Requests</a>
 				<a href="contact.html" class="btn-nav">Contact Us</a>
 			</div>
@@ -989,6 +1002,8 @@
 		</footer>
 	</main>
 
+<script src="rf-config.js"></script>
+	
 	<script>
 		// --------- BASIC UI SETUP ---------
 
@@ -1014,7 +1029,8 @@
 		// "auto"     = follow season + schedule (normal)
 		// "forceOn"  = always on-air
 		// "forceOff" = always off-air
-		const RF_OVERRIDE_MODE = "auto";
+		// now uses the flag in rf-config.js file
+		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 		function getEasternNow() {
 			const now = new Date();
@@ -1096,32 +1112,68 @@
 		}
 
 		function updateRemoteFalconVisibility() {
-			const liveEl = document.getElementById("remote-falcon-live");
-			const offEl = document.getElementById("remote-falcon-offair");
-			if (!liveEl || !offEl) return;
+    const liveEl = document.getElementById("remote-falcon-live");
+    const offEl = document.getElementById("remote-falcon-offair");
+    if (!liveEl || !offEl) return;
 
-			let onAir;
+    let onAir;
 
-			if (RF_OVERRIDE_MODE === "forceOn") {
-				onAir = true;
-			} else if (RF_OVERRIDE_MODE === "forceOff") {
-				onAir = false;
-			} else {
-				const easternNow = getEasternNow();
-				onAir = isWithinShowWindow(easternNow);
-			}
+    if (RF_OVERRIDE_MODE === "forceOn") {
+        onAir = true;
+    } else if (RF_OVERRIDE_MODE === "forceOff") {
+        onAir = false;
+    } else {
+        const easternNow = getEasternNow();
+        onAir = isWithinShowWindow(easternNow);
+    }
 
-			liveEl.style.display = onAir ? "block" : "none";
-			offEl.style.display = onAir ? "none" : "block";
+    // Remote Falcon embed
+    liveEl.style.display = onAir ? "block" : "none";
+    offEl.style.display = onAir ? "none" : "block";
 
-			const fmDot = document.getElementById("fm-radio-dot");
-			const fmPill = document.getElementById("fm-radio-pill");
-			if (fmDot) {
-				fmDot.classList.toggle("on-air", onAir);
-			}
-			if (fmPill) {
-				fmPill.classList.toggle("on-air", onAir);
-			}
+    // FM radio pill state
+    const fmDot = document.getElementById("fm-radio-dot");
+    const fmPill = document.getElementById("fm-radio-pill");
+    if (fmDot) {
+        fmDot.classList.toggle("on-air", onAir);
+    }
+    if (fmPill) {
+        fmPill.classList.toggle("on-air", onAir);
+    }
+
+    // Listen Live button state
+    const listenBtn = document.getElementById("listen-live-btn");
+    if (listenBtn) {
+        if (onAir) {
+            // Enable button and restore Pulsemesh link
+            listenBtn.classList.remove("disabled");
+            listenBtn.href = "https://pulsemesh.io/d/SGVT/smart";
+            listenBtn.target = "_blank";
+            listenBtn.rel = "noopener noreferrer";
+        } else {
+            // Disable button & prevent navigation
+            listenBtn.classList.add("disabled");
+            listenBtn.removeAttribute("target");
+            listenBtn.removeAttribute("rel");
+            listenBtn.href = "#";
+        }
+    }
+
+// Top NAV Listen link
+const navListen = document.getElementById("nav-listen-link");
+if (navListen) {
+    if (onAir) {
+        navListen.classList.remove("disabled-nav");
+        navListen.href = "https://pulsemesh.io/d/SGVT/smart";
+        navListen.target = "_blank";
+        navListen.rel = "noopener noreferrer";
+    } else {
+        navListen.classList.add("disabled-nav");
+        navListen.href = "#";
+        navListen.removeAttribute("target");
+        navListen.removeAttribute("rel");
+    }
+}
 		}
 
 		updateRemoteFalconVisibility();
