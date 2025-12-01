@@ -772,10 +772,10 @@
 		}
 
 		.disabled-nav {
-    opacity: 0.4;
-    pointer-events: none;
-    cursor: default;
-}
+			opacity: 0.4;
+			pointer-events: none;
+			cursor: default;
+		}
 	</style>
 </head>
 <body>
@@ -952,12 +952,7 @@
 					<span class="icon">🎶</span>
 					Pick the Next Song
 				</h2>
-				<!--
-					<p class="embed-note">
-						Song requests are available during show hours:
-						Sun–Thu 6:00–9:30 PM, Fri–Sat 6:00–11:00 PM (Eastern).
-					</p>
-				-->
+
 				<!-- LIVE (during show hours in Eastern time) -->
 				<div id="remote-falcon-live">
 					<div class="embed-frame-wrapper">
@@ -1002,7 +997,7 @@
 		</footer>
 	</main>
 
-<script src="rf-config.js"></script>
+	<script src="rf-config.js"></script>
 	
 	<script>
 		// --------- BASIC UI SETUP ---------
@@ -1029,8 +1024,39 @@
 		// "auto"     = follow season + schedule (normal)
 		// "forceOn"  = always on-air
 		// "forceOff" = always off-air
-		// now uses the flag in rf-config.js file
-		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
+		// now uses the flag in rf-config.js file (or ?rf=forceOn in URL)
+		function getRfOverrideMode() {
+			let mode = "auto";
+
+			// 1) URL query param ?rf=forceOn / ?rf=forceOff (for quick testing)
+			try {
+				const params = new URLSearchParams(window.location.search);
+				const paramMode = params.get("rf");
+				if (paramMode) {
+					mode = paramMode;
+				}
+			} catch (e) {
+				// ignore
+			}
+
+			// 2) Global from rf-config.js
+			if (!mode || mode.toString().trim() === "") {
+				// If rf-config.js used: window.RF_OVERRIDE_MODE = "forceOn";
+				if (typeof window !== "undefined" && typeof window.RF_OVERRIDE_MODE !== "undefined") {
+					mode = window.RF_OVERRIDE_MODE;
+				}
+				// If rf-config.js used: const RF_OVERRIDE_MODE = "forceOn";
+				else if (typeof RF_OVERRIDE_MODE !== "undefined") {
+					mode = RF_OVERRIDE_MODE;
+				}
+				else {
+					mode = "auto";
+				}
+			}
+
+			mode = String(mode).trim() || "auto";
+			return mode.toLowerCase();
+		}
 
 		function getEasternNow() {
 			const now = new Date();
@@ -1112,68 +1138,72 @@
 		}
 
 		function updateRemoteFalconVisibility() {
-    const liveEl = document.getElementById("remote-falcon-live");
-    const offEl = document.getElementById("remote-falcon-offair");
-    if (!liveEl || !offEl) return;
+			const liveEl = document.getElementById("remote-falcon-live");
+			const offEl = document.getElementById("remote-falcon-offair");
+			if (!liveEl || !offEl) return;
 
-    let onAir;
+			const overrideMode = getRfOverrideMode();
+			let onAir;
 
-    if (RF_OVERRIDE_MODE === "forceOn") {
-        onAir = true;
-    } else if (RF_OVERRIDE_MODE === "forceOff") {
-        onAir = false;
-    } else {
-        const easternNow = getEasternNow();
-        onAir = isWithinShowWindow(easternNow);
-    }
+			if (overrideMode === "forceon") {
+				onAir = true;
+			} else if (overrideMode === "forceoff") {
+				onAir = false;
+			} else {
+				const easternNow = getEasternNow();
+				onAir = isWithinShowWindow(easternNow);
+			}
 
-    // Remote Falcon embed
-    liveEl.style.display = onAir ? "block" : "none";
-    offEl.style.display = onAir ? "none" : "block";
+			// Remote Falcon embed
+			liveEl.style.display = onAir ? "block" : "none";
+			offEl.style.display = onAir ? "none" : "block";
 
-    // FM radio pill state
-    const fmDot = document.getElementById("fm-radio-dot");
-    const fmPill = document.getElementById("fm-radio-pill");
-    if (fmDot) {
-        fmDot.classList.toggle("on-air", onAir);
-    }
-    if (fmPill) {
-        fmPill.classList.toggle("on-air", onAir);
-    }
+			// FM radio pill state
+			const fmDot = document.getElementById("fm-radio-dot");
+			const fmPill = document.getElementById("fm-radio-pill");
+			if (fmDot) {
+				fmDot.classList.toggle("on-air", onAir);
+			}
+			if (fmPill) {
+				fmPill.classList.toggle("on-air", onAir);
+			}
 
-    // Listen Live button state
-    const listenBtn = document.getElementById("listen-live-btn");
-    if (listenBtn) {
-        if (onAir) {
-            // Enable button and restore Pulsemesh link
-            listenBtn.classList.remove("disabled");
-            listenBtn.href = "https://pulsemesh.io/d/SGVT/smart";
-            listenBtn.target = "_blank";
-            listenBtn.rel = "noopener noreferrer";
-        } else {
-            // Disable button & prevent navigation
-            listenBtn.classList.add("disabled");
-            listenBtn.removeAttribute("target");
-            listenBtn.removeAttribute("rel");
-            listenBtn.href = "#";
-        }
-    }
+			// Listen Live button state
+			const listenBtn = document.getElementById("listen-live-btn");
+			if (listenBtn) {
+				if (onAir) {
+					// Enable button and restore Pulsemesh link
+					listenBtn.classList.remove("disabled");
+					listenBtn.href = "https://pulsemesh.io/d/SGVT/smart";
+					listenBtn.target = "_blank";
+					listenBtn.rel = "noopener noreferrer";
+				} else {
+					// Disable button & prevent navigation
+					listenBtn.classList.add("disabled");
+					listenBtn.removeAttribute("target");
+					listenBtn.removeAttribute("rel");
+					listenBtn.href = "#";
+				}
+			}
 
-// Top NAV Listen link
-const navListen = document.getElementById("nav-listen-link");
-if (navListen) {
-    if (onAir) {
-        navListen.classList.remove("disabled-nav");
-        navListen.href = "https://pulsemesh.io/d/SGVT/smart";
-        navListen.target = "_blank";
-        navListen.rel = "noopener noreferrer";
-    } else {
-        navListen.classList.add("disabled-nav");
-        navListen.href = "#";
-        navListen.removeAttribute("target");
-        navListen.removeAttribute("rel");
-    }
-}
+			// Top NAV Listen link
+			const navListen = document.getElementById("nav-listen-link");
+			if (navListen) {
+				if (onAir) {
+					navListen.classList.remove("disabled-nav");
+					navListen.href = "https://pulsemesh.io/d/SGVT/smart";
+					navListen.target = "_blank";
+					navListen.rel = "noopener noreferrer";
+				} else {
+					navListen.classList.add("disabled-nav");
+					navListen.href = "#";
+					navListen.removeAttribute("target");
+					navListen.removeAttribute("rel");
+				}
+			}
+
+			// Optional: log so you can see what mode is being used
+			console.log("RF override mode:", overrideMode, "| onAir:", onAir);
 		}
 
 		updateRemoteFalconVisibility();
