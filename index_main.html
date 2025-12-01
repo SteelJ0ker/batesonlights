@@ -80,10 +80,6 @@
 			font-weight: 600;
 		}
 
-		.nav-title span.logo-em {
-			color: var(--accent-green);
-		}
-
 		.nav-links {
 			display: flex;
 			align-items: center;
@@ -216,7 +212,7 @@
 
 		.hero-top {
 			display: grid;
-			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+			grid-template-columns: minmax(0, 1fr);
 			gap: 14px;
 			align-items: stretch;
 		}
@@ -359,47 +355,6 @@
 			border-radius: 50%;
 			background: var(--accent-red);
 			box-shadow: 0 0 10px var(--accent-red);
-		}
-
-		/* NOW PLAYING CARD */
-		.now-playing-card {
-			background: rgba(15, 23, 42, 0.96);
-			border-radius: 18px;
-			border: 1px solid rgba(148, 163, 184, 0.28);
-			padding: 10px 12px;
-			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-		}
-
-		.now-playing-header {
-			display: flex;
-			align-items: center;
-			gap: 6px;
-			font-size: 0.8rem;
-			text-transform: uppercase;
-			color: var(--text-muted);
-			letter-spacing: 0.08em;
-		}
-
-		.now-playing-dot {
-			width: 8px;
-			height: 8px;
-			border-radius: 999px;
-			background: #22c55e;
-			box-shadow: 0 0 12px #22c55e;
-		}
-
-		.now-playing-title {
-			font-size: 0.95rem;
-			font-weight: 600;
-			color: var(--text-main);
-		}
-
-		.now-playing-extra {
-			font-size: 0.8rem;
-			color: var(--text-muted);
 		}
 
 		.grid {
@@ -590,10 +545,6 @@
 				padding: 12px 12px 18px;
 			}
 
-			.hero-top {
-				grid-template-columns: minmax(0, 1fr);
-			}
-
 			.grid {
 				grid-template-columns: minmax(0, 1fr);
 			}
@@ -700,51 +651,48 @@
 
 		#remote-falcon-offair {
 			display: none;
-			margin-top: 10px;
-			justify-content: center;
-		}
-
-		.offair-card {
-			max-width: 500px;
-			margin: 0 auto;
-			padding: 1.5rem 1.75rem;
-			border-radius: 1rem;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px solid rgba(148, 163, 184, 0.4);
+			margin-top: 14px;
 			text-align: center;
-			box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+			padding: 20px 12px;
+			border-radius: 18px;
+			background: rgba(15, 23, 42, 0.75);
+			border: 1px solid rgba(148, 163, 184, 0.22);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
 		}
 
-		.offair-icon {
-			font-size: 2.5rem;
-			margin-bottom: 0.75rem;
+		#remote-falcon-offair h3 {
+			margin: 6px 0 6px;
+			font-size: 1.3rem;
+			color: var(--text-main);
 		}
 
-		.offair-card h3 {
-			margin: 0 0 0.5rem 0;
-			font-size: 1.4rem;
-		}
-
-		.offair-card p {
-			margin: 0.25rem 0;
-			font-size: 0.95rem;
+		#remote-falcon-offair p {
+			margin: 4px 0;
+			font-size: 0.9rem;
 			color: var(--text-muted);
 		}
 
-		.offair-card ul {
+		#remote-falcon-offair ul {
 			list-style: none;
 			padding: 0;
-			margin: 0.5rem 0 0.5rem 0;
+			margin: 10px 0;
 			font-size: 0.95rem;
 		}
 
-		.offair-card li {
-			margin: 0.15rem 0;
+		#remote-falcon-offair li {
+			margin: 2px 0;
+			color: var(--text-main);
+		}
+
+		.offair-icon {
+			font-size: 2.4rem;
+			margin-bottom: 8px;
 		}
 
 		.offair-timezone-note {
 			opacity: 0.8;
 			font-size: 0.85rem;
+			color: var(--text-muted);
 		}
 	</style>
 </head>
@@ -819,21 +767,6 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- NOW PLAYING -->
-					<div class="now-playing-card">
-						<div class="now-playing-header">
-							<span class="now-playing-dot"></span>
-							<span>Now Playing</span>
-						</div>
-						<div id="now-playing-title" class="now-playing-title">
-							Waiting for the next song to start…
-						</div>
-						<div id="now-playing-extra" class="now-playing-extra">
-							When the show is running, this will show the current song or
-							sequence title.
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -848,7 +781,7 @@
 				<ul class="schedule-list">
 					<li>
 						<span class="schedule-day">Static Display</span>
-						<span class="schedule-time">4:00 AM - 7:00 AM / 4:00 PM – 6:00 PM Daily</span>
+						<span class="schedule-time">4:00 AM – 7:00 AM / 4:00 PM – 6:00 PM Daily</span>
 					</li>
 					<li>
 						<span class="schedule-day">Sun–Thu</span>
@@ -889,7 +822,7 @@
 						<span class="info-label">Listen</span>
 						<span class="info-value">
 							On-site: <strong>93.1 FM</strong><br />
-							Phone: Use the Listen Live section below.
+							Phone: Use the Listen Live section above.
 						</span>
 					</li>
 					<li>
@@ -954,20 +887,18 @@
 
 				<!-- OFF AIR (outside show hours or outside season) -->
 				<div id="remote-falcon-offair">
-					<div class="offair-card">
-						<div class="offair-icon">📻</div>
-						<h3>Jukebox Offline</h3>
-						<p>
-							Our Remote Falcon song request panel is only available during show hours.
-						</p>
-						<ul>
-							<li>Sunday–Thursday: 6:00 PM – 9:30 PM</li>
-							<li>Friday–Saturday: 6:00 PM – 11:00 PM</li>
-						</ul>
-						<p class="offair-timezone-note">
-							All times are Eastern (US). Show season runs from Thanksgiving through January 2 each year.
-						</p>
-					</div>
+					<div class="offair-icon">📻</div>
+					<h3>Jukebox Offline</h3>
+					<p>The request panel is only available during show hours:</p>
+
+					<ul>
+						<li>Sunday–Thursday: 6:00 PM – 9:30 PM</li>
+						<li>Friday–Saturday: 6:00 PM – 11:00 PM</li>
+					</ul>
+
+					<p class="offair-timezone-note">
+						Show season runs from Thanksgiving through January 2 each year. All times are Eastern (US).
+					</p>
 				</div>
 			</article>
 		</section>
@@ -981,6 +912,8 @@
 	</main>
 
 	<script>
+		// --------- BASIC UI SETUP ---------
+
 		// Auto-set year in footer
 		document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -999,46 +932,12 @@
 			}
 		});
 
-		// OPTIONAL: Now Playing integration
-		// Set NOW_PLAYING_API to a JSON endpoint if you build one later.
-		const NOW_PLAYING_API = "NOW_PLAYING_STATUS_URL";
-
-		async function updateNowPlaying() {
-			if (!NOW_PLAYING_API || NOW_PLAYING_API === "NOW_PLAYING_STATUS_URL") {
-				return;
-			}
-
-			try {
-				const response = await fetch(NOW_PLAYING_API, { cache: "no-store" });
-				if (!response.ok) return;
-
-				const data = await response.json();
-
-				const titleEl = document.getElementById("now-playing-title");
-				const extraEl = document.getElementById("now-playing-extra");
-
-				if (data && (data.title || data.song || data.sequence)) {
-					const title =
-						data.title || data.song || data.sequence || "Currently playing";
-					const artist = data.artist || data.show || "";
-					const extra = data.extra || data.subtitle || "";
-
-					titleEl.textContent = title;
-					if (artist || extra) {
-						extraEl.textContent = [artist, extra].filter(Boolean).join(" • ");
-					} else {
-						extraEl.textContent = "Enjoy the lights!";
-					}
-				}
-			} catch (err) {
-				console.error("Now playing fetch failed:", err);
-			}
-		}
-
-		setInterval(updateNowPlaying, 15000);
-		updateNowPlaying();
-
-		// ----- Remote Falcon show-hours control (Eastern time) -----
+		// --------- REMOTE FALCON SCHEDULING ---------
+		// Override modes:
+		// "auto"     = follow season + schedule (normal)
+		// "forceOn"  = always show Remote Falcon (ignore schedule)
+		// "forceOff" = always show Off-Air (ignore schedule)
+		const RF_OVERRIDE_MODE = "auto";
 
 		// Helper: get current date/time in America/New_York as a JS Date
 		function getEasternNow() {
@@ -1091,13 +990,14 @@
 			const year = easternNow.getFullYear();
 			const ymdNow = dateToYMDInt(easternNow);
 
-			// Season that starts this year's Thanksgiving and ends Jan 2 next year
+			// Current season: Thanksgiving of this year -> Jan 2 of next year
 			const thisThanks = getThanksgiving(year);
-			const nextJan2 = new Date(year + 1, 0, 2); // Jan 2 of next year
+			const nextJan2 = new Date(year + 1, 0, 2);
 
-			// Season that started last year (needed for Jan 1–2)
+			// Previous season: Thanksgiving of last year -> Jan 2 of this year
+			// (handles Jan 1–2 as part of the previous season)
 			const prevThanks = getThanksgiving(year - 1);
-			const thisJan2 = new Date(year, 0, 2); // Jan 2 of this year
+			const thisJan2 = new Date(year, 0, 2);
 
 			const inSeasonCurrent =
 				ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
@@ -1107,7 +1007,7 @@
 			const inSeason = inSeasonCurrent || inSeasonPrevious;
 			if (!inSeason) return false;
 
-			// Time-of-day logic (unchanged)
+			// Time-of-day schedule
 			// 0 = Sunday, 1 = Monday, ... 6 = Saturday
 			const dow = easternNow.getDay();
 			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
@@ -1135,11 +1035,24 @@
 			const offEl = document.getElementById("remote-falcon-offair");
 			if (!liveEl || !offEl) return;
 
+			// Overrides first
+			if (RF_OVERRIDE_MODE === "forceOn") {
+				liveEl.style.display = "block";
+				offEl.style.display = "none";
+				return;
+			}
+			if (RF_OVERRIDE_MODE === "forceOff") {
+				liveEl.style.display = "none";
+				offEl.style.display = "block";
+				return;
+			}
+
+			// Normal auto mode
 			const easternNow = getEasternNow();
 			const onAir = isWithinShowWindow(easternNow);
 
 			liveEl.style.display = onAir ? "block" : "none";
-			offEl.style.display = onAir ? "none" : "flex";
+			offEl.style.display = onAir ? "none" : "block";
 		}
 
 		// Run on load and then every minute
