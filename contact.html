@@ -499,32 +499,51 @@
 					Please include your email address so we can reply if needed.
 				</p>
 
-				<form
-					class="contact-form"
-					action="https://formsubmit.co/contactus@batesonlights.com"
-					method="POST"
-				>
-					<!-- FormSubmit options -->
-					<input type="hidden" name="_captcha" value="false">
-					<input type="hidden" name="_next" value="https://batesonlights.com/thankyou.html">
+			<form
+  class="contact-form"
+  action="https://formsubmit.co/contactus@batesonlights.com"
+  method="POST"
+>
+  <!-- ✅ FormSubmit options -->
+  <input type="hidden" name="_captcha" value="false">
 
-					<div class="field">
-						<label for="name">Your Name</label>
-						<input id="name" type="text" name="name" required>
-					</div>
+  <!-- Where to go after submit -->
+  <input type="hidden" name="_next" value="https://batesonlights.com/thankyou.html">
 
-					<div class="field">
-						<label for="email">Your Email</label>
-						<input id="email" type="email" name="email" required>
-					</div>
+  <!-- ✅ Subject line that stands out in YOUR inbox -->
+  <input type="hidden" name="_subject" value="Bateson Lights Message">
 
-					<div class="field">
-						<label for="message">Your Message</label>
-						<textarea id="message" name="message" required></textarea>
-					</div>
+  <!-- ✅ Cleaner email layout (table format) -->
+  <input type="hidden" name="_template" value="table">
 
-					<button type="submit">Send Message</button>
-				</form>
+  <!-- ✅ Auto-reply (only works if visitor provides an email) -->
+  <input
+    type="hidden"
+    name="_autoresponse"
+    value="Thank you for contacting Bateson Family Lights! We’ve received your message and will get back to you as soon as we can. 
+If you’d like to follow along with updates, photos, and show announcements, you can also visit our Facebook page:
+https://www.facebook.com/batesonlights"
+  >
+
+  <!-- FORM FIELDS -->
+  <div class="field">
+    <label for="name">Your Name (optional)</label>
+    <input id="name" type="text" name="name">
+  </div>
+
+  <div class="field">
+    <label for="email">Your Email (optional, add if you want a reply)</label>
+    <input id="email" type="email" name="email">
+  </div>
+
+  <div class="field">
+    <label for="message">Your Message *</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+
+  <button type="submit">Send Message</button>
+</form>
+
 			</article>
 
 			<article class="card">
