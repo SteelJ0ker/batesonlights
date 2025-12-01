@@ -17,4 +17,82 @@
 		.container {
 			max-width: 600px;
 			margin: 40px auto;
-			bac
+			background: #101627;
+			padding: 25px;
+			border-radius: 16px;
+			box-shadow: 0 0 20px rgba(0,0,0,0.45);
+		}
+
+		h1 {
+			font-family: 'Pacifico', cursive;
+			text-align: center;
+			color: #22c55e;
+			font-size: 2.2rem;
+		}
+
+		label {
+			margin-top: 15px;
+			font-size: 1rem;
+			display: block;
+		}
+
+		input, textarea {
+			width: 100%;
+			padding: 12px;
+			margin-top: 5px;
+			border-radius: 10px;
+			border: none;
+			background: #0c1020;
+			color: #ffffff;
+			font-size: 1rem;
+		}
+
+		button {
+			margin-top: 25px;
+			padding: 14px;
+			width: 100%;
+			background: #22c55e;
+			color: #04040b;
+			border: none;
+			border-radius: 12px;
+			font-size: 1.1rem;
+			font-weight: bold;
+			cursor: pointer;
+			transition: 0.2s;
+		}
+
+		button:hover {
+			background: #16a34a;
+			transform: scale(1.02);
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<h1>Contact Us</h1>
+
+	<form action="https://formsubmit.co/christopher.bateson@yahoo.com" method="POST">
+
+		<!-- No CAPTCHA popup -->
+		<input type="hidden" name="_captcha" value="false">
+
+		<!-- Redirect after submit -->
+		<input type="hidden" name="_next" value="https://batesonfamilylights.com/thankyou.html">
+
+		<label>Your Name</label>
+		<input type="text" name="name" required>
+
+		<label>Your Email</label>
+		<input type="email" name="email" required>
+
+		<label>Your Message</label>
+		<textarea name="message" rows="6" required></textarea>
+
+		<button type="submit">Send Message</button>
+	</form>
+</div>
+
+</body>
+</html>
