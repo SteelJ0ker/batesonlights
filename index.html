@@ -180,7 +180,7 @@
 		}
 
 		.hero {
-			background: rgba(7, 10, 25, 0.55);   /* more see-through */
+			background: rgba(7, 10, 25, 0.55);   /* much more see-through */
 			border-radius: var(--radius-xl);
 			box-shadow: var(--shadow-soft);
 			padding: 6px 18px 10px;              /* shorter box */
@@ -539,13 +539,13 @@
 		.embed-frame-wrapper::before {
 			content: "";
 			display: block;
-			padding-top: 52%;       /* shorter on desktop */
+			padding-top: 52%;       /* a bit shorter on desktop */
 		}
 
 		/* Mobile: give the RF iframe more vertical room */
 		@media (max-width: 768px) {
 			.embed-frame-wrapper::before {
-				padding-top: 120%;   /* taller on phones */
+				padding-top: 120%;   /* taller on phones so more songs are visible */
 			}
 		}
 
@@ -632,10 +632,10 @@
 		}
 		
 		.btn-listen.disabled {
-			opacity: 0.4;
-			cursor: default;
-			pointer-events: none;
-			box-shadow: none;
+		    opacity: 0.4;
+		    cursor: default;
+		    pointer-events: none;
+		    box-shadow: none;
 		}
 
 		.btn-icon-play {
@@ -965,9 +965,6 @@
 		</footer>
 	</main>
 
-	<!-- NOTE: version query (?v=2) busts cache when you change rf-config.js -->
-	<script src="rf-config.js?v=2"></script>
-
 	<script>
 		// --------- BASIC UI SETUP ---------
 		document.getElementById("year").textContent = new Date().getFullYear();
@@ -986,35 +983,11 @@
 			}
 		});
 
-		// --------- OVERRIDE MODE HELPER ---------
-		function getRfOverrideMode() {
-			let mode = "auto";
-
-			// 1) URL query param ?rf=forceOn / ?rf=forceOff (for quick testing)
-			try {
-				const params = new URLSearchParams(window.location.search);
-				const paramMode = params.get("rf");
-				if (paramMode) {
-					mode = paramMode;
-				}
-			} catch (e) {
-				// ignore
-			}
-
-			// 2) Global from rf-config.js
-			if (!mode || mode.toString().trim() === "") {
-				if (typeof window !== "undefined" && typeof window.RF_OVERRIDE_MODE !== "undefined") {
-					mode = window.RF_OVERRIDE_MODE;
-				} else if (typeof RF_OVERRIDE_MODE !== "undefined") {
-					mode = RF_OVERRIDE_MODE;
-				} else {
-					mode = "auto";
-				}
-			}
-
-			mode = String(mode).trim() || "auto";
-			return mode.toLowerCase();
-		}
+		// --------- HARD-CODED OVERRIDE FLAG (NO rf-config.js) ---------
+		// "auto"    = follow season + schedule
+		// "forceon" = always on-air (what you want right now)
+		// "forceoff"= always off-air
+		const RF_OVERRIDE_MODE = "auto";
 
 		// --------- TIME / SCHEDULE HELPERS ---------
 		function getEasternNow() {
@@ -1053,7 +1026,7 @@
 
 		function getThanksgiving(year) {
 			const novFirst = new Date(year, 10, 1); // November
-			const dayOfWeek = novFirst.getDay(); // 0 = Sun .. 6 = Sat
+			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 6 = Sat
 			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
 			const firstThursdayDate = 1 + offsetToThursday;
 			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
@@ -1102,12 +1075,11 @@
 			const offEl = document.getElementById("remote-falcon-offair");
 			if (!liveEl || !offEl) return;
 
-			const overrideMode = getRfOverrideMode();
 			let onAir;
 
-			if (overrideMode === "forceon") {
+			if (RF_OVERRIDE_MODE === "forceon") {
 				onAir = true;
-			} else if (overrideMode === "forceoff") {
+			} else if (RF_OVERRIDE_MODE === "forceoff") {
 				onAir = false;
 			} else {
 				const easternNow = getEasternNow();
@@ -1128,7 +1100,7 @@
 				fmPill.classList.toggle("on-air", onAir);
 			}
 
-			// Listen Live button state
+			// Listen Live main button
 			const listenBtn = document.getElementById("listen-live-btn");
 			if (listenBtn) {
 				if (onAir) {
@@ -1160,7 +1132,7 @@
 				}
 			}
 
-			console.log("INDEX | RF override mode:", overrideMode, "| onAir:", onAir);
+			console.log("INDEX | RF_OVERRIDE_MODE:", RF_OVERRIDE_MODE, "| onAir:", onAir);
 		}
 
 		updateRemoteFalconVisibility();
