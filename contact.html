@@ -4,95 +4,567 @@
 	<meta charset="UTF-8" />
 	<title>Contact Us | Bateson Family Lights</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Contact Bateson Family Lights – questions, feedback, or comments about the Christmas light show." />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 	<style>
+		:root {
+			--bg: #04040b;
+			--bg-alt: #0c1020;
+			--card: #101627;
+			--accent-green: #22c55e;
+			--accent-red: #fb7185;
+			--text-main: #f5f7ff;
+			--text-muted: #9ca3c7;
+			--border-subtle: rgba(255, 255, 255, 0.06);
+			--shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.75);
+			--radius-xl: 24px;
+		}
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		html,
 		body {
-			background: #04040b;
-			color: #ffffff;
-			font-family: 'Poppins', sans-serif;
 			margin: 0;
 			padding: 0;
 		}
 
-		.container {
-			max-width: 600px;
-			margin: 40px auto;
-			background: #101627;
-			padding: 25px;
-			border-radius: 16px;
-			box-shadow: 0 0 20px rgba(0,0,0,0.45);
+		body {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+				sans-serif;
+			background:
+				radial-gradient(circle at top, #102540 0, #04040b 55%, #020208 100%),
+				url("https://images.pexels.com/photos/6880135/pexels-photo-6880135.jpeg?auto=compress&cs=tinysrgb&w=1200")
+					center/cover fixed;
+			color: var(--text-main);
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
 		}
 
-		h1 {
-			font-family: 'Pacifico', cursive;
-			text-align: center;
-			color: #22c55e;
-			font-size: 2.2rem;
-		}
-
-		label {
-			margin-top: 15px;
-			font-size: 1rem;
-			display: block;
-		}
-
-		input, textarea {
+		main {
 			width: 100%;
-			padding: 12px;
-			margin-top: 5px;
-			border-radius: 10px;
-			border: none;
-			background: #0c1020;
-			color: #ffffff;
-			font-size: 1rem;
+			max-width: 960px;
+			padding: 16px 16px 40px;
+			margin: 24px auto 40px;
 		}
 
-		button {
-			margin-top: 25px;
-			padding: 14px;
-			width: 100%;
+		/* NAV */
+		.nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			padding: 8px 12px;
+			margin-bottom: 10px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.3);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(10px);
+		}
+
+		.nav-title {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.9rem;
+			font-weight: 600;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 0.84rem;
+		}
+
+		.nav-links a {
+			color: var(--text-muted);
+			text-decoration: none;
+			padding: 4px 10px;
+			border-radius: 999px;
+			border: 1px solid transparent;
+			transition:
+				background 0.12s ease-out,
+				color 0.12s ease-out,
+				border-color 0.12s ease-out;
+		}
+
+		.nav-links a:hover {
+			background: rgba(15, 23, 42, 0.95);
+			color: var(--text-main);
+			border-color: rgba(148, 163, 184, 0.6);
+		}
+
+		.nav-links a.nav-primary {
+			background: radial-gradient(circle at 0 0, #22c55e, #16a34a);
+			color: #020617;
+			border-color: rgba(34, 197, 94, 0.8);
+		}
+
+		.nav-links a.nav-primary:hover {
+			filter: brightness(1.05);
+		}
+
+		/* Optional: make Contact stand out slightly */
+		.nav-links a.nav-contact {
+			border-color: rgba(148, 163, 184, 0.45);
+			background: rgba(15, 23, 42, 0.85);
+			color: var(--text-main);
+		}
+
+		@media (max-width: 640px) {
+			.nav {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			.nav-links {
+				width: 100%;
+				justify-content: flex-start;
+				flex-wrap: wrap;
+			}
+		}
+
+		/* STRING LIGHTS DECORATION */
+		.string-lights {
+			position: relative;
+			height: 32px;
+			margin: 10px 0 -8px;
+		}
+
+		.string-lights::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 12px;
+			height: 2px;
+			background: rgba(148, 163, 184, 0.4);
+			border-radius: 999px;
+		}
+
+		.bulb {
+			position: absolute;
+			top: 10px;
+			width: 10px;
+			height: 16px;
+			border-radius: 40% 40% 60% 60%;
 			background: #22c55e;
-			color: #04040b;
-			border: none;
-			border-radius: 12px;
-			font-size: 1.1rem;
-			font-weight: bold;
-			cursor: pointer;
-			transition: 0.2s;
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+			transform-origin: top center;
+			animation: sway 3s ease-in-out infinite alternate;
 		}
 
-		button:hover {
-			background: #16a34a;
-			transform: scale(1.02);
+		.bulb.red {
+			background: var(--accent-red);
+			box-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
+		}
+
+		.bulb.gold {
+			background: #fbbf24;
+			box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
+		}
+
+		.bulb:nth-child(1) { left: 10%; animation-delay: 0s; }
+		.bulb:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+		.bulb:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+		.bulb:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+		.bulb:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+		.bulb:nth-child(6) { left: 85%; animation-delay: 2s; }
+
+		@keyframes sway {
+			from { transform: rotate(-6deg); }
+			to   { transform: rotate(6deg); }
+		}
+
+		.hero {
+			background: rgba(7, 10, 25, 0.55);
+			border-radius: var(--radius-xl);
+			box-shadow: var(--shadow-soft);
+			padding: 6px 18px 10px;
+			border: 1px solid var(--border-subtle);
+			position: relative;
+			overflow: hidden;
+			margin-top: 15px !important;
+		}
+
+		.hero::before {
+			display: none;
+		}
+
+		.hero-inner {
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-top {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 14px;
+			align-items: stretch;
+		}
+
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			background: rgba(0, 0, 0, 0.55);
+			border-radius: 999px;
+			padding: 4px 10px;
+			color: var(--text-muted);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			margin-bottom: 2px;
+		}
+
+		.badge-dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: #22c55e;
+			box-shadow: 0 0 10px #22c55e;
+		}
+
+		.hero-title {
+			font-size: clamp(2.1rem, 4vw, 2.6rem);
+			font-weight: 800;
+			letter-spacing: 0.03em;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.hero-title span.em {
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		.hero-highlight {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.8rem;
+			color: #fef9c3;
+			background: rgba(248, 250, 252, 0.05);
+			padding: 5px 9px;
+			border-radius: 999px;
+			border: 1px solid rgba(248, 250, 252, 0.18);
+		}
+
+		.hero-subtitle {
+			margin: 6px 0 10px;
+			font-size: 0.98rem;
+			color: var(--text-muted);
+			max-width: 36rem;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+			gap: 18px;
+			margin-top: 22px;
+		}
+
+		.card {
+			background: var(--bg-alt);
+			border-radius: var(--radius-xl);
+			border: 1px solid var(--border-subtle);
+			padding: 14px 14px 16px;
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+		}
+
+		.card h2 {
+			font-size: 1rem;
+			margin: 0 0 8px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.card h2 span.icon {
+			font-size: 1.1rem;
+		}
+
+		.card p {
+			margin: 4px 0;
+			font-size: 0.86rem;
+			color: var(--text-muted);
+		}
+
+		.footer {
+			margin-top: 18px;
+			padding: 10px 6px 0;
+			font-size: 0.78rem;
+			color: var(--text-muted);
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			border-top: 1px solid rgba(148, 163, 184, 0.18);
+		}
+
+		.footer a {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.hero {
+				padding: 12px 12px 18px;
+			}
+
+			.grid {
+				grid-template-columns: minmax(0, 1fr);
+			}
+
+			.footer {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+
+		/* Pacifico for logo + hero title */
+		.logo-script,
+		.hero-title .em {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-weight: 400;
+			letter-spacing: 0.04em;
+		}
+
+		.hero-title .em {
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		/* --- Contact page specific styles --- */
+		.contact-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+			gap: 18px;
+			margin-top: 22px;
+		}
+
+		@media (max-width: 768px) {
+			.contact-grid {
+				grid-template-columns: minmax(0, 1fr);
+			}
+		}
+
+		.contact-form label {
+			display: block;
+			font-size: 0.86rem;
+			color: var(--text-muted);
+			margin-bottom: 4px;
+		}
+
+		.contact-form .field {
+			margin-bottom: 10px;
+		}
+
+		.contact-form input,
+		.contact-form textarea {
+			width: 100%;
+			padding: 9px 10px;
+			border-radius: 12px;
+			border: 1px solid rgba(148, 163, 184, 0.45);
+			background: #020617;
+			color: var(--text-main);
+			font-size: 0.9rem;
+			outline: none;
+			box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.9);
+		}
+
+		.contact-form input:focus,
+		.contact-form textarea:focus {
+			border-color: var(--accent-green);
+			box-shadow:
+				inset 0 0 0 1px rgba(15, 23, 42, 0.9),
+				0 0 0 1px rgba(34, 197, 94, 0.4),
+				0 0 18px rgba(34, 197, 94, 0.25);
+		}
+
+		.contact-form textarea {
+			min-height: 130px;
+			resize: vertical;
+		}
+
+		.contact-form button {
+			margin-top: 8px;
+			width: 100%;
+			padding: 11px;
+			border-radius: 999px;
+			border: none;
+			background: radial-gradient(circle at 0 0, #22c55e, #16a34a);
+			color: #020617;
+			font-size: 0.98rem;
+			font-weight: 600;
+			cursor: pointer;
+			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
+			transition:
+				transform 0.11s ease-out,
+				box-shadow 0.12s ease-out,
+				filter 0.12s ease-out;
+		}
+
+		.contact-form button:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 18px 38px rgba(34, 197, 94, 0.7);
+			filter: brightness(1.03);
+		}
+
+		.contact-form button:active {
+			transform: translateY(0);
+			box-shadow: 0 12px 26px rgba(34, 197, 94, 0.6);
 		}
 	</style>
 </head>
-
 <body>
+	<main id="top">
+		<!-- NAV (same as index) -->
+		<nav class="nav">
+			<div class="nav-title">
+				<span>🎄</span>
+				<span class="logo-script">Bateson Family Lights</span>
+			</div>
+			<div class="nav-links">
+				<a href="index.html">Home</a>
+				<a href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a href="index.html#jukebox">Requests</a>
+				<a href="contact.html" class="nav-contact">Contact Us</a>
+			</div>
+		</nav>
 
-<div class="container">
-	<h1>Contact Us</h1>
+		<div class="string-lights">
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+		</div>
 
-	<form action="https://formsubmit.co/christopher.bateson@yahoo.com" method="POST">
+		<!-- HERO (contact-specific text) -->
+		<section class="hero">
+			<div class="hero-inner">
+				<div class="hero-top">
+					<div>
+						<div class="badge">
+							<span class="badge-dot"></span>
+							<span>Get in Touch</span>
+						</div>
 
-		<!-- No CAPTCHA popup -->
-		<input type="hidden" name="_captcha" value="false">
+						<h1 class="hero-title">
+							<span class="em">Contact Bateson Family Lights</span>
+							<span>📬</span>
+						</h1>
 
-		<!-- Redirect after submit -->
-		<input type="hidden" name="_next" value="https://batesonfamilylights.com/thankyou.html">
+						<div class="hero-highlight">
+							✨ Questions about the show, music, or parking? We’d love to hear from you.
+						</div>
 
-		<label>Your Name</label>
-		<input type="text" name="name" required>
+						<p class="hero-subtitle">
+							Use the form below to send us a message. Whether it’s feedback, a kind word,
+							or a suggestion for future years, your note goes straight to our inbox.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-		<label>Your Email</label>
-		<input type="email" name="email" required>
+		<!-- CONTACT CONTENT -->
+		<section class="contact-grid">
+			<article class="card">
+				<h2>
+					<span class="icon">✉️</span>
+					Send Us a Message
+				</h2>
+				<p>
+					Please include your email address so we can reply if needed.
+				</p>
 
-		<label>Your Message</label>
-		<textarea name="message" rows="6" required></textarea>
+				<form
+					class="contact-form"
+					action="https://formsubmit.co/christopher.bateson@yahoo.com"
+					method="POST"
+				>
+					<!-- FormSubmit options -->
+					<input type="hidden" name="_captcha" value="false">
+					<input type="hidden" name="_next" value="https://batesonfamilylights.com/thankyou.html">
 
-		<button type="submit">Send Message</button>
-	</form>
-</div>
+					<div class="field">
+						<label for="name">Your Name</label>
+						<input id="name" type="text" name="name" required>
+					</div>
 
+					<div class="field">
+						<label for="email">Your Email</label>
+						<input id="email" type="email" name="email" required>
+					</div>
+
+					<div class="field">
+						<label for="message">Your Message</label>
+						<textarea id="message" name="message" required></textarea>
+					</div>
+
+					<button type="submit">Send Message</button>
+				</form>
+			</article>
+
+			<article class="card">
+				<h2>
+					<span class="icon">🎄</span>
+					Other Details
+				</h2>
+				<p>
+					If you’re writing about something specific, here are a few helpful details to include:
+				</p>
+				<ul style="margin: 6px 0 10px; padding-left: 18px; font-size: 0.86rem; color: var(--text-muted);">
+					<li>Approximate date and time you visited the display.</li>
+					<li>Where you were parked (street side, in front of the house, etc.).</li>
+					<li>Any song or moment you’re referring to.</li>
+				</ul>
+				<p style="font-size:0.86rem; color:var(--text-muted); margin-top:8px;">
+					You can also follow along and message us on Facebook:
+					<br />
+					<a
+						href="https://www.facebook.com/batesonlights"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						facebook.com/batesonlights
+					</a>
+				</p>
+			</article>
+		</section>
+
+		<footer class="footer">
+			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
+			<div>
+				Created by the Bateson family • Merry Christmas & Happy Holidays! 🎅
+			</div>
+		</footer>
+	</main>
+
+	<script>
+		// Footer year
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
 </body>
 </html>
