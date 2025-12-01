@@ -180,29 +180,18 @@
 		}
 
 		.hero {
-			background: linear-gradient(
-					135deg,
-					rgba(16, 22, 39, 0.78) 0,
-					rgba(5, 8, 22, 0.85) 55%,
-					rgba(16, 22, 39, 0.78) 100%
-				);
+			background: rgba(7, 10, 25, 0.55);   /* more see-through */
 			border-radius: var(--radius-xl);
 			box-shadow: var(--shadow-soft);
-			padding: 8px 18px 14px; /* less vertical padding = shorter box */
+			padding: 6px 18px 10px;              /* shorter box */
 			border: 1px solid var(--border-subtle);
 			position: relative;
 			overflow: hidden;
+			margin-top: 15px !important;
 		}
 
 		.hero::before {
-			content: "";
-			position: absolute;
-			inset: -40%;
-			background:
-				radial-gradient(circle at 0 0, rgba(0, 224, 145, 0.12), transparent 55%),
-				radial-gradient(circle at 100% 0, rgba(255, 75, 106, 0.18), transparent 55%);
-			opacity: 0.9;
-			pointer-events: none;
+			display: none;
 		}
 
 		.hero-inner {
@@ -487,15 +476,6 @@
 			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
 		}
 
-		.pill-dot-fm {
-			width: 7px;
-			height: 7px;
-			border-radius: 50%;
-			background: #4b5563; /* gray when off-air */
-			box-shadow: none;
-			transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
-		}
-
 		/* FM dot is RED when off-air, turns GREEN when on-air */
 		.pill-dot-fm {
 			width: 7px;
@@ -559,13 +539,13 @@
 		.embed-frame-wrapper::before {
 			content: "";
 			display: block;
-			padding-top: 52%;       /* a bit shorter on desktop so less dead space */
+			padding-top: 52%;       /* shorter on desktop */
 		}
 
 		/* Mobile: give the RF iframe more vertical room */
 		@media (max-width: 768px) {
 			.embed-frame-wrapper::before {
-				padding-top: 120%;   /* taller on phones so more songs are visible */
+				padding-top: 120%;   /* taller on phones */
 			}
 		}
 
@@ -652,10 +632,10 @@
 		}
 		
 		.btn-listen.disabled {
-		    opacity: 0.4;
-		    cursor: default;
-		    pointer-events: none;
-		    box-shadow: none;
+			opacity: 0.4;
+			cursor: default;
+			pointer-events: none;
+			box-shadow: none;
 		}
 
 		.btn-icon-play {
@@ -757,18 +737,6 @@
 			opacity: 0.8;
 			font-size: 0.85rem;
 			color: var(--text-muted);
-		}
-		
-		/* ---- Hero overlay override (make it shorter & more transparent) ---- */
-		.hero {
-			background: rgba(7, 10, 25, 0.55);   /* much more see-through */
-			padding: 6px 18px 10px;              /* shorter box */
-			margin-top: 15px !important;   /* adjust this number until it looks perfect */
-		}
-
-		/* Remove extra glowing overlay inside hero so the background shows better */
-		.hero::before {
-			display: none;
 		}
 
 		.disabled-nav {
@@ -997,11 +965,11 @@
 		</footer>
 	</main>
 
-	<script src="rf-config.js"></script>
-	
+	<!-- NOTE: version query (?v=2) busts cache when you change rf-config.js -->
+	<script src="rf-config.js?v=2"></script>
+
 	<script>
 		// --------- BASIC UI SETUP ---------
-
 		document.getElementById("year").textContent = new Date().getFullYear();
 
 		document.addEventListener("DOMContentLoaded", function () {
@@ -1018,13 +986,7 @@
 			}
 		});
 
-		// --------- REMOTE FALCON + FM BULLET SCHEDULING ---------
-
-		// Override modes:
-		// "auto"     = follow season + schedule (normal)
-		// "forceOn"  = always on-air
-		// "forceOff" = always off-air
-		// now uses the flag in rf-config.js file (or ?rf=forceOn in URL)
+		// --------- OVERRIDE MODE HELPER ---------
 		function getRfOverrideMode() {
 			let mode = "auto";
 
@@ -1041,15 +1003,11 @@
 
 			// 2) Global from rf-config.js
 			if (!mode || mode.toString().trim() === "") {
-				// If rf-config.js used: window.RF_OVERRIDE_MODE = "forceOn";
 				if (typeof window !== "undefined" && typeof window.RF_OVERRIDE_MODE !== "undefined") {
 					mode = window.RF_OVERRIDE_MODE;
-				}
-				// If rf-config.js used: const RF_OVERRIDE_MODE = "forceOn";
-				else if (typeof RF_OVERRIDE_MODE !== "undefined") {
+				} else if (typeof RF_OVERRIDE_MODE !== "undefined") {
 					mode = RF_OVERRIDE_MODE;
-				}
-				else {
+				} else {
 					mode = "auto";
 				}
 			}
@@ -1058,6 +1016,7 @@
 			return mode.toLowerCase();
 		}
 
+		// --------- TIME / SCHEDULE HELPERS ---------
 		function getEasternNow() {
 			const now = new Date();
 			const parts = new Intl.DateTimeFormat("en-US", {
@@ -1094,7 +1053,7 @@
 
 		function getThanksgiving(year) {
 			const novFirst = new Date(year, 10, 1); // November
-			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 4 = Thu
+			const dayOfWeek = novFirst.getDay(); // 0 = Sun .. 6 = Sat
 			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
 			const firstThursdayDate = 1 + offsetToThursday;
 			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
@@ -1137,6 +1096,7 @@
 			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
 		}
 
+		// --------- MAIN VISIBILITY / STATE UPDATE ---------
 		function updateRemoteFalconVisibility() {
 			const liveEl = document.getElementById("remote-falcon-live");
 			const offEl = document.getElementById("remote-falcon-offair");
@@ -1172,13 +1132,11 @@
 			const listenBtn = document.getElementById("listen-live-btn");
 			if (listenBtn) {
 				if (onAir) {
-					// Enable button and restore Pulsemesh link
 					listenBtn.classList.remove("disabled");
 					listenBtn.href = "https://pulsemesh.io/d/SGVT/smart";
 					listenBtn.target = "_blank";
 					listenBtn.rel = "noopener noreferrer";
 				} else {
-					// Disable button & prevent navigation
 					listenBtn.classList.add("disabled");
 					listenBtn.removeAttribute("target");
 					listenBtn.removeAttribute("rel");
@@ -1202,8 +1160,7 @@
 				}
 			}
 
-			// Optional: log so you can see what mode is being used
-			console.log("RF override mode:", overrideMode, "| onAir:", onAir);
+			console.log("INDEX | RF override mode:", overrideMode, "| onAir:", onAir);
 		}
 
 		updateRemoteFalconVisibility();
