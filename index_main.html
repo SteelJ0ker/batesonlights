@@ -559,7 +559,14 @@
 		.embed-frame-wrapper::before {
 			content: "";
 			display: block;
-			padding-top: 62%;
+			padding-top: 52%;       /* a bit shorter on desktop so less dead space */
+		}
+
+		/* Mobile: give the RF iframe more vertical room */
+		@media (max-width: 768px) {
+			.embed-frame-wrapper::before {
+				padding-top: 120%;   /* taller on phones so more songs are visible */
+			}
 		}
 
 		.embed-frame {
