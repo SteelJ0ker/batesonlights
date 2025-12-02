@@ -102,11 +102,6 @@
 			font-weight: 600;
 		}
 
-		/* .logo-script {
-			font-family: "Pacifico", system-ui, -apple-system, sans-serif;
-			font-size: 1.05rem;
-		} */
-
 		.logo-script {
 			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			font-weight: 400;
@@ -115,19 +110,19 @@
 
 		/* Make nav logo bigger and green */
 		.nav-title .logo-script {
-			font-size: 1.35rem;          /* tweak this up/down as you like */
-			color: var(--accent-green);  /* same green as hero */
+			font-size: 1.35rem;
+			color: var(--accent-green);
 			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
 		}
 
 		.nav-title {
 			width: 100%;
 			display: flex;
-			justify-content: center;   /* centers the text */
+			justify-content: center;
 		}
 		
 		.nav-toggle {
-			justify-content: space-between;   /* keeps hamburger on the right */
+			justify-content: space-between;
 		}
 
 		.nav-toggle-label {
@@ -144,13 +139,12 @@
 		.nav-links {
 			display: flex;
 			align-items: center;
-			justify-content: center;      /* center them instead of big gaps */
-			gap: 4px;                     /* smaller space between links */
-			padding: 6px 6px 8px;         /* a little more vertical, not so tall overall */
-			font-size: 0.82rem;           /* slightly smaller text so more fit on one line */
-			flex-wrap: wrap;              /* if it *has* to wrap, it will */
+			justify-content: center;
+			gap: 4px;
+			padding: 6px 6px 8px;
+			font-size: 0.82rem;
+			flex-wrap: wrap;
 
-			/* animation container */
 			max-height: 260px;
 			overflow: hidden;
 			opacity: 1;
@@ -182,11 +176,11 @@
 		.nav-links a {
 			color: var(--text-muted);
 			text-decoration: none;
-			padding: 3px 8px; /* smaller pill padding so they’re tighter */
+			padding: 3px 8px;
 			border-radius: 999px;
 			border: 1px solid transparent;
 			transition: background 0.12s, color 0.12s, border-color 0.12s;
-			white-space: nowrap;          /* keep each label on one line */
+			white-space: nowrap;
 		}
 
 		.nav-links a:hover {
@@ -201,23 +195,23 @@
 		}
 
 		@media (max-width: 640px) {
-		.nav {
-			max-width: 100%;
-			border-radius: 18px;
-		}
+			.nav {
+				max-width: 100%;
+				border-radius: 18px;
+			}
 
-		.nav-links {
-			flex-wrap: wrap;          /* allow wrapping */
-			justify-content: center;  /* keep them centered */
-			gap: 4px;                 /* tight spacing */
-		}
+			.nav-links {
+				flex-wrap: wrap;
+				justify-content: dolores;
+				gap: 4px;
+			}
 
-		.nav-links a {
-			flex: 0 0 auto;           /* no forced 50% width */
-			text-align: center;
-			padding: 4px 8px;         /* smaller pills */
+			.nav-links a {
+				flex: 0 0 auto;
+				text-align: center;
+				padding: 4px 8px;
+			}
 		}
-	}
 
 		/* STRING LIGHTS */
 		.string-lights {
@@ -573,9 +567,9 @@
 	<nav class="nav nav-collapsed">
 		<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
 			<div class="nav-title">
-					<span>🎄 </span>
-					<span class="logo-script">Bateson Family Lights</span>
-					<span> 🎄</span>
+				<span>🎄 </span>
+				<span class="logo-script">Bateson Family Lights</span>
+				<span> 🎄</span>
 			</div>
 		
 			<!-- HAMBURGER ICON -->
@@ -654,11 +648,7 @@
 
 				<div class="show-meta-row">
 					<span class="show-meta-icon">🕒</span>
-					<span>Sun–Thu 05:00 PM – 10:00 PM</span>
-				</div>
-				<div class="show-meta-row">
-					<span class="show-meta-icon">🕒</span>
-					<span>Fri–Sat 05:00 PM – 11:00 PM</span>
+					<span>5:00 PM to 10:00 PM Su -Th / 5:00 PM to 11:00 PM Fr - Sa</span>
 				</div>
 			</div>
 
@@ -691,10 +681,6 @@
 					</span>
 				</a>
 			</div>
-
-			<div class="show-tags">
-				<span class="show-tag">Final Season</span>
-			</div>
 		</article>
 
 		<!-- SORT TOOLBAR -->
@@ -713,11 +699,7 @@
 
 		<div id="shows-grid" class="shows-grid">
 
-			<!-- ========================= -->
-			<!--  SOUTH TOLEDO / PERRYSBURG / BOWLING GREEN -->
-			<!-- ========================= -->
-
-			<!-- Lights on Hull Prairie -->
+			<!-- South Toledo / Perrysburg / Bowling Green -->
 			<article class="card show-card"
 				data-name="Lights on Hull Prairie"
 				data-city="Bowling Green"
@@ -728,31 +710,33 @@
 				</span>
 
 				<h3><span class="icon">🎄</span>Lights on Hull Prairie</h3>
-				<p class="show-address">21266 Hull Prairie, Bowling Green, OH</p>
+				<p class="show-address">21266 Hull Prairie, Bowling Green, Oh</p>
 				<p class="show-summary">17,000 RGB pixels</p>
 
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 11:00 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 11:00 PM</span></div>
 				</div>
 
 				<div class="show-actions">
 					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=21266+Hull+Prairie%2C+Bowling+Green%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
-					<a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank"><span class="icon-svg fb-icon">
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
-							<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
-								22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
-								1.893-4.788 4.659-4.788 1.325 
-								0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
-								0-1.796.715-1.796 1.764v2.314h3.587l-.467 
-								3.53h-3.12V23h6.117C23.403 23 
-								24 22.403 24 21.674V1.326C24 .597 23.403 
-								0 22.675 0z"/>
-						</svg></span></a>
+					<a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
 				</div>
 			</article>
 
-			<!-- Lights on Monarch -->
 			<article class="card show-card"
 				data-name="Lights on Monarch"
 				data-city="Perrysburg"
@@ -768,7 +752,7 @@
 
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 10:00 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:00 PM</span></div>
 				</div>
 
 				<div class="show-actions">
@@ -776,7 +760,6 @@
 				</div>
 			</article>
 
-			<!-- Adkins Family Lights -->
 			<article class="card show-card"
 				data-name="Adkins Family Lights"
 				data-city="Toledo"
@@ -788,36 +771,662 @@
 
 				<h3><span class="icon">🎄</span>Adkins Family Lights</h3>
 				<p class="show-address">3033 Dorian Dr., Toledo, OH</p>
-				<p class="show-summary">21,000 lights, 800 pixels, 144 channels</p>
+				<p class="show-summary">21,000 lights, 800 pixels, 144 ch</p>
 
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
 				</div>
 
 				<div class="show-actions">
 					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=3033+Dorian+Dr%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
-					<a class="pill-link" href="https://www.facebook.com/adkinsfamilylights" target="_blank"><span class="icon-svg fb-icon">
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
-							<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
-								22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
-								1.893-4.788 4.659-4.788 1.325 
-								0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
-								0-1.796.715-1.796 1.764v2.314h3.587l-.467 
-								3.53h-3.12V23h6.117C23.403 23 
-								24 22.403 24 21.674V1.326C24 .597 23.403 
-								0 22.675 0z"/>
-						</svg></span></a>
+					<a class="pill-link" href="https://www.facebook.com/adkinsfamilylights" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
 				</div>
 			</article>
 
-			<!-- (everything below is unchanged from your version) -->
-			<!-- RURAL / WEST AREA, HOLLAND / SPRINGFIELD / SYLVANIA, LAKESHORE, ROSSFORD / OREGON / NORTHWOOD, MICHIGAN -->
-			<!--  ...  KEEP ALL EXISTING SHOW CARDS AS-IS ... -->
+			<!-- Rural / West Area -->
+			<article class="card show-card"
+				data-name="Bateson Family Lights"
+				data-city="Swanton"
+				data-region="Rural / West Area">
 
-            <!-- I am omitting the middle section here just to save space in the reply.
-                 When you paste this into your file, KEEP all your existing show cards unchanged
-                 exactly as you had them before. Only the top nav + CSS + script changed. -->
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rural / West Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Bateson Family Lights</h3>
+				<p class="show-address">108 E. St. Clair, Swanton, OH</p>
+				<p class="show-summary">10,000 lights on 104 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>93.1 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:30 PM Su-Th  / 6:00 PM to 11:00 PM Fr-Sa</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh streaming available</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=108+E.+St.+Clair%2C+Swanton%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/BatesonLights" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+					<a class="pill-link" href="https://batesonlights.com" target="_blank"><span>🌐</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Milton"
+				data-city="Grand Rapids"
+				data-region="Rural / West Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rural / West Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Milton</h3>
+				<p class="show-address">15251 Milton, Grand Rapids, OH</p>
+				<p class="show-summary">24,000 lights and 14,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.5 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:30 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh streaming available</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=15251+Milton%2C+Grand+Rapids%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/LightsonMilton" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Williams"
+				data-city="Archbold"
+				data-region="Rural / West Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rural / West Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Williams</h3>
+				<p class="show-address">206 E. Williams St., Archbold, OH</p>
+				<p class="show-summary">5,000 lights on 16 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>95.7 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=206+E.+Williams+St.%2C+Archbold%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/WilliamChristmasLights" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<!-- Holland / Springfield / Sylvania Area -->
+			<article class="card show-card"
+				data-name="Holiday Lights on Hampsford"
+				data-city="Toledo"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Holiday Lights on Hampsford</h3>
+				<p class="show-address">6851 Hampsford Cir., Toledo, OH</p>
+				<p class="show-summary">10,000 lights and 5,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:00 PM Su-Th / 6:00 PM to 10:00 PM Fr-Sa</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh streaming available</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=6851+Hampsford+Cir.%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/profile.php?id=61551591772738" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Grey Drive"
+				data-city="Sylvania"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Grey Drive</h3>
+				<p class="show-address">5530 Grey Dr., Sylvania, OH</p>
+				<p class="show-summary">58,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>89.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:00 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh streaming available</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=5530+Grey+Dr.%2C+Sylvania%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/profile.php?id=61570646639688" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Kellie Lane"
+				data-city="Sylvania"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Kellie Lane</h3>
+				<p class="show-address">8747 Kellie Lane, Sylvania, Oh</p>
+				<p class="show-summary">15,000 lights and 4,300 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:30</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=8747+Kellie+Lane%2C+Sylvania%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Hamady Holiday Lights"
+				data-city="Sylvania"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Hamady Holiday Lights</h3>
+				<p class="show-address">8941 Sylvania Ave., Sylvania, OH</p>
+				<p class="show-summary">10,000 lights on 48 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 8:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=8941+Sylvania+Ave.%2C+Sylvania%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Katafiasz Light Show"
+				data-city="Holland"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Katafiasz Light Show</h3>
+				<p class="show-address">2230 N. Irwin, Holland, Oh</p>
+				<p class="show-summary">20,000 lights and 6,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:30 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=2230+N.+Irwin%2C+Holland%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="A Kersten Khristmas"
+				data-city="Toledo"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>A Kersten Khristmas</h3>
+				<p class="show-address">6850 Hampsford Circle, Toledo, OH</p>
+				<p class="show-summary">6,000 lights on 24 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=6850+Hampsford+Circle%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Fieldbrook"
+				data-city="Toledo"
+				data-region="Holland / Springfield / Sylvania Area">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Holland / Springfield / Sylvania Area
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Fieldbrook</h3>
+				<p class="show-address">7257 Turncreek Dr., Toledo, OH</p>
+				<p class="show-summary">4,000 pizels on 32 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=7257+Turncreek+Dr.%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<!-- Lakeshore Region -->
+			<article class="card show-card"
+				data-name="Lempke Family Light Display"
+				data-city="Port Clinton"
+				data-region="Lakeshore Region">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Lakeshore Region
+				</span>
+
+				<h3><span class="icon">🎄</span>Lempke Family Light Display</h3>
+				<p class="show-address">419 E. 5th St., Port Clinton, OH</p>
+				<p class="show-summary">60,000 lights on 48 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>93.3 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:00 PM to 10:00 PM Su-Th / 5:00 PM to 10:30 PM Fr-Sa</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=419+E.+5th+St.%2C+Port+Clinton%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/Lempkelights" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Do You Hear What I  See?"
+				data-city="Sandusky"
+				data-region="Lakeshore Region">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Lakeshore Region
+				</span>
+
+				<h3><span class="icon">🎄</span>Do You Hear What I  See?</h3>
+				<p class="show-address">111 Michigan Ave., Sandusky, OH</p>
+				<p class="show-summary">24,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>88.3 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh streaming available</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=111+Michigan+Ave.%2C+Sandusky%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/OakHarborLightShow" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<!-- Rossford / Oregon / Northwood -->
+			<article class="card show-card"
+				data-name="The Ageless Childs Christmas"
+				data-city="Rossford"
+				data-region="Rossford / Oregon / Northwood">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rossford / Oregon / Northwood
+				</span>
+
+				<h3><span class="icon">🎄</span>The Ageless Childs Christmas</h3>
+				<p class="show-address">107 Birch Drive, Rossford, Oh</p>
+				<p class="show-summary">108,000 lights on 624 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>97.7 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:15 PM to 10:15 PM</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🎁</span><span>Benefits Samaritan's Purse</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=107+Birch+Drive%2C+Rossford%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/TheAgelessChildsChristmas" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lights on Grasser"
+				data-city="Oregon"
+				data-region="Rossford / Oregon / Northwood">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rossford / Oregon / Northwood
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights on Grasser</h3>
+				<p class="show-address">1100 Grasser St., Oregon, OH</p>
+				<p class="show-summary">18,669 RGB pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>103.3 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM Su-Th / 5:30 PM to 11:00 PM Fr-Sa</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1100+Grasser+St.%2C+Oregon%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/LightsOnGrasser" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Buschmann's Lights"
+				data-city="Northwood"
+				data-region="Rossford / Oregon / Northwood">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rossford / Oregon / Northwood
+				</span>
+
+				<h3><span class="icon">🎄</span>Buschmann's Lights</h3>
+				<p class="show-address">1935 S. Freedom, Northwood, OH</p>
+				<p class="show-summary">25,000 lights on 140 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:30 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1935+S.+Freedom%2C+Northwood%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/BuschmannsLights" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Christmas on Wheeling"
+				data-city="Oregon"
+				data-region="Rossford / Oregon / Northwood">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rossford / Oregon / Northwood
+				</span>
+
+				<h3><span class="icon">🎄</span>Christmas on Wheeling</h3>
+				<p class="show-address">538 S. Wheeling St, Oregon, OH</p>
+				<p class="show-summary">30,000 lights on 144 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:30 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=538+S.+Wheeling+St%2C+Oregon%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/profile.php?id=61567147108788" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Lighting Up Nevada Street"
+				data-city="Toledo"
+				data-region="Rossford / Oregon / Northwood">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Rossford / Oregon / Northwood
+				</span>
+
+				<h3><span class="icon">🎄</span>Lighting Up Nevada Street</h3>
+				<p class="show-address">2019 Nevada St., Toledo, OH</p>
+				<p class="show-summary">250,000 lights on 256 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.5 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 11:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=2019+Nevada+St.%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/profile.php?id=100076242381469" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
+
+			<!-- Michigan -->
+			<article class="card show-card"
+				data-name="Lights at Bragden"
+				data-city="Temperance"
+				data-region="Michigan">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Michigan
+				</span>
+
+				<h3><span class="icon">🎄</span>Lights at Bragden</h3>
+				<p class="show-address">1721 Linzden Pl., Temperance, MI</p>
+				<p class="show-summary">11,000 lights on 6 channels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>99.3 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1721+Linzden+Pl.%2C+Temperance%2C+MI" target="_blank"><span>📍</span><span>Map</span></a>
+				</div>
+			</article>
+
+			<article class="card show-card"
+				data-name="Bazillion Lights"
+				data-city="Livonia"
+				data-region="Michigan">
+
+				<span class="show-region-pill"><span class="show-region-dot"></span>
+					Michigan
+				</span>
+
+				<h3><span class="icon">🎄</span>Bazillion Lights</h3>
+				<p class="show-address">28718 Robert Dr., Livonia, MI</p>
+				<p class="show-summary">40,000 lights and 3,000 pixels</p>
+
+				<div class="show-meta-list">
+					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>88.5 FM</strong></span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
+				</div>
+
+				<div class="show-actions">
+					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=28718+Robert+Dr.%2C+Livonia%2C+MI" target="_blank"><span>📍</span><span>Map</span></a>
+					<a class="pill-link" href="https://www.facebook.com/profile.php?id=100064497107880" target="_blank">
+						<span class="icon-svg fb-icon">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+								<path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+									22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+									1.893-4.788 4.659-4.788 1.325 
+									0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+									0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+									3.53h-3.12V23h6.117C23.403 23 
+									24 22.403 24 21.674V1.326C24 .597 23.403 
+									0 22.675 0z"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</article>
 
 		</div> <!-- END #shows-grid -->
 
@@ -884,7 +1493,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ===============================
    LISTEN / REQUEST NAV VISIBILITY
-   (same behavior as Home + Contact)
 ================================*/
 const RF_OVERRIDE_MODE = "auto"; // forceon / forceoff also work
 
