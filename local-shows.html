@@ -51,7 +51,7 @@
 			width: 100%;
 			max-width: 960px;
 			padding: 16px 16px 40px;
-			margin: 24px auto 40px;
+			margin: 0px auto 40px;
 		}
 
 		/* =========================
@@ -61,7 +61,8 @@
 			position: sticky;
 			top: 8px;
 			z-index: 50;
-			margin: 0 auto 10px;
+			margin: 0 auto;
+			margin-top: 0;
 			max-width: 520px;
 			padding: 6px 8px;
 			border-radius: 999px;
@@ -120,10 +121,11 @@
 		.nav-links {
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-			gap: 8px;
-			padding: 4px 4px 6px;
-			font-size: 0.84rem;
+			justify-content: center;      /* center them instead of big gaps */
+			gap: 4px;                     /* smaller space between links */
+			padding: 6px 6px 8px;         /* a little more vertical, not so tall overall */
+			font-size: 0.82rem;           /* slightly smaller text so more fit on one line */
+			flex-wrap: wrap;              /* if it *has* to wrap, it will */
 
 			/* animation container */
 			max-height: 260px;
@@ -157,11 +159,11 @@
 		.nav-links a {
 			color: var(--text-muted);
 			text-decoration: none;
-			padding: 4px 10px;
+			padding: 3px 8px; /* smaller pill padding so they’re tighter */
 			border-radius: 999px;
 			border: 1px solid transparent;
 			transition: background 0.12s, color 0.12s, border-color 0.12s;
-			white-space: nowrap;
+			white-space: nowrap;          /* keep each label on one line */
 		}
 
 		.nav-links a:hover {
@@ -512,6 +514,33 @@
 			height: 14px;
 		}
 
+		.hamburger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			width: 18px;
+		}
+		
+		.hamburger-icon span {
+			display: block;
+			height: 2px;
+			width: 100%;
+			background: var(--text-main);
+			border-radius: 2px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+		
+		/* transform when open */
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(3) {
+			transform: translateY(-5px) rotate(-45deg);
+		}
+		
 	</style>
 </head>
 
@@ -525,8 +554,13 @@
 				<span>🎄</span>
 				<span class="logo-script">Bateson Family Lights</span>
 			</div>
-			<span class="nav-toggle-label">Menu</span>
-			<span class="nav-toggle-icon">⌃</span>
+		
+			<!-- HAMBURGER ICON -->
+			<span class="hamburger-icon">
+				<span></span>
+				span"></span>
+				<span></span>
+			</span>
 		</button>
 
 		<div class="nav-links" id="nav-links">
