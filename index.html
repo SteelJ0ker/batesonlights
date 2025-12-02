@@ -624,7 +624,9 @@
 			animation: buttonHalo 2.4s ease-in-out infinite;
 		}
 		
-		.btn-listen.disabled {
+		/* Reused for Listen + Requests buttons when disabled */
+		.btn-listen.disabled,
+		.btn-request.disabled {
 		    opacity: 0.4;
 		    cursor: default;
 		    pointer-events: none;
@@ -750,7 +752,8 @@
 			<div class="nav-links">
 				<a href="#top">Home</a>
 				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
-				<a href="#jukebox">Requests</a>
+				<a id="nav-requests-link" href="#jukebox">Requests</a>
+				<a href="local-shows.html">Local Shows</a>
 				<a href="contact.html" class="btn-nav">Contact Us</a>
 			</div>
 		</nav>
@@ -794,7 +797,7 @@
 								<span id="listen-live-label">Listen Live</span>
 							</a>
 
-							<a class="btn btn-secondary" href="#jukebox">
+							<a class="btn btn-secondary btn-request" href="#jukebox">
 								<span class="btn-icon">🎶</span>
 								<span>Pick the Next Song</span>
 							</a>
@@ -978,7 +981,7 @@
 
 		// --------- HARD-CODED OVERRIDE FLAG (NO rf-config.js) ---------
 		// "auto"    = follow season + schedule
-		// "forceon" = always on-air (what you want right now)
+		// "forceon" = always on-air
 		// "forceoff"= always off-air
 		const RF_OVERRIDE_MODE = "auto";
 
@@ -1122,6 +1125,28 @@
 					navListen.href = "#";
 					navListen.removeAttribute("target");
 					navListen.removeAttribute("rel");
+				}
+			}
+
+			// Top NAV Requests link
+			const navRequests = document.getElementById("nav-requests-link");
+			if (navRequests) {
+				if (onAir) {
+					navRequests.classList.remove("disabled-nav");
+				} else {
+					navRequests.classList.add("disabled-nav");
+				}
+			}
+
+			// "Pick the Next Song" button
+			const requestBtn = document.querySelector(".btn-request");
+			if (requestBtn) {
+				if (onAir) {
+					requestBtn.classList.remove("disabled");
+					requestBtn.href = "#jukebox";
+				} else {
+					requestBtn.classList.add("disabled");
+					requestBtn.href = "#";
 				}
 			}
 
