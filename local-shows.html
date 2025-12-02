@@ -4,8 +4,9 @@
 	<meta charset="UTF-8" />
 	<title>Local Shows | Bateson Family Lights</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Local Christmas light shows in Northwest Ohio and Southeast Michigan – part of the Christmas Junkies tour, including Bateson Family Lights and other synchronized displays." />
+	<meta name="description" content="Local synchronized Christmas light shows across Northwest Ohio and Southeast Michigan. View maps, radio info, hours, and links for all participating Christmas Junkies displays." />
 
+	<!-- Pacifico font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -26,19 +27,15 @@
 
 		*,
 		*::before,
-		*::after {
-			box-sizing: border-box;
-		}
+		*::after { box-sizing: border-box; }
 
-		html,
-		body {
+		html, body {
 			margin: 0;
 			padding: 0;
 		}
 
 		body {
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-				sans-serif;
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			background:
 				radial-gradient(circle at top, #102540 0, #04040b 55%, #020208 100%),
 				url("https://images.pexels.com/photos/6880135/pexels-photo-6880135.jpeg?auto=compress&cs=tinysrgb&w=1200")
@@ -57,7 +54,7 @@
 			margin: 24px auto 40px;
 		}
 
-		/* NAV (copied from index, with Local Shows added) */
+		/* NAV BAR */
 		.nav {
 			display: flex;
 			align-items: center;
@@ -80,6 +77,11 @@
 			font-weight: 600;
 		}
 
+		.logo-script {
+			font-family: "Pacifico", system-ui, -apple-system, sans-serif;
+			font-size: 1.05rem;
+		}
+
 		.nav-links {
 			display: flex;
 			align-items: center;
@@ -93,10 +95,7 @@
 			padding: 4px 10px;
 			border-radius: 999px;
 			border: 1px solid transparent;
-			transition:
-				background 0.12s ease-out,
-				color 0.12s ease-out,
-				border-color 0.12s ease-out;
+			transition: background 0.12s, color 0.12s, border-color 0.12s;
 		}
 
 		.nav-links a:hover {
@@ -105,35 +104,23 @@
 			border-color: rgba(148, 163, 184, 0.6);
 		}
 
-		.nav-links a.nav-primary {
+		.nav-primary {
 			background: radial-gradient(circle at 0 0, #22c55e, #16a34a);
-			color: #020617;
+			color: #020617 !important;
 			border-color: rgba(34, 197, 94, 0.8);
-		}
-
-		.nav-links a.nav-primary:hover {
-			filter: brightness(1.05);
 		}
 
 		.disabled-nav {
 			opacity: 0.4;
 			pointer-events: none;
-			cursor: default;
 		}
 
 		@media (max-width: 640px) {
-			.nav {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-			.nav-links {
-				width: 100%;
-				justify-content: flex-start;
-				flex-wrap: wrap;
-			}
+			.nav { flex-direction: column; align-items: flex-start; }
+			.nav-links { flex-wrap: wrap; }
 		}
 
-		/* STRING LIGHTS DECORATION (same as index) */
+		/* STRING LIGHTS */
 		.string-lights {
 			position: relative;
 			height: 32px;
@@ -143,9 +130,7 @@
 		.string-lights::before {
 			content: "";
 			position: absolute;
-			left: 0;
-			right: 0;
-			top: 12px;
+			left: 0; right: 0; top: 12px;
 			height: 2px;
 			background: rgba(148, 163, 184, 0.4);
 			border-radius: 999px;
@@ -162,16 +147,8 @@
 			transform-origin: top center;
 			animation: sway 3s ease-in-out infinite alternate;
 		}
-
-		.bulb.red {
-			background: var(--accent-red);
-			box-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
-		}
-
-		.bulb.gold {
-			background: #fbbf24;
-			box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
-		}
+		.bulb.red { background: var(--accent-red); box-shadow: 0 0 14px rgba(251, 113, 133, 0.9); }
+		.bulb.gold { background: #fbbf24; box-shadow: 0 0 14px rgba(251, 191, 36, 0.9); }
 
 		.bulb:nth-child(1) { left: 10%; animation-delay: 0s; }
 		.bulb:nth-child(2) { left: 25%; animation-delay: 0.4s; }
@@ -185,28 +162,37 @@
 			to   { transform: rotate(6deg); }
 		}
 
-		/* HERO (tweaked for local shows) */
+		/* HERO */
 		.hero {
 			background: rgba(7, 10, 25, 0.55);
 			border-radius: var(--radius-xl);
 			box-shadow: var(--shadow-soft);
 			padding: 14px 18px 16px;
 			border: 1px solid var(--border-subtle);
-			position: relative;
-			overflow: hidden;
-			margin-top: 15px !important;
+			margin-top: 15px;
 		}
 
-		.hero-inner {
-			position: relative;
-			z-index: 1;
-		}
-
-		.hero-top {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr);
+		.hero-title {
+			font-size: clamp(2.1rem, 4vw, 2.6rem);
+			font-weight: 800;
+			margin: 0;
+			display: flex;
+			align-items: center;
 			gap: 10px;
-			align-items: stretch;
+		}
+
+		.hero-title .em {
+			font-family: "Pacifico";
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34,197,94,0.9);
+			font-size: clamp(2.3rem, 4.6vw, 3rem);
+		}
+
+		.hero-subtitle {
+			margin: 6px 0 10px;
+			font-size: 0.98rem;
+			color: var(--text-muted);
+			max-width: 40rem;
 		}
 
 		.badge {
@@ -221,7 +207,7 @@
 			padding: 4px 10px;
 			color: var(--text-muted);
 			border: 1px solid rgba(255, 255, 255, 0.08);
-			margin-bottom: 2px;
+			margin-bottom: 3px;
 		}
 
 		.badge-dot {
@@ -232,142 +218,34 @@
 			box-shadow: 0 0 10px #22c55e;
 		}
 
-		.hero-title {
-			font-size: clamp(2.1rem, 4vw, 2.6rem);
-			font-weight: 800;
-			letter-spacing: 0.03em;
-			margin: 0;
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			flex-wrap: wrap;
-		}
-
-		.hero-title span.em {
-			color: var(--accent-green);
-			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
-		}
-
 		.hero-highlight {
 			display: inline-flex;
 			align-items: center;
 			gap: 6px;
 			font-size: 0.8rem;
 			color: #fef9c3;
-			background: rgba(248, 250, 252, 0.05);
+			background: rgba(248,250,252,0.05);
 			padding: 5px 9px;
 			border-radius: 999px;
-			border: 1px solid rgba(248, 250, 252, 0.18);
+			border: 1px solid rgba(248,250,252,0.18);
+			margin-top: 4px;
 		}
 
-		.hero-subtitle {
-			margin: 6px 0 8px;
-			font-size: 0.98rem;
-			color: var(--text-muted);
-			max-width: 40rem;
-		}
-
-		.hero-meta {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-			margin-top: 6px;
-			font-size: 0.8rem;
-			color: var(--text-muted);
-		}
-
-		.hero-meta-pill {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			padding: 4px 10px;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px solid rgba(148, 163, 184, 0.25);
-		}
-
-		.hero-links {
-			margin-top: 6px;
-			font-size: 0.8rem;
-		}
-
-		.hero-links a {
-			color: var(--accent-green);
-			text-decoration: none;
-		}
-
-		.hero-links a:hover {
-			text-decoration: underline;
-		}
-
-		/* Cards, footer (shared styles) */
+		/* FEATURED SHOW */
 		.card {
 			background: var(--bg-alt);
 			border-radius: var(--radius-xl);
 			border: 1px solid var(--border-subtle);
 			padding: 14px 14px 16px;
-			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-		}
-
-		.footer {
-			margin-top: 18px;
-			padding: 10px 6px 0;
-			font-size: 0.78rem;
-			color: var(--text-muted);
-			display: flex;
-			justify-content: space-between;
-			gap: 12px;
-			border-top: 1px solid rgba(148, 163, 184, 0.18);
-		}
-
-		.footer a {
-			color: var(--accent-green);
-			text-decoration: none;
-		}
-
-		.footer a:hover {
-			text-decoration: underline;
-		}
-
-		@media (max-width: 768px) {
-			.hero {
-				padding: 12px 12px 16px;
-			}
-			.footer {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-		}
-
-		/* Pacifico for logo + hero title emphasis */
-		.logo-script,
-		.hero-title .em {
-			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-			font-weight: 400;
-			letter-spacing: 0.04em;
-		}
-
-		.hero-title .em {
-			text-transform: none;
-			font-size: clamp(2.2rem, 4.4vw, 2.8rem);
-			color: var(--accent-green);
-			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
-		}
-
-		/* --- LOCAL SHOWS LAYOUT --- */
-		.shows-section {
-			margin-top: 22px;
-			display: flex;
-			flex-direction: column;
-			gap: 14px;
+			box-shadow: 0 10px 26px rgba(0,0,0,0.7);
 		}
 
 		.featured-show {
-			position: relative;
-			border: 1px solid rgba(251, 191, 36, 0.7);
+			border-color: rgba(251, 191, 36, 0.7);
 			background:
-				radial-gradient(circle at top left, rgba(251, 191, 36, 0.23), transparent 55%),
+				radial-gradient(circle at top left, rgba(251,191,36,0.23), transparent 55%),
 				var(--bg-alt);
+			position: relative;
 		}
 
 		.featured-label {
@@ -376,24 +254,12 @@
 			right: 16px;
 			padding: 4px 10px;
 			border-radius: 999px;
-			background: rgba(248, 250, 252, 0.08);
-			border: 1px solid rgba(251, 191, 36, 0.9);
+			background: rgba(248,250,252,0.08);
+			border: 1px solid rgba(251,191,36,0.9);
 			font-size: 0.7rem;
 			text-transform: uppercase;
 			letter-spacing: 0.12em;
 			color: #fef9c3;
-		}
-
-		.featured-show h2 {
-			font-size: 1.1rem;
-			margin: 0 0 6px;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-
-		.featured-show h2 .icon {
-			font-size: 1.2rem;
 		}
 
 		.show-region-pill {
@@ -405,7 +271,7 @@
 			border-radius: 999px;
 			background: rgba(15, 23, 42, 0.9);
 			border: 1px solid rgba(148, 163, 184, 0.4);
-			margin-bottom: 4px;
+			margin-bottom: 6px;
 		}
 
 		.show-region-dot {
@@ -416,30 +282,16 @@
 			box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
 		}
 
-		.show-summary {
-			font-size: 0.86rem;
-			color: var(--text-muted);
-			margin: 4px 0 6px;
-		}
-
-		.show-address {
-			font-size: 0.86rem;
-			color: var(--text-main);
-			margin: 2px 0;
-		}
-
-		.show-city {
-			font-size: 0.84rem;
-			color: var(--text-muted);
-			margin: 0 0 6px;
-		}
+		.show-address { font-size: 0.86rem; margin: 2px 0; }
+		.show-city { font-size: 0.84rem; color: var(--text-muted); margin: 0 0 6px; }
+		.show-summary { font-size: 0.86rem; color: var(--text-muted); margin: 4px 0 6px; }
 
 		.show-meta-list {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr);
 			gap: 4px;
+			margin-bottom: 8px;
 			font-size: 0.84rem;
-			margin: 6px 0 8px;
 		}
 
 		.show-meta-row {
@@ -449,10 +301,9 @@
 			color: var(--text-muted);
 		}
 
-		.show-meta-icon {
-			font-size: 1rem;
-		}
+		.show-meta-icon { font-size: 1rem; }
 
+		/* ACTION BUTTONS */
 		.show-actions {
 			display: flex;
 			flex-wrap: wrap;
@@ -468,640 +319,909 @@
 			border-radius: 999px;
 			font-size: 0.8rem;
 			text-decoration: none;
-			border: 1px solid rgba(148, 163, 184, 0.4);
+			border: 1px solid rgba(148,163,184,0.4);
 			color: var(--text-main);
 			background: rgba(15, 23, 42, 0.9);
-			transition:
-				background 0.15s ease-out,
-				border-color 0.15s ease-out,
-				box-shadow 0.15s ease-out,
-				color 0.15s ease-out;
-		}
-
-		.pill-link:hover {
-			background: rgba(15, 23, 42, 0.98);
-			border-color: rgba(148, 163, 184, 0.7);
-			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+			transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
 		}
 
 		.pill-link-primary {
-			border-color: rgba(34, 197, 94, 0.7);
+			border-color: rgba(34,197,94,0.7);
+		}
+
+		.pill-link:hover {
+			background: rgba(15,23,42,0.98);
+			border-color: rgba(148,163,184,0.7);
+			box-shadow: 0 10px 24px rgba(0,0,0,0.6);
 		}
 
 		.pill-link-primary:hover {
-			box-shadow: 0 10px 22px rgba(34, 197, 94, 0.6);
-		}
-
-		.show-tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 6px;
-			margin-top: 4px;
-			font-size: 0.75rem;
+			box-shadow: 0 10px 22px rgba(34,197,94,0.6);
 		}
 
 		.show-tag {
 			padding: 2px 8px;
 			border-radius: 999px;
-			background: rgba(251, 191, 36, 0.18);
-			border: 1px solid rgba(251, 191, 36, 0.8);
+			background: rgba(251,191,36,0.18);
+			border: 1px solid rgba(251,191,36,0.8);
 			color: #fef9c3;
+			font-size: 0.75rem;
 		}
 
-		/* Toolbar + grid */
-		.shows-toolbar {
+		/* Shows grid */
+		.shows-section {
+			margin-top: 22px;
 			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: space-between;
-			gap: 10px;
-		}
-
-		.shows-toolbar-left {
-			font-size: 0.86rem;
-			color: var(--text-muted);
-		}
-
-		.shows-toolbar-right {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			font-size: 0.84rem;
-		}
-
-		.sort-select {
-			padding: 4px 26px 4px 8px;
-			border-radius: 999px;
-			border: 1px solid rgba(148, 163, 184, 0.5);
-			background: rgba(15, 23, 42, 0.95);
-			color: var(--text-main);
-			font-size: 0.84rem;
+			flex-direction: column;
+			gap: 14px;
 		}
 
 		.shows-grid {
 			margin-top: 8px;
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 			gap: 14px;
 		}
 
-		.show-card {
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-		}
+		.show-card { display: flex; flex-direction: column; }
 
-		.show-card h3 {
-			font-size: 1rem;
-			margin: 0 0 4px;
-			display: flex;
-			align-items: center;
-			gap: 6px;
-		}
-
-		.show-card h3 .icon {
-			font-size: 1.1rem;
-		}
-
-		.show-links-row {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 6px;
-			margin-top: 4px;
-			font-size: 0.8rem;
-		}
-
-		.show-links-row a {
-			color: var(--accent-green);
-			text-decoration: none;
-		}
-
-		.show-links-row a:hover {
-			text-decoration: underline;
-		}
-
-		.courtesy-note {
-			font-size: 0.8rem;
-			color: var(--text-muted);
-			padding: 10px 12px;
-			border-radius: 16px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px dashed rgba(148, 163, 184, 0.35);
-			margin-top: 6px;
-		}
-
-		.courtesy-note ul {
-			margin: 4px 0 0;
-			padding-left: 18px;
-		}
-
-		.courtesy-note li {
-			margin: 2px 0;
-		}
-
-		.courtesy-note a {
-			color: var(--accent-green);
-			text-decoration: none;
-		}
-
-		.courtesy-note a:hover {
-			text-decoration: underline;
-		}
-
-		@media (max-width: 640px) {
-			.shows-toolbar {
-				align-items: flex-start;
-				flex-direction: column;
-			}
-		}
 	</style>
 </head>
-<body>
-	<main id="top">
-		<!-- NAV -->
-		<nav class="nav">
-			<div class="nav-title">
-				<span>🎄</span>
-				<span class="logo-script">Bateson Family Lights</span>
-			</div>
-			<div class="nav-links">
-				<a href="index.html#top">Home</a>
-				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
-				<a href="index.html#jukebox">Requests</a>
-				<a href="local-shows.html" class="nav-primary">Local Shows</a>
-				<a href="contact.html">Contact Us</a>
-			</div>
-		</nav>
 
-		<div class="string-lights">
-			<div class="bulb"></div>
-			<div class="bulb red"></div>
-			<div class="bulb gold"></div>
-			<div class="bulb"></div>
-			<div class="bulb red"></div>
-			<div class="bulb gold"></div>
+<body>
+<main id="top">
+
+	<!-- NAV -->
+	<nav class="nav">
+		<div class="nav-title">
+			<span>🎄</span>
+			<span class="logo-script">Bateson Family Lights</span>
+		</div>
+		<div class="nav-links">
+			<a href="index.html#top">Home</a>
+			<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+			<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
+			<a href="local-shows.html" class="nav-primary">Local Shows</a>
+			<a href="contact.html">Contact Us</a>
+		</div>
+	</nav>
+
+	<!-- STRING LIGHTS -->
+	<div class="string-lights">
+		<div class="bulb"></div>
+		<div class="bulb red"></div>
+		<div class="bulb gold"></div>
+		<div class="bulb"></div>
+		<div class="bulb red"></div>
+		<div class="bulb gold"></div>
+	</div>
+
+	<!-- HERO -->
+	<section class="hero">
+		<div class="badge">
+			<span class="badge-dot"></span>
+			<span>Christmas Junkies • Local Light Shows</span>
 		</div>
 
-		<!-- HERO -->
-		<section class="hero">
-			<div class="hero-inner">
-				<div class="hero-top">
-					<div>
-						<div class="badge">
-							<span class="badge-dot"></span>
-							<span>Christmas Junkies • Local Light Shows</span>
-						</div>
+		<h1 class="hero-title">
+			<span class="em">Local Christmas Light Shows</span>
+			<span>✨</span>
+		</h1>
 
-						<h1 class="hero-title">
-							<span class="em">Local Christmas Light Shows</span>
-							<span>✨</span>
-						</h1>
+		<p class="hero-subtitle">
+			Explore synchronized Christmas displays across Northwest Ohio &amp; Southeast Michigan.
+			Find maps, radio info, PulseMesh access, and links to each show's Facebook or website.
+		</p>
 
-						<div class="hero-highlight">
-							🚗 Plan a tour of synchronized displays across Northwest Ohio &amp; Southeast Michigan.
-						</div>
+		<div class="hero-highlight">
+			🚗 Plan your holiday driving route and support local light shows!
+		</div>
+	</section>
 
-						<p class="hero-subtitle">
-							This page lists fellow Christmas Junkies shows from the printed flyer.
-							Click a show to open directions in your maps app, see radio info, and visit their
-							Facebook or website when available.
-						</p>
+	<section class="shows-section">
 
-						<div class="hero-meta">
-							<div class="hero-meta-pill">Coverage: Northwest Ohio &amp; Southeast Michigan</div>
-							<div class="hero-meta-pill">Season: Thanksgiving – January 2 (approximate)</div>
-						</div>
+		<!-- FEATURED SHOW: Holiday Lights on Rome Court -->
+		<article class="card featured-show">
+			<div class="featured-label">Final Season</div>
 
-						<div class="hero-links">
-							<!-- TODO: update href once you upload the real PDF path in your repo -->
-							Download the printable flyer:
-							<a href="Christmas-Junkies-Flyer-2025.pdf" target="_blank" rel="noopener noreferrer">
-								Christmas Junkies Flyer (PDF)
-							</a>
-						</div>
-					</div>
+			<span class="show-region-pill">
+				<span class="show-region-dot"></span>
+				Holland / Springfield / Sylvania Area
+			</span>
+
+			<h2 class="show-title">
+				<span class="icon">⭐</span>
+				Holiday Lights on Rome Court
+			</h2>
+
+			<p class="show-address">7705 Rome Ct., Holland, OH</p>
+			<p class="show-summary">10,000 pixels synchronized to music. This is their final year—don’t miss it!</p>
+
+			<div class="show-meta-list">
+				<div class="show-meta-row">
+					<span class="show-meta-icon">📻</span>
+					<span><strong>87.9 FM</strong></span>
+				</div>
+
+				<div class="show-meta-row">
+					<span class="show-meta-icon">🕒</span>
+					<span>Sun–Thu 05:00 PM – 10:00 PM / Fri–Sat 05:00 PM – 11:00 PM</span>
 				</div>
 			</div>
-		</section>
 
-		<section class="shows-section">
-			<!-- FEATURED SHOW: Holiday Lights on Rome Court -->
-			<article class="card featured-show">
-				<div class="featured-label">Final Season</div>
-				<span class="show-region-pill">
-					<span class="show-region-dot"></span>
-					Holland / Springfield Area
-				</span>
-
-				<h2>
-					<span class="icon">⭐</span>
-					Holiday Lights on Rome Court
-				</h2>
-
-				<p class="show-address">7705 Rome Ct., Holland, OH</p>
-				<p class="show-city">Holland, Ohio</p>
-
-				<p class="show-summary">
-					10,000 RGB pixels synchronized to music in a neighborhood cul-de-sac. This is their final year – don’t miss it!
-				</p>
-
-				<div class="show-meta-list">
-					<div class="show-meta-row">
-						<span class="show-meta-icon">📻</span>
-						<span>Listen to the lights on <strong>87.9 FM</strong></span>
-					</div>
-					<div class="show-meta-row">
-						<span class="show-meta-icon">🕒</span>
-						<span>
-							Hours: 5:00 – 10:00 PM Sun–Thu · 5:00 – 11:00 PM Fri–Sat
-						</span>
-					</div>
-				</div>
-
-				<div class="show-actions">
-					<a
-						class="pill-link pill-link-primary"
-						href="https://www.google.com/maps/search/?api=1&query=7705+Rome+Ct%2C+Holland%2C+OH"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span>📍</span>
-						<span>Open in Maps</span>
-					</a>
-
-					<a
-						class="pill-link"
-						href="https://www.facebook.com/LightsonRome"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span>📘</span>
-						<span>Facebook Page</span>
-					</a>
-				</div>
-
-				<div class="show-tags">
-					<span class="show-tag">Final Season</span>
-				</div>
-			</article>
-
-			<!-- TOOLBAR -->
-			<article class="card shows-toolbar">
-				<div class="shows-toolbar-left">
-					Browse shows from the Christmas Junkies flyer. Use the sort option to group by region or city.
-				</div>
-				<div class="shows-toolbar-right">
-					<label for="shows-sort">Sort by:</label>
-					<select id="shows-sort" class="sort-select">
-						<option value="region" selected>Region (default)</option>
-						<option value="city">City (A–Z)</option>
-					</select>
-				</div>
-			</article>
-
-			<!-- SHOWS GRID -->
-			<div id="shows-grid" class="shows-grid">
-				<!-- Example: Bateson Family Christmas -->
-				<article
-					class="card show-card"
-					data-name="Bateson Family Christmas"
-					data-city="Swanton"
-					data-region="Swanton / West"
+			<div class="show-actions">
+				<a
+					class="pill-link pill-link-primary"
+					href="https://www.google.com/maps/search/?api=1&query=7705+Rome+Ct%2C+Holland%2C+OH"
+					target="_blank"
 				>
-					<span class="show-region-pill">
-						<span class="show-region-dot"></span>
-						Swanton / West Area
-					</span>
+					<span>📍</span>
+					<span>Map</span>
+				</a>
 
-					<h3>
-						<span class="icon">🎄</span>
-						Bateson Family Christmas
-					</h3>
-
-					<p class="show-address">108 East St. Clair Street</p>
-					<p class="show-city">Swanton, Ohio 43558</p>
-
-					<p class="show-summary">
-						Over 10,000 LEDs across 80 channels, fully synchronized to a playlist of Christmas favorites.
-					</p>
-
-					<div class="show-meta-list">
-						<div class="show-meta-row">
-							<span class="show-meta-icon">📻</span>
-							<span>On-site radio: <strong>93.1 FM</strong></span>
-						</div>
-						<div class="show-meta-row">
-							<span class="show-meta-icon">📱</span>
-							<span>Remote audio via <strong>PulseMesh</strong> (see Listen Live on the Home page)</span>
-						</div>
-						<div class="show-meta-row">
-							<span class="show-meta-icon">🕒</span>
-							<span>Typical show hours: 6:00 – 9:30 PM Sun–Thu · 6:00 – 11:00 PM Fri–Sat</span>
-						</div>
-					</div>
-
-					<div class="show-actions">
-						<a
-							class="pill-link pill-link-primary"
-							href="https://www.google.com/maps/search/?api=1&query=108+East+St+Clair+Street%2C+Swanton%2C+OH+43558"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>📍</span>
-							<span>Open in Maps</span>
-						</a>
-
-						<a
-							class="pill-link"
-							href="https://pulsemesh.io/d/SGVT/smart"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>📱</span>
-							<span>PulseMesh</span>
-						</a>
-					</div>
-
-					<div class="show-links-row">
-						<a
-							href="https://www.facebook.com/BatesonLights"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							📘 Facebook
-						</a>
-						<span>•</span>
-						<a
-							href="https://batesonlights.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							🌐 Website
-						</a>
-					</div>
-				</article>
-
-				<!-- TODO: Duplicate this block for each additional show from the flyer.
-				     Fill in data-name, data-city, data-region, address, summary, radio, hours, and links.
-				     Only include PulseMesh / Facebook / Website rows if that show actually has them. -->
-
-				<!-- Example skeleton for another show (replace placeholder text):
-				<article
-					class="card show-card"
-					data-name="Lights on Williams"
-					data-city="Some City"
-					data-region="Some Region"
+				<a
+					class="pill-link"
+					href="https://www.facebook.com/LightsonRome"
+					target="_blank"
 				>
-					<span class="show-region-pill">
-						<span class="show-region-dot"></span>
-						Some Region
-					</span>
-
-					<h3>
-						<span class="icon">🎄</span>
-						Lights on Williams
-					</h3>
-
-					<p class="show-address">1234 Example St.</p>
-					<p class="show-city">Example City, OH</p>
-
-					<p class="show-summary">
-						Short description of the display, light count, or unique features.
-					</p>
-
-					<div class="show-meta-list">
-						<div class="show-meta-row">
-							<span class="show-meta-icon">📻</span>
-							<span>Radio: <strong>XX.X FM</strong></span>
-						</div>
-						<div class="show-meta-row">
-							<span class="show-meta-icon">🕒</span>
-							<span>Hours: 6:00 – 10:00 PM (example)</span>
-						</div>
-					</div>
-
-					<div class="show-actions">
-						<a
-							class="pill-link pill-link-primary"
-							href="https://www.google.com/maps/search/?api=1&query=1234+Example+St%2C+Example+City%2C+OH"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>📍</span>
-							<span>Open in Maps</span>
-						</a>
-
-						<a
-							class="pill-link"
-							href="https://www.facebook.com/WilliamChristmasLights"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>📘</span>
-							<span>Facebook</span>
-						</a>
-					</div>
-				</article>
-				-->
+					<span>📘</span>
+					<span>Facebook</span>
+				</a>
 			</div>
 
-			<div class="courtesy-note card">
-				<strong>Please be kind to our neighbors when visiting any show:</strong>
-				<ul>
-					<li>Headlights off or dimmed while parked; parking lights on.</li>
-					<li>Do not block driveways, mailboxes, or fire hydrants.</li>
-					<li>Keep windows mostly up and music at a respectful level.</li>
-					<li>Obey all posted signs and traffic laws.</li>
-				</ul>
-				<p style="margin-top: 6px;">
-					Show details and hours may change from year to year. Check each show’s Facebook or website
-					for the latest updates when available.
-				</p>
+			<div class="show-tags">
+				<span class="show-tag">Final Season</span>
 			</div>
-		</section>
+		</article>
 
-		<footer class="footer">
-			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
-			<div>
-				Created by the Bateson family • Merry Christmas &amp; Happy Holidays! 🎅
-			</div>
-		</footer>
-	</main>
+        <!-- ========================= -->
+        <!--  SOUTH TOLEDO / PERRYSBURG / BOWLING GREEN -->
+        <!-- ========================= -->
 
-	<script>
-		// --------- BASIC UI SETUP (same as index) ---------
-		document.getElementById("year").textContent = new Date().getFullYear();
+        <div id="shows-grid" class="shows-grid">
 
-		document.addEventListener("DOMContentLoaded", function () {
-			const labelEl = document.getElementById("listen-live-label");
-			if (!labelEl) return;
+            <!-- Lights on Hull Prairie -->
+            <article class="card show-card"
+                data-name="Lights on Hull Prairie"
+                data-city="Bowling Green"
+                data-region="South Toledo / Perrysburg / Bowling Green">
 
-			const isMobile =
-				/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				);
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    South Toledo / Perrysburg / Bowling Green
+                </span>
 
-			if (isMobile) {
-				labelEl.textContent = "Tap to Listen";
-			}
-		});
+                <h3><span class="icon">🎄</span>Lights on Hull Prairie</h3>
+                <p class="show-address">21266 Hull Prairie, Bowling Green, OH</p>
+                <p class="show-summary">17,000 RGB pixels</p>
 
-		// NOTE: this page does not have the big Listen button from the home page,
-		// but we still reuse the same logic to enable/disable the top nav "Listen Live" link.
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 11:00 PM</span></div>
+                </div>
 
-		// --------- HARD-CODED OVERRIDE FLAG ---------
-		const RF_OVERRIDE_MODE = "auto"; // "auto", "forceon", or "forceoff"
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=21266+Hull+Prairie%2C+Bowling+Green%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
 
-		function getEasternNow() {
-			const now = new Date();
-			const parts = new Intl.DateTimeFormat("en-US", {
-				timeZone: "America/New_York",
-				year: "numeric",
-				month: "numeric",
-				day: "numeric",
-				hour: "numeric",
-				minute: "numeric",
-				second: "numeric",
-				hour12: false
-			}).formatToParts(now);
+            <!-- Lights on Monarch -->
+            <article class="card show-card"
+                data-name="Lights on Monarch"
+                data-city="Perrysburg"
+                data-region="South Toledo / Perrysburg / Bowling Green">
 
-			const values = {};
-			for (const p of parts) {
-				if (p.type !== "literal") {
-					values[p.type] = parseInt(p.value, 10);
-				}
-			}
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    South Toledo / Perrysburg / Bowling Green
+                </span>
 
-			return new Date(
-				values.year,
-				values.month - 1,
-				values.day,
-				values.hour,
-				values.minute,
-				values.second
-			);
-		}
+                <h3><span class="icon">🎄</span>Lights on Monarch</h3>
+                <p class="show-address">14568 Monarch Ct., Perrysburg, OH</p>
+                <p class="show-summary">5,000 lights on 32 channels</p>
 
-		function dateToYMDInt(d) {
-			return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-		}
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 10:00 PM</span></div>
+                </div>
 
-		function getThanksgiving(year) {
-			const novFirst = new Date(year, 10, 1); // November
-			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 6 = Sat
-			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
-			const firstThursdayDate = 1 + offsetToThursday;
-			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
-			return new Date(year, 10, thanksgivingDate);
-		}
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=14568+Monarch+Ct%2C+Perrysburg%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
 
-		function isWithinShowWindow(easternNow) {
-			const year = easternNow.getFullYear();
-			const ymdNow = dateToYMDInt(easternNow);
+            <!-- Adkins Family Lights -->
+            <article class="card show-card"
+                data-name="Adkins Family Lights"
+                data-city="Toledo"
+                data-region="South Toledo / Perrysburg / Bowling Green">
 
-			const thisThanks = getThanksgiving(year);
-			const nextJan2 = new Date(year + 1, 0, 2);
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    South Toledo / Perrysburg / Bowling Green
+                </span>
 
-			const prevThanks = getThanksgiving(year - 1);
-			const thisJan2 = new Date(year, 0, 2);
+                <h3><span class="icon">🎄</span>Adkins Family Lights</h3>
+                <p class="show-address">3033 Dorian Dr., Toledo, OH</p>
+                <p class="show-summary">21,000 lights, 800 pixels, 144 channels</p>
 
-			const inSeasonCurrent =
-				ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
-			const inSeasonPrevious =
-				ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+                </div>
 
-			const inSeason = inSeasonCurrent || inSeasonPrevious;
-			if (!inSeason) return false;
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=3033+Dorian+Dr%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/adkinsfamilylights" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
 
-			const dow = easternNow.getDay(); // 0=Sun..6=Sat
-			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
 
-			const SHOW_START_MINUTES = 18 * 60; // 18:00
-			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
-			const WEEKEND_END        = 23 * 60;      // 23:00
 
-			let endMinutes;
+        <!-- ========================= -->
+        <!--  RURAL / WEST AREA -->
+        <!-- ========================= -->
 
-			if (dow >= 0 && dow <= 4) {
-				endMinutes = WEEKDAY_END; // Sun–Thu
-			} else {
-				endMinutes = WEEKEND_END; // Fri–Sat
-			}
+            <!-- Bateson Family Lights -->
+            <article class="card show-card"
+                data-name="Bateson Family Lights"
+                data-city="Swanton"
+                data-region="Rural / West Area">
 
-			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
-		}
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rural / West Area
+                </span>
 
-		function updateListenNavVisibility() {
-			const navListen = document.getElementById("nav-listen-link");
-			if (!navListen) return;
+                <h3><span class="icon">🎄</span>Bateson Family Lights</h3>
+                <p class="show-address">108 E. St. Clair, Swanton, OH</p>
+                <p class="show-summary">10,000 lights on 104 channels</p>
 
-			let onAir;
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>93.1 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">📱</span><span>Remote audio available via PulseMesh</span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span>
+                        <span>Sun–Thu 06:00 PM – 09:30 PM / Fri–Sat 06:00 PM – 11:00 PM</span>
+                    </div>
+                </div>
 
-			if (RF_OVERRIDE_MODE === "forceon") {
-				onAir = true;
-			} else if (RF_OVERRIDE_MODE === "forceoff") {
-				onAir = false;
-			} else {
-				const easternNow = getEasternNow();
-				onAir = isWithinShowWindow(easternNow);
-			}
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=108+E+St+Clair%2C+Swanton%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
 
-			if (onAir) {
-				navListen.classList.remove("disabled-nav");
-				navListen.href = "https://pulsemesh.io/d/SGVT/smart";
-				navListen.target = "_blank";
-				navListen.rel = "noopener noreferrer";
-			} else {
-				navListen.classList.add("disabled-nav");
-				navListen.href = "#";
-				navListen.removeAttribute("target");
-				navListen.removeAttribute("rel");
-			}
+                    <a class="pill-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank"><span>📱</span><span>PulseMesh</span></a>
 
-			console.log("LOCAL-SHOWS | RF_OVERRIDE_MODE:", RF_OVERRIDE_MODE, "| onAir:", onAir);
-		}
+                    <a class="pill-link" href="https://www.facebook.com/BatesonLights" target="_blank"><span>📘</span><span>Facebook</span></a>
 
-		updateListenNavVisibility();
-		setInterval(updateListenNavVisibility, 60 * 1000);
+                    <a class="pill-link" href="https://batesonlights.com" target="_blank"><span>🌐</span><span>Website</span></a>
+                </div>
+            </article>
 
-		// --------- SORTING LOGIC FOR SHOW CARDS ---------
-		(function () {
-			const sortSelect = document.getElementById("shows-sort");
-			const grid = document.getElementById("shows-grid");
-			if (!sortSelect || !grid) return;
+            <!-- Lights on Milton -->
+            <article class="card show-card"
+                data-name="Lights on Milton"
+                data-city="Grand Rapids"
+                data-region="Rural / West Area">
 
-			const cards = Array.from(grid.querySelectorAll(".show-card"));
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rural / West Area
+                </span>
 
-			function sortBy(mode) {
-				const sorted = cards.slice().sort((a, b) => {
-					const nameA = (a.dataset.name || "").toLowerCase();
-					const nameB = (b.dataset.name || "").toLowerCase();
-					const cityA = (a.dataset.city || "").toLowerCase();
-					const cityB = (b.dataset.city || "").toLowerCase();
-					const regionA = (a.dataset.region || "").toLowerCase();
-					const regionB = (b.dataset.region || "").toLowerCase();
+                <h3><span class="icon">🎄</span>Lights on Milton</h3>
+                <p class="show-address">15251 Milton, Grand Rapids, OH</p>
+                <p class="show-summary">24,000 lights and 14,000 pixels</p>
 
-					if (mode === "city") {
-						if (cityA !== cityB) return cityA < cityB ? -1 : 1;
-						return nameA < nameB ? -1 : 1;
-					} else {
-						// default: region
-						if (regionA !== regionB) return regionA < regionB ? -1 : 1;
-						return nameA < nameB ? -1 : 1;
-					}
-				});
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.5 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">📱</span><span>Remote audio available via PulseMesh</span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:30 PM</span></div>
+                </div>
 
-				grid.innerHTML = "";
-				sorted.forEach(card => grid.appendChild(card));
-			}
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=15251+Milton%2C+Grand+Rapids%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/LightsonMilton" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
 
-			sortSelect.addEventListener("change", () => {
-				sortBy(sortSelect.value);
-			});
+            <!-- Lights on Williams -->
+            <article class="card show-card"
+                data-name="Lights on Williams"
+                data-city="Archbold"
+                data-region="Rural / West Area">
 
-			// initial sort
-			sortBy(sortSelect.value || "region");
-		})();
-	</script>
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rural / West Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Lights on Williams</h3>
+                <p class="show-address">206 E. Williams St., Archbold, OH</p>
+                <p class="show-summary">5,000 lights on 16 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>95.7 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=206+E+Williams+St%2C+Archbold%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+
+                    <a class="pill-link" href="https://www.facebook.com/WilliamChristmasLights" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+
+
+        <!-- ========================= -->
+        <!--  HOLLAND / SPRINGFIELD / SYLVANIA AREA -->
+        <!-- ========================= -->
+
+            <!-- A Kersten Khristmas -->
+            <article class="card show-card"
+                data-name="A Kersten Khristmas"
+                data-city="Toledo"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>A Kersten Khristmas</h3>
+                <p class="show-address">6850 Hampsford Circle, Toledo, OH</p>
+                <p class="show-summary">6,000 lights on 24 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>90.7 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=6850+Hampsford+Circle%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
+
+            <!-- Holiday Lights on Hampsford -->
+            <article class="card show-card"
+                data-name="Holiday Lights on Hampsford"
+                data-city="Toledo"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Holiday Lights on Hampsford</h3>
+                <p class="show-address">6851 Hampsford Cir., Toledo, OH</p>
+                <p class="show-summary">10,000 lights and 5,000 pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">📱</span><span>Remote audio available via PulseMesh</span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span>
+                        <span>Sun–Thu 06:00 PM – 09:00 PM / Fri–Sat 06:00 PM – 10:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=6851+Hampsford+Cir%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/profile.php?id=61551591772738" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Hamady Holiday Lights -->
+            <article class="card show-card"
+                data-name="Hamady Holiday Lights"
+                data-city="Sylvania"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Hamady Holiday Lights</h3>
+                <p class="show-address">8941 Sylvania Ave., Sylvania, OH</p>
+                <p class="show-summary">10,000 lights on 48 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 08:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=8941+Sylvania+Ave%2C+Sylvania%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
+
+            <!-- Katafiasz Light Show -->
+            <article class="card show-card"
+                data-name="Katafiasz Light Show"
+                data-city="Holland"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Katafiasz Light Show</h3>
+                <p class="show-address">2230 N. Irwin, Holland, OH</p>
+                <p class="show-summary">20,000 lights and 6,000 pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 09:30 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=2230+N+Irwin%2C+Holland%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
+
+            <!-- Lights on Fieldbrook -->
+            <article class="card show-card"
+                data-name="Lights on Fieldbrook"
+                data-city="Toledo"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Lights on Fieldbrook</h3>
+                <p class="show-address">7257 Turncreek Dr., Toledo, OH</p>
+                <p class="show-summary">4,000 pixels on 32 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=7257+Turncreek+Dr%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
+
+            <!-- Lights on Grey Drive -->
+            <article class="card show-card"
+                data-name="Lights on Grey Drive"
+                data-city="Sylvania"
+                data-region="Holland / Springfield / Sylvania Area">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Holland / Springfield / Sylvania Area
+                </span>
+
+                <h3><span class="icon">🎄</span>Lights on Grey Drive</h3>
+                <p class="show-address">5530 Grey Dr., Sylvania, OH</p>
+                <p class="show-summary">58,000 pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>89.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">📱</span><span>Remote audio available via PulseMesh</span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=5530+Grey+Dr%2C+Sylvania%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/profile.php?id=61570646639688" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+
+
+        <!-- ========================= -->
+        <!--  LAKESHORE REGION -->
+        <!-- ========================= -->
+
+            <!-- Do You Hear What I See? -->
+            <article class="card show-card"
+                data-name="Do You Hear What I See?"
+                data-city="Sandusky"
+                data-region="Lakeshore Region">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Lakeshore Region
+                </span>
+
+                <h3><span class="icon">🎄</span>Do You Hear What I See?</h3>
+                <p class="show-address">111 Michigan Ave., Sandusky, OH</p>
+                <p class="show-summary">24,000 pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>88.3 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">📱</span><span>Remote audio available via PulseMesh</span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=111+Michigan+Ave%2C+Sandusky%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+
+                    <a class="pill-link" href="https://www.facebook.com/OakHarborLightShow" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Lempke Family Light Display -->
+            <article class="card show-card"
+                data-name="Lempke Family Light Display"
+                data-city="Port Clinton"
+                data-region="Lakeshore Region">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Lakeshore Region
+                </span>
+
+                <h3><span class="icon">🎄</span>Lempke Family Light Display</h3>
+                <p class="show-address">419 E. 5th St., Port Clinton, OH</p>
+                <p class="show-summary">60,000 lights on 48 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>93.3 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span>
+                        <span>Sun–Thu 05:00 PM – 10:00 PM / Fri–Sat 05:00 PM – 10:30 PM</span>
+                    </div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=419+E+5th+St%2C+Port+Clinton%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/Lempkelights" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+
+
+        <!-- ========================= -->
+        <!--  ROSSFORD / OREGON / NORTHWOOD -->
+        <!-- ========================= -->
+
+            <!-- Buschmann's Lights -->
+            <article class="card show-card"
+                data-name="Buschmann's Lights"
+                data-city="Northwood"
+                data-region="Rossford / Oregon / Northwood">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rossford / Oregon / Northwood
+                </span>
+
+                <h3><span class="icon">🎄</span>Buschmann's Lights</h3>
+                <p class="show-address">1935 S. Freedom, Northwood, OH</p>
+                <p class="show-summary">25,000 lights on 140 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:30 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1935+S+Freedom%2C+Northwood%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/BuschmannsLights" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Christmas on Wheeling -->
+            <article class="card show-card"
+                data-name="Christmas on Wheeling"
+                data-city="Oregon"
+                data-region="Rossford / Oregon / Northwood">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rossford / Oregon / Northwood
+                </span>
+
+                <h3><span class="icon">🎄</span>Christmas on Wheeling</h3>
+                <p class="show-address">538 S. Wheeling St., Oregon, OH</p>
+                <p class="show-summary">30,000 lights on 144 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>87.9 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 10:30 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=538+S+Wheeling+St%2C+Oregon%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+
+                    <a class="pill-link" href="https://www.facebook.com/profile.php?id=61567147108788" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Lights on Grasser -->
+            <article class="card show-card"
+                data-name="Lights on Grasser"
+                data-city="Oregon"
+                data-region="Rossford / Oregon / Northwood">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rossford / Oregon / Northwood
+                </span>
+
+                <h3><span class="icon">🎄</span>Lights on Grasser</h3>
+                <p class="show-address">1100 Grasser St., Oregon, OH</p>
+                <p class="show-summary">18,669 RGB pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>103.3 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span>
+                        <span>Sun–Thu 05:30 PM – 10:00 PM / Fri–Sat 05:30 PM – 11:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1100+Grasser+St%2C+Oregon%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/LightsOnGrasser" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Lighting Up Nevada Street -->
+            <article class="card show-card"
+                data-name="Lighting Up Nevada Street"
+                data-city="Toledo"
+                data-region="Rossford / Oregon / Northwood">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rossford / Oregon / Northwood
+                </span>
+
+                <h3><span class="icon">🎄</span>Lighting Up Nevada Street</h3>
+                <p class="show-address">2019 Nevada St., Toledo, OH</p>
+                <p class="show-summary">250,000 lights on 256 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.5 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 11:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=2019+Nevada+St%2C+Toledo%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+
+                    <a class="pill-link" href="https://www.facebook.com/profile.php?id=100076242381469" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- The Ageless Child's Christmas -->
+            <article class="card show-card"
+                data-name="The Ageless Childs Christmas"
+                data-city="Rossford"
+                data-region="Rossford / Oregon / Northwood">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Rossford / Oregon / Northwood
+                </span>
+
+                <h3><span class="icon">🎄</span>The Ageless Childs Christmas</h3>
+                <p class="show-address">107 Birch Drive, Rossford, OH</p>
+                <p class="show-summary">108,000 lights on 624 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>97.7 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:15 PM – 10:15 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=107+Birch+Drive%2C+Rossford%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
+                    <a class="pill-link" href="https://www.facebook.com/TheAgelessChildsChristmas" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+
+
+        <!-- ========================= -->
+        <!--  MICHIGAN -->
+        <!-- ========================= -->
+
+            <!-- Bazillion Lights -->
+            <article class="card show-card"
+                data-name="Bazillion Lights"
+                data-city="Livonia"
+                data-region="Michigan">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Michigan
+                </span>
+
+                <h3><span class="icon">🎄</span>Bazillion Lights</h3>
+                <p class="show-address">28718 Robert Dr., Livonia, MI</p>
+                <p class="show-summary">40,000 lights and 3,000 pixels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>88.5 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 05:30 PM – 10:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=28718+Robert+Dr%2C+Livonia%2C+MI" target="_blank"><span>📍</span><span>Map</span></a>
+
+                    <a class="pill-link" href="https://www.facebook.com/profile.php?id=100064497107880" target="_blank"><span>📘</span><span>Facebook</span></a>
+                </div>
+            </article>
+
+            <!-- Lights at Bragden -->
+            <article class="card show-card"
+                data-name="Lights at Bragden"
+                data-city="Temperance"
+                data-region="Michigan">
+
+                <span class="show-region-pill"><span class="show-region-dot"></span>
+                    Michigan
+                </span>
+
+                <h3><span class="icon">🎄</span>Lights at Bragden</h3>
+                <p class="show-address">1721 Linzden Pl., Temperance, MI</p>
+                <p class="show-summary">11,000 lights on 6 channels</p>
+
+                <div class="show-meta-list">
+                    <div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>99.3 FM</strong></span></div>
+                    <div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>Daily 06:00 PM – 09:00 PM</span></div>
+                </div>
+
+                <div class="show-actions">
+                    <a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=1721+Linzden+Pl%2C+Temperance%2C+MI" target="_blank"><span>📍</span><span>Map</span></a>
+                </div>
+            </article>
+
+        </div> <!-- END #shows-grid -->
+
+        <!-- COURTESY NOTE -->
+        <div class="courtesy-note card" style="margin-top: 14px;">
+            <strong>Please be kind to neighbors when visiting any display:</strong>
+            <ul>
+                <li>Dim or turn off headlights while parked.</li>
+                <li>Do not block driveways, mailboxes, or fire hydrants.</li>
+                <li>Keep music volume respectful.</li>
+                <li>Obey posted signs and local traffic laws.</li>
+            </ul>
+            <p style="margin-top: 6px;">
+                Show times are subject to change.  
+                Please follow each show on Facebook or their website to stay updated.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
+        <div>
+            Created by the Bateson family • Merry Christmas &amp; Happy Holidays! 🎅
+        </div>
+    </footer>
+
+</main>
+
+<script>
+/* ===============================
+   FOOTER YEAR
+================================*/
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ===============================
+   LISTEN / REQUEST NAV VISIBILITY
+   (same behavior as Home + Contact)
+================================*/
+const RF_OVERRIDE_MODE = "auto"; // forceon / forceoff also work
+
+function getEasternNow() {
+    const now = new Date();
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false
+    }).formatToParts(now);
+
+    const v = {};
+    for (const p of parts) {
+        if (p.type !== "literal") v[p.type] = parseInt(p.value, 10);
+    }
+
+    return new Date(v.year, v.month - 1, v.day, v.hour, v.minute, v.second);
+}
+
+function dateToYMDInt(d) {
+    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+
+function getThanksgiving(year) {
+    const novFirst = new Date(year, 10, 1);
+    const dow = novFirst.getDay();
+    const offset = (4 - dow + 7) % 7;
+    return new Date(year, 10, 1 + offset + 21); // 4th Thursday
+}
+
+function isWithinShowWindow(easternNow) {
+    const year = easternNow.getFullYear();
+    const today = dateToYMDInt(easternNow);
+
+    const thisThanks = getThanksgiving(year);
+    const nextJan2 = new Date(year + 1, 0, 2);
+
+    const prevThanks = getThanksgiving(year - 1);
+    const thisJan2 = new Date(year, 0, 2);
+
+    const inSeason =
+        (today >= dateToYMDInt(thisThanks) && today <= dateToYMDInt(nextJan2)) ||
+        (today >= dateToYMDInt(prevThanks) && today <= dateToYMDInt(thisJan2));
+
+    if (!inSeason) return false;
+
+    const dow = easternNow.getDay();
+    const mins = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+    const START = 18 * 60;       // 6:00 PM
+    const END_WEEKDAY = 21 * 60 + 30; // 9:30 PM
+    const END_WEEKEND = 23 * 60; // 11:00 PM
+
+    const endTime = dow <= 4 ? END_WEEKDAY : END_WEEKEND;
+    return mins >= START && mins < endTime;
+}
+
+function updateNavLinks() {
+    const listen = document.getElementById("nav-listen-link");
+    const requests = document.querySelector("a[href='index.html#jukebox']");
+    if (!listen) return;
+
+    let onAir;
+    if (RF_OVERRIDE_MODE === "forceon") onAir = true;
+    else if (RF_OVERRIDE_MODE === "forceoff") onAir = false;
+    else onAir = isWithinShowWindow(getEasternNow());
+
+    const apply = (el, liveUrl) => {
+        if (!el) return;
+        if (onAir) {
+            el.classList.remove("disabled-nav");
+            el.href = liveUrl;
+            el.target = "_blank";
+            el.rel = "noopener noreferrer";
+        } else {
+            el.classList.add("disabled-nav");
+            el.href = "#";
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+        }
+    };
+
+    apply(listen, "https://pulsemesh.io/d/SGVT/smart");
+    apply(requests, "index.html#jukebox");
+}
+
+updateNavLinks();
+setInterval(updateNavLinks, 60000);
+
+/* ===============================
+   SORTING LOGIC (Region / City)
+================================*/
+(function () {
+    const sort = document.getElementById("shows-sort");
+    const grid = document.getElementById("shows-grid");
+    if (!sort || !grid) return;
+
+    const cards = Array.from(grid.querySelectorAll(".show-card"));
+
+    function sortCards(mode) {
+        const sorted = cards.slice().sort((a, b) => {
+            const regionA = (a.dataset.region || "").toLowerCase();
+            const regionB = (b.dataset.region || "").toLowerCase();
+            const cityA = (a.dataset.city || "").toLowerCase();
+            const cityB = (b.dataset.city || "").toLowerCase();
+            const nameA = (a.dataset.name || "").toLowerCase();
+            const nameB = (b.dataset.name || "").toLowerCase();
+
+            if (mode === "city") {
+                if (cityA !== cityB) return cityA < cityB ? -1 : 1;
+                return nameA < nameB ? -1 : 1;
+            }
+
+            // Default: region sorting
+            if (regionA !== regionB) return regionA < regionB ? -1 : 1;
+            if (cityA !== cityB) return cityA < cityB ? -1 : 1;
+            return nameA < nameB ? -1 : 1;
+        });
+
+        grid.innerHTML = "";
+        sorted.forEach(c => grid.appendChild(c));
+    }
+
+    sort.addEventListener("change", () => sortCards(sort.value));
+    sortCards(sort.value || "region");
+})();
+</script>
+
 </body>
 </html>
