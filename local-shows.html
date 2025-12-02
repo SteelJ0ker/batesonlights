@@ -107,6 +107,23 @@
 			font-size: 1.05rem;
 		}
 
+		/* Make nav logo bigger and green */
+		.nav-title .logo-script {
+			font-size: 1.35rem;          /* tweak this up/down as you like */
+			color: var(--accent-green);  /* same green as hero */
+			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+		}
+
+		.nav-title {
+			width: 100%;
+			display: flex;
+			justify-content: center;   /* centers the text */
+		}
+		
+		.nav-toggle {
+			justify-content: space-between;   /* keeps hamburger on the right */
+		}
+
 		.nav-toggle-label {
 			font-size: 0.8rem;
 			color: var(--text-muted);
@@ -552,8 +569,9 @@
 	<nav class="nav nav-collapsed">
 		<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
 			<div class="nav-title">
-				<span>🎄</span>
-				<span class="logo-script">Bateson Family Lights</span>
+					<span>🎄 </span>
+					<span class="logo-script">Bateson Family Lights</span>
+					<span> 🎄</span>
 			</div>
 		
 			<!-- HAMBURGER ICON -->
