@@ -110,9 +110,27 @@
 		}
 
 		@media (max-width: 640px) {
-			.nav { flex-direction: column; align-items: flex-start; }
-			.nav-links { flex-wrap: wrap; }
+			.nav {
+				flex-direction: column;
+				align-items: stretch;
+				border-radius: 18px;
+				padding: 10px;
+			}
+
+			.nav-links {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				width: 100%;
+				gap: 6px;
+			}
+
+			.nav-links a {
+				text-align: center;
+				width: 100%;
+				padding: 6px 0;
+			}
 		}
+
 
 		/* STRING LIGHTS */
 		.string-lights {
@@ -423,6 +441,16 @@
 				align-items: flex-start;
 			}
 		}
+		
+		.icon-svg {
+			display: inline-flex;
+			align-items: center;
+		}
+		.icon-svg svg {
+			width: 14px;
+			height: 14px;
+		}
+
 	</style>
 </head>
 
@@ -577,7 +605,17 @@
 
 				<div class="show-actions">
 					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=21266+Hull+Prairie%2C+Bowling+Green%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
-					<a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank"><span>📘</span><span>Facebook</span></a>
+					<!-- <a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank"><span>📘</span><span>Facebook</span></a> -->
+					<a class="pill-link" href="https://www.facebook.com/LightsOnHullPrairie" target="_blank"><span class="icon-svg fb-icon"> <svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+            <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
+				22.403.597 23 1.326 23H12V14.411h-3.11v-3.53H12V8.41c0-3.1 
+				1.893-4.788 4.659-4.788 1.325 
+				0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
+				0-1.796.715-1.796 1.764v2.314h3.587l-.467 
+				3.53h-3.12V23h6.117C23.403 23 
+				24 22.403 24 21.674V1.326C24 .597 23.403 
+				0 22.675 0z"/>
+			</svg></span><span>Facebook</span></a>
 				</div>
 			</article>
 
@@ -666,7 +704,7 @@
 				<div class="show-actions">
 					<a class="pill-link pill-link-primary" href="https://www.google.com/maps/search/?api=1&query=108+E+St+Clair%2C+Swanton%2C+OH" target="_blank"><span>📍</span><span>Map</span></a>
 
-					<a class="pill-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank"><span>📱</span><span>PulseMesh</span></a>
+					<!-- <a class="pill-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank"><span>📱</span><span>PulseMesh</span></a> -->
 
 					<a class="pill-link" href="https://www.facebook.com/BatesonLights" target="_blank"><span>📘</span><span>Facebook</span></a>
 
