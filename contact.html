@@ -105,12 +105,6 @@
 			border-color: rgba(148, 163, 184, 0.6);
 		}
 
-		.nav-links a.nav-contact {
-			border-color: rgba(148, 163, 184, 0.45);
-			background: rgba(15, 23, 42, 0.85);
-			color: var(--text-main);
-		}
-
 		.disabled-nav {
 			opacity: 0.4;
 			pointer-events: none;
@@ -415,20 +409,18 @@
 </head>
 <body>
 	<main id="top">
-		<!-- NAV (same as index) -->
+		<!-- NAV -->
 		<nav class="nav">
 			<div class="nav-title">
 				<span>🎄</span>
 				<span class="logo-script">Bateson Family Lights</span>
 			</div>
 			<div class="nav-links">
-				<div class="nav-links">
-					<a href="index.html#top">Home</a>
-					<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
-					<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
-					<a href="local-shows.html">Local Shows</a>
-					<a href="contact.html" class="btn-nav">Contact Us</a>
-				</div>
+				<a href="index.html#top">Home</a>
+				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
+				<a href="local-shows.html">Local Shows</a>
+				<a href="contact.html" class="btn-nav">Contact Us</a>
 			</div>
 		</nav>
 
@@ -555,92 +547,105 @@ https://www.facebook.com/batesonlights"
 		// Footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
 
-		(function () {
-			function getEasternNow() {
-				const now = new Date();
-				const parts = new Intl.DateTimeFormat("en-US", {
-					timeZone: "America/New_York",
-					year: "numeric",
-					month: "numeric",
-					day: "numeric",
-					hour: "numeric",
-					minute: "numeric",
-					second: "numeric",
-					hour12: false
-				}).formatToParts(now);
+		// ---- Same show schedule logic as index, but only controls nav links ----
+		const RF_OVERRIDE_MODE = "auto"; // "auto" | "forceon" | "forceoff"
 
-				const v = {};
-				for (const p of parts) {
-					if (p.type !== "literal") {
-						v[p.type] = parseInt(p.value, 10);
-					}
+		function getEasternNow() {
+			const now = new Date();
+			const parts = new Intl.DateTimeFormat("en-US", {
+				timeZone: "America/New_York",
+				year: "numeric",
+				month: "numeric",
+				day: "numeric",
+				hour: "numeric",
+				minute: "numeric",
+				second: "numeric",
+				hour12: false
+			}).formatToParts(now);
+
+			const values = {};
+			for (const p of parts) {
+				if (p.type !== "literal") {
+					values[p.type] = parseInt(p.value, 10);
 				}
-
-				return new Date(
-					v.year,
-					v.month - 1,
-					v.day,
-					v.hour,
-					v.minute,
-					v.second
-				);
 			}
 
-			function dateToYMDInt(d) {
-				return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+			return new Date(
+				values.year,
+				values.month - 1,
+				values.day,
+				values.hour,
+				values.minute,
+				values.second
+			);
+		}
+
+		function dateToYMDInt(d) {
+			return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+		}
+
+		function getThanksgiving(year) {
+			const novFirst = new Date(year, 10, 1); // November
+			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 6 = Sat
+			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
+			const firstThursdayDate = 1 + offsetToThursday;
+			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
+			return new Date(year, 10, thanksgivingDate);
+		}
+
+		function isWithinShowWindow(easternNow) {
+			const year = easternNow.getFullYear();
+			const ymdNow = dateToYMDInt(easternNow);
+
+			const thisThanks = getThanksgiving(year);
+			const nextJan2 = new Date(year + 1, 0, 2);
+
+			const prevThanks = getThanksgiving(year - 1);
+			const thisJan2 = new Date(year, 0, 2);
+
+			const inSeasonCurrent =
+				ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
+			const inSeasonPrevious =
+				ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
+
+			const inSeason = inSeasonCurrent || inSeasonPrevious;
+			if (!inSeason) return false;
+
+			const dow = easternNow.getDay(); // 0=Sun..6=Sat
+			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+			const SHOW_START_MINUTES = 18 * 60; // 18:00
+			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
+			const WEEKEND_END        = 23 * 60;      // 23:00
+
+			let endMinutes;
+
+			if (dow >= 0 && dow <= 4) {
+				endMinutes = WEEKDAY_END; // Sun–Thu
+			} else {
+				endMinutes = WEEKEND_END; // Fri–Sat
 			}
 
-			function getThanksgiving(year) {
-				const novFirst = new Date(year, 10, 1);
-				const dayOfWeek = novFirst.getDay();
-				const offsetToThursday = (4 - dayOfWeek + 7) % 7;
-				const firstThursdayDate = 1 + offsetToThursday;
-				const thanksgivingDate = firstThursdayDate + 21;
-				return new Date(year, 10, thanksgivingDate);
-			}
+			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
+		}
 
-			function isWithinShowWindow(easternNow) {
-				const year = easternNow.getFullYear();
-				const ymdNow = dateToYMDInt(easternNow);
+		function updateNavLinks() {
+			let onAir;
 
-				const thisThanks = getThanksgiving(year);
-				const nextJan2 = new Date(year + 1, 0, 2);
-
-				const prevThanks = getThanksgiving(year - 1);
-				const thisJan2 = new Date(year, 0, 2);
-
-				const inSeasonCurrent =
-					ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
-				const inSeasonPrevious =
-					ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
-
-				const inSeason = inSeasonCurrent || inSeasonPrevious;
-				if (!inSeason) return false;
-
-				const dow = easternNow.getDay();
-				const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
-
-				const SHOW_START_MINUTES = 18 * 60;
-				const WEEKDAY_END = 21 * 60 + 30;
-				const WEEKEND_END = 23 * 60;
-
-				let endMinutes;
-
-				if (dow >= 0 && dow <= 4) {
-					endMinutes = WEEKDAY_END;
-				} else {
-					endMinutes = WEEKEND_END;
-				}
-
-				return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
-			}
-
-			function updateNavListen() {
+			if (RF_OVERRIDE_MODE === "forceon") {
+				onAir = true;
+			} else if (RF_OVERRIDE_MODE === "forceoff") {
+				onAir = false;
+			} else {
 				const easternNow = getEasternNow();
-				const onAir = isWithinShowWindow(easternNow);
-				const navListen = document.getElementById("nav-listen-link");
-				if (!navListen) return;
+				onAir = isWithinShowWindow(easternNow);
+			}
 
+			const navListen = document.getElementById("nav-listen-link");
+			const navRequests = document.getElementById("nav-requests-link");
+
+			// Listen Live nav link
+			if (navListen) {
 				if (onAir) {
 					navListen.classList.remove("disabled-nav");
 					navListen.href = "https://pulsemesh.io/d/SGVT/smart";
@@ -654,9 +659,22 @@ https://www.facebook.com/batesonlights"
 				}
 			}
 
-			updateNavListen();
-			setInterval(updateNavListen, 60 * 1000);
-		})();
+			// Requests nav link
+			if (navRequests) {
+				if (onAir) {
+					navRequests.classList.remove("disabled-nav");
+					navRequests.href = "index.html#jukebox";
+				} else {
+					navRequests.classList.add("disabled-nav");
+					navRequests.href = "#";
+				}
+			}
+
+			console.log("CONTACT | RF_OVERRIDE_MODE:", RF_OVERRIDE_MODE, "| onAir:", onAir);
+		}
+
+		updateNavLinks();
+		setInterval(updateNavLinks, 60 * 1000);
 	</script>
 </body>
 </html>
