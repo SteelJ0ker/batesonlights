@@ -109,6 +109,17 @@
 			font-size: 1.05rem;
 		}
 
+		.nav-toggle-label {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			margin-left: auto;
+		}
+
+		.nav-toggle-icon {
+			font-size: 0.85rem;
+			transition: transform 0.18s ease;
+		}
+
 		.nav-links {
 			display: flex;
 			align-items: center;
@@ -138,14 +149,22 @@
 			padding-bottom: 0;
 		}
 
+		.nav.nav-collapsed .nav-toggle-icon {
+			transform: rotate(0deg);
+		}
+
+		.nav:not(.nav-collapsed) .nav-toggle-icon {
+			transform: rotate(180deg);
+		}
+
 		.nav-links a {
 			color: var(--text-muted);
 			text-decoration: none;
-			padding: 3px 8px;
+			padding: 3px 8px; /* smaller pill padding so they’re tighter */
 			border-radius: 999px;
 			border: 1px solid transparent;
 			transition: background 0.12s, color 0.12s, border-color 0.12s;
-			white-space: nowrap;
+			white-space: nowrap;          /* keep each label on one line */
 		}
 
 		.nav-links a:hover {
@@ -153,29 +172,29 @@
 			color: var(--text-main);
 			border-color: rgba(148, 163, 184, 0.6);
 		}
-
+		
 		.disabled-nav {
 			opacity: 0.4;
 			pointer-events: none;
-			cursor: default;
 		}
 
 		@media (max-width: 640px) {
-			.nav {
-				max-width: 100%;
-				border-radius: 18px;
-			}
+		.nav {
+			max-width: 100%;
+			border-radius: 18px;
+		}
 
-			.nav-links {
-				flex-wrap: wrap;
-				justify-content: flex-start;
-			}
+		.nav-links {
+			flex-wrap: wrap;          /* allow wrapping */
+			justify-content: center;  /* keep them centered */
+			gap: 4px;                 /* tight spacing */
+		}
 
-			.nav-links a {
-				flex: 1 1 calc(50% - 6px);
-				text-align: center;
-				padding: 6px 0;
-			}
+		.nav-links a {
+			flex: 0 0 auto;           /* no forced 50% width */
+			text-align: center;
+			padding: 4px 8px;         /* smaller pills */
+		}
 		}
 
 		.hamburger-icon {
