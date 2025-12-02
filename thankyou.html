@@ -54,22 +54,44 @@
 			width: 100%;
 			max-width: 960px;
 			padding: 16px 16px 40px;
-			margin: 24px auto 40px;
+			margin: 0 auto 40px;
 		}
 
-		/* NAV (same as index) */
+		/* NAV (collapsible, same as others) */
 		.nav {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 12px;
-			padding: 8px 12px;
-			margin-bottom: 10px;
+			position: sticky;
+			top: 8px;
+			z-index: 50;
+			margin: 0 auto;
+			max-width: 520px;
+			padding: 6px 8px;
 			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.9);
+			background: rgba(15, 23, 42, 0.92);
 			border: 1px solid rgba(148, 163, 184, 0.3);
 			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
 			backdrop-filter: blur(10px);
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.nav-toggle {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+			width: 100%;
+			padding: 4px 8px;
+			border-radius: 999px;
+			border: none;
+			background: transparent;
+			color: var(--text-main);
+			cursor: pointer;
+		}
+
+		.nav-toggle:focus-visible {
+			outline: 2px solid var(--accent-green);
+			outline-offset: 2px;
 		}
 
 		.nav-title {
@@ -80,23 +102,47 @@
 			font-weight: 600;
 		}
 
+		.logo-script {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: 1.05rem;
+		}
+
 		.nav-links {
 			display: flex;
 			align-items: center;
-			gap: 10px;
-			font-size: 0.84rem;
+			justify-content: center;
+			gap: 4px;
+			padding: 6px 6px 8px;
+			font-size: 0.82rem;
+			flex-wrap: wrap;
+
+			max-height: 260px;
+			overflow: hidden;
+			opacity: 1;
+			transform-origin: top;
+			transform: scaleY(1);
+			transition:
+				max-height 0.18s ease,
+				opacity 0.18s ease,
+				transform 0.18s ease;
+		}
+
+		.nav.nav-collapsed .nav-links {
+			max-height: 0;
+			opacity: 0;
+			transform: scaleY(0.9);
+			padding-top: 0;
+			padding-bottom: 0;
 		}
 
 		.nav-links a {
 			color: var(--text-muted);
 			text-decoration: none;
-			padding: 4px 10px;
+			padding: 3px 8px;
 			border-radius: 999px;
 			border: 1px solid transparent;
-			transition:
-				background 0.12s ease-out,
-				color 0.12s ease-out,
-				border-color 0.12s ease-out;
+			transition: background 0.12s, color 0.12s, border-color 0.12s;
+			white-space: nowrap;
 		}
 
 		.nav-links a:hover {
@@ -113,14 +159,46 @@
 
 		@media (max-width: 640px) {
 			.nav {
-				flex-direction: column;
-				align-items: flex-start;
+				max-width: 100%;
+				border-radius: 18px;
 			}
+
 			.nav-links {
-				width: 100%;
-				justify-content: flex-start;
 				flex-wrap: wrap;
+				justify-content: flex-start;
 			}
+
+			.nav-links a {
+				flex: 1 1 calc(50% - 6px);
+				text-align: center;
+				padding: 6px 0;
+			}
+		}
+
+		.hamburger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			width: 18px;
+		}
+
+		.hamburger-icon span {
+			display: block;
+			height: 2px;
+			width: 100%;
+			background: var(--text-main);
+			border-radius: 2px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(3) {
+			transform: translateY(-5px) rotate(-45deg);
 		}
 
 		/* STRING LIGHTS */
@@ -300,17 +378,24 @@
 <body>
 	<main id="top">
 		<!-- NAV -->
-		<nav class="nav">
-			<div class="nav-title">
-				<span>🎄</span>
-				<span class="logo-script">Bateson Family Lights</span>
-			</div>
-			<div class="nav-links">
+		<nav class="nav nav-collapsed">
+			<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+				<div class="nav-title">
+					<span>🎄</span>
+					<span class="logo-script">Bateson Family Lights</span>
+				</div>
+				<span class="hamburger-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="nav-links" id="nav-links">
 				<a href="index.html#top">Home</a>
 				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
 				<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
 				<a href="local-shows.html">Local Shows</a>
-				<a href="contact.html" class="btn-nav">Contact Us</a>
+				<a href="contact.html">Contact Us</a>
 			</div>
 		</nav>
 
@@ -350,6 +435,31 @@
 	</main>
 
 	<script>
+		// NAV COLLAPSE
+		(function () {
+			const nav = document.querySelector(".nav");
+			const toggle = document.querySelector(".nav-toggle");
+			const links = document.getElementById("nav-links");
+			if (!nav || !toggle || !links) return;
+
+			nav.classList.add("nav-collapsed");
+			toggle.setAttribute("aria-expanded", "false");
+
+			function setExpanded(expanded) {
+				if (expanded) {
+					nav.classList.remove("nav-collapsed");
+				} else {
+					nav.classList.add("nav-collapsed");
+				}
+				toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+			}
+
+			toggle.addEventListener("click", () => {
+				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				setExpanded(!isExpanded);
+			});
+		})();
+
 		document.getElementById("year").textContent = new Date().getFullYear();
 
 		// ---- Same show schedule logic as index, for nav links only ----
@@ -390,11 +500,11 @@
 		}
 
 		function getThanksgiving(year) {
-			const novFirst = new Date(year, 10, 1); // November
-			const dayOfWeek = novFirst.getDay(); // 0 = Sun ... 6 = Sat
+			const novFirst = new Date(year, 10, 1);
+			const dayOfWeek = novFirst.getDay();
 			const offsetToThursday = (4 - dayOfWeek + 7) % 7;
 			const firstThursdayDate = 1 + offsetToThursday;
-			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
+			const thanksgivingDate = firstThursdayDate + 21;
 			return new Date(year, 10, thanksgivingDate);
 		}
 
@@ -416,19 +526,19 @@
 			const inSeason = inSeasonCurrent || inSeasonPrevious;
 			if (!inSeason) return false;
 
-			const dow = easternNow.getDay(); // 0=Sun..6=Sat
+			const dow = easternNow.getDay();
 			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
 
-			const SHOW_START_MINUTES = 18 * 60; // 18:00
-			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
-			const WEEKEND_END        = 23 * 60;      // 23:00
+			const SHOW_START_MINUTES = 18 * 60;
+			const WEEKDAY_END        = 21 * 60 + 30;
+			const WEEKEND_END        = 23 * 60;
 
 			let endMinutes;
 
 			if (dow >= 0 && dow <= 4) {
-				endMinutes = WEEKDAY_END; // Sun–Thu
+				endMinutes = WEEKDAY_END;
 			} else {
-				endMinutes = WEEKEND_END; // Fri–Sat
+				endMinutes = WEEKEND_END;
 			}
 
 			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
@@ -449,7 +559,6 @@
 			const navListen = document.getElementById("nav-listen-link");
 			const navRequests = document.getElementById("nav-requests-link");
 
-			// Listen Live nav link
 			if (navListen) {
 				if (onAir) {
 					navListen.classList.remove("disabled-nav");
@@ -464,7 +573,6 @@
 				}
 			}
 
-			// Requests nav link
 			if (navRequests) {
 				if (onAir) {
 					navRequests.classList.remove("disabled-nav");
