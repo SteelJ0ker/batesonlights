@@ -668,6 +668,8 @@
 		</footer>
 	</main>
 
+	<script src="rf-config.js"></script>
+	
 	<script>
 		// NAV COLLAPSE / EXPAND
 		(function () {
@@ -780,7 +782,7 @@
 <script>
 // ====== SAME ON-AIR LOGIC USED IN INDEX ======
 
-const RF_OVERRIDE_MODE = "auto";   // leave auto unless you force override
+const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 function getEasternNow() {
     const now = new Date();
