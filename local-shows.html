@@ -1649,6 +1649,8 @@
 
 </main>
 
+<script src="rf-config.js"></script>
+	
 <script>
 /* ===============================
    NAV COLLAPSE / EXPAND
@@ -1686,7 +1688,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 /* ===============================
    LISTEN / REQUEST NAV VISIBILITY
 ================================*/
-const RF_OVERRIDE_MODE = "auto"; // forceon / forceoff also work
+const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 function getEasternNow() {
 	const now = new Date();
