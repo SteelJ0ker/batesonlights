@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Gallery | Bateson Family Lights</title>
+	<title>Bateson Family Lights | Gallery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Photo gallery of Bateson Family Lights displays over the years. Newest displays at the top." />
+	<meta name="description" content="Photo gallery of Bateson Family Lights displays over the years." />
 
-	<!-- Pacifico font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -21,8 +20,8 @@
 			--text-main: #f5f7ff;
 			--text-muted: #9ca3c7;
 			--border-subtle: rgba(255, 255, 255, 0.06);
-			--radius-lg: 1.25rem;
-			--shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+			--shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.75);
+			--radius-xl: 24px;
 		}
 
 		*,
@@ -31,533 +30,724 @@
 			box-sizing: border-box;
 		}
 
+		html,
 		body {
 			margin: 0;
-			min-height: 100vh;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			padding: 0;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+				sans-serif;
 			background:
-				radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 60%),
-				radial-gradient(circle at bottom, rgba(248, 113, 113, 0.15), transparent 55%),
-				var(--bg);
+				radial-gradient(circle at top, #102540 0, #04040b 55%, #020208 100%),
+				url("https://images.pexels.com/photos/6880135/pexels-photo-6880135.jpeg?auto=compress&cs=tinysrgb&w=1200")
+					center/cover fixed;
 			color: var(--text-main);
+			min-height: 100vh;
 			display: flex;
-			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
 		}
 
-		a {
-			color: inherit;
-			text-decoration: none;
-		}
-
-		.main-shell {
-			max-width: 1100px;
-			margin: 0 auto;
-			padding: 1.25rem 1.25rem 3rem;
+		main {
 			width: 100%;
+			max-width: 960px;
+			padding: 16px 16px 40px;
+			margin: 0 auto 40px;
 		}
 
-		/* NAV / HEADER */
-
-		.header {
+		/* =========================
+		   NAV PILL (COLLAPSIBLE)
+		=========================*/
+		.nav {
+			position: sticky;
+			top: 8px;
+			z-index: 50;
+			margin: 0 auto;
+			max-width: 520px;
+			padding: 6px 8px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.92);
+			border: 1px solid rgba(148, 163, 184, 0.3);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(10px);
 			display: flex;
 			flex-direction: column;
-			gap: 0.75rem;
-			margin-bottom: 1.5rem;
+			gap: 4px;
 		}
 
-		.brand-row {
+		.nav-toggle {
 			display: flex;
-			align-items: baseline;
-			justify-content: space-between;
-			gap: 0.75rem;
-		}
-
-		.site-title {
-			font-family: "Pacifico", system-ui, sans-serif;
-			font-size: clamp(1.7rem, 4vw, 2.1rem);
-			color: #fef9c3;
-			text-shadow:
-				0 0 10px rgba(250, 204, 21, 0.7),
-				0 0 25px rgba(59, 130, 246, 0.8);
-			letter-spacing: 0.03em;
-		}
-
-		.site-subtitle {
-			font-size: 0.9rem;
-			color: var(--text-muted);
-		}
-
-		.nav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.4rem;
 			align-items: center;
-			font-size: 0.9rem;
+			justify-content: space-between;
+			gap: 8px;
+			width: 100%;
+			padding: 4px 8px;
+			border-radius: 999px;
+			border: none;
+			background: transparent;
+			color: var(--text-main);
+			cursor: pointer;
 		}
 
-		.nav-link {
-			padding: 0.3rem 0.75rem;
+		.nav-toggle:focus-visible {
+			outline: 2px solid var(--accent-green);
+			outline-offset: 2px;
+		}
+
+		.nav-title {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.9rem;
+			font-weight: 600;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.logo-script {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: 1.05rem;
+		}
+
+		.nav-toggle-label {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			margin-left: auto;
+		}
+
+		.nav-toggle-icon {
+			font-size: 0.85rem;
+			transition: transform 0.18s ease;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+			padding: 6px 6px 8px;
+			font-size: 0.82rem;
+			flex-wrap: wrap;
+
+			max-height: 260px;
+			overflow: hidden;
+			opacity: 1;
+			transform-origin: top;
+			transform: scaleY(1);
+			transition:
+				max-height 0.18s ease,
+				opacity 0.18s ease,
+				transform 0.18s ease;
+		}
+
+		/* collapsed state */
+		.nav.nav-collapsed .nav-links {
+			max-height: 0;
+			opacity: 0;
+			transform: scaleY(0.9);
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.nav.nav-collapsed .nav-toggle-icon {
+			transform: rotate(0deg);
+		}
+
+		.nav:not(.nav-collapsed) .nav-toggle-icon {
+			transform: rotate(180deg);
+		}
+
+		.nav-links a {
+			color: var(--text-muted);
+			text-decoration: none;
+			padding: 3px 8px;
 			border-radius: 999px;
 			border: 1px solid transparent;
-			color: var(--text-muted);
-			transition: background 120ms ease-out, color 120ms ease-out, border-color 120ms ease-out;
+			transition: background 0.12s, color 0.12s, border-color 0.12s;
+			white-space: nowrap;
 		}
 
-		.nav-link:hover {
-			background: rgba(15, 23, 42, 0.9);
-			border-color: rgba(148, 163, 184, 0.7);
+		.nav-links a:hover {
+			background: rgba(15, 23, 42, 0.95);
 			color: var(--text-main);
+			border-color: rgba(148, 163, 184, 0.6);
 		}
 
-		.nav-link--active {
-			background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(56, 189, 248, 0.18));
-			border-color: rgba(94, 234, 212, 0.9);
-			color: #e0f2fe;
-			text-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+		.nav-links a.nav-active {
+			background: rgba(34, 197, 94, 0.2);
+			border-color: rgba(34, 197, 94, 0.7);
+			color: #bbf7d0;
+		}
+
+		.disabled-nav {
+			opacity: 0.4;
+			pointer-events: none;
 		}
 
 		@media (max-width: 640px) {
 			.nav {
-				flex-direction: row;
+				max-width: 100%;
+				border-radius: 18px;
+			}
+
+			.nav-links {
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 4px;
+			}
+
+			.nav-links a {
+				flex: 0 0 auto;
+				text-align: center;
+				padding: 4px 8px;
+			}
+		}
+
+		.hamburger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			width: 18px;
+		}
+
+		.hamburger-icon span {
+			display: block;
+			height: 2px;
+			width: 100%;
+			background: var(--text-main);
+			border-radius: 2px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		/* transform when open */
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(3) {
+			transform: translateY(-5px) rotate(-45deg);
+		}
+
+		/* STRING LIGHTS DECORATION */
+		.string-lights {
+			position: relative;
+			height: 32px;
+			margin: 10px 0 -8px;
+		}
+
+		.string-lights::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 12px;
+			height: 2px;
+			background: rgba(148, 163, 184, 0.4);
+			border-radius: 999px;
+		}
+
+		.bulb {
+			position: absolute;
+			top: 10px;
+			width: 10px;
+			height: 16px;
+			border-radius: 40% 40% 60% 60%;
+			background: #22c55e;
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+			transform-origin: top center;
+			animation: sway 3s ease-in-out infinite alternate;
+		}
+
+		.bulb.red {
+			background: var(--accent-red);
+			box-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
+		}
+
+		.bulb.gold {
+			background: #fbbf24;
+			box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
+		}
+
+		.bulb:nth-child(1) { left: 10%; animation-delay: 0s; }
+		.bulb:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+		.bulb:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+		.bulb:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+		.bulb:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+		.bulb:nth-child(6) { left: 85%; animation-delay: 2s; }
+
+		@keyframes sway {
+			from { transform: rotate(-6deg); }
+			to   { transform: rotate(6deg); }
+		}
+
+		.hero {
+			background: rgba(7, 10, 25, 0.55);
+			border-radius: var(--radius-xl);
+			box-shadow: var(--shadow-soft);
+			padding: 6px 18px 10px;
+			border: 1px solid var(--border-subtle);
+			position: relative;
+			overflow: hidden;
+			margin-top: 15px !important;
+		}
+
+		.hero::before {
+			display: none;
+		}
+
+		.hero-inner {
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-top {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 14px;
+			align-items: stretch;
+		}
+
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			background: rgba(0, 0, 0, 0.55);
+			border-radius: 999px;
+			padding: 4px 10px;
+			color: var(--text-muted);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			margin-bottom: 2px;
+		}
+
+		.hero-title {
+			font-size: clamp(2.1rem, 4vw, 2.6rem);
+			font-weight: 800;
+			letter-spacing: 0.03em;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.hero-title .em {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+			font-weight: 400;
+			letter-spacing: 0.04em;
+		}
+
+		.hero-subtitle {
+			margin: 6px 0 10px;
+			font-size: 0.98rem;
+			color: var(--text-muted);
+			max-width: 36rem;
+		}
+
+		/* FOOTER */
+
+		.footer {
+			margin-top: 18px;
+			padding: 10px 6px 0;
+			font-size: 0.78rem;
+			color: var(--text-muted);
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			border-top: 1px solid rgba(148, 163, 184, 0.18);
+		}
+
+		.footer a {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.hero {
+				padding: 12px 12px 18px;
+			}
+
+			.footer {
+				flex-direction: column;
 				align-items: flex-start;
 			}
 		}
 
-		/* GALLERY SECTION */
+		/* Make nav logo bigger and green */
+		.logo-script {
+			font-size: 1.35rem;
+			color: var(--accent-green);
+			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+		}
 
-		.gallery-section {
-			margin-top: 1.25rem;
-			margin-bottom: 2.5rem;
-			padding: 2rem;
-			background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent),
-			            radial-gradient(circle at bottom right, rgba(248, 113, 113, 0.12), transparent),
-			            var(--bg-alt);
-			border-radius: var(--radius-lg);
-			box-shadow: var(--shadow-soft);
+		/* ==============
+		   GALLERY STUFF
+		===============*/
+
+		.gallery-card {
+			margin-top: 16px;
+			background: var(--bg-alt);
+			border-radius: var(--radius-xl);
 			border: 1px solid var(--border-subtle);
+			padding: 16px 14px 18px;
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
 		}
 
-		.gallery-header {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-end;
-			gap: 1rem;
-			margin-bottom: 1.5rem;
-		}
-
-		.gallery-header h1 {
-			margin: 0;
-			font-size: 1.6rem;
-		}
-
-		.gallery-header p {
-			margin: 0.25rem 0 0;
+		.gallery-intro {
+			font-size: 0.9rem;
 			color: var(--text-muted);
-			font-size: 0.95rem;
-		}
-
-		.gallery-note {
-			font-size: 0.8rem;
-			color: var(--text-muted);
-			margin-top: 0.3rem;
+			margin: 4px 0 10px;
 		}
 
 		.gallery-year {
-			margin-top: 1.5rem;
-			padding-top: 1.5rem;
-			border-top: 1px solid var(--border-subtle);
+			margin-top: 18px;
 		}
 
-		.gallery-year:first-of-type {
-			margin-top: 0.75rem;
-			padding-top: 0.75rem;
-			border-top: none;
-		}
-
-		.gallery-year-header {
+		.gallery-year h2 {
+			font-size: 1rem;
+			margin: 0 0 10px;
 			display: flex;
-			flex-wrap: wrap;
 			align-items: center;
-			gap: 0.75rem;
-			margin-bottom: 1rem;
+			gap: 8px;
 		}
 
-		.year-badge {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.25rem 0.85rem;
+		.gallery-year h2 span.year-label {
+			font-weight: 700;
+		}
+
+		.gallery-year h2 span.year-pill {
+			font-size: 0.75rem;
+			padding: 3px 8px;
 			border-radius: 999px;
-			border: 1px solid rgba(148, 163, 184, 0.6);
-			background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(56, 189, 248, 0.07));
-			font-weight: 600;
-			letter-spacing: 0.03em;
-			font-size: 0.85rem;
-			color: var(--text-main);
-			text-shadow: 0 0 8px rgba(34, 197, 94, 0.55);
-		}
-
-		.year-caption {
-			margin: 0;
-			font-size: 0.9rem;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.5);
 			color: var(--text-muted);
 		}
 
 		.gallery-grid {
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 1rem;
+			gap: 10px;
 		}
 
-		.gallery-item {
-			background: var(--card);
-			border-radius: 0.9rem;
-			overflow: hidden;
-			border: 1px solid rgba(148, 163, 184, 0.45);
-			box-shadow: 0 14px 30px rgba(15, 23, 42, 0.7);
-			display: flex;
-			flex-direction: column;
-			min-height: 100%;
-			transform: translateY(0);
-			transition:
-				transform 150ms ease-out,
-				box-shadow 150ms ease-out,
-				border-color 150ms ease-out;
-		}
-
-		.gallery-item a {
+		.gallery-grid a {
 			display: block;
-			line-height: 0;
+			border-radius: 16px;
+			overflow: hidden;
+			border: 1px solid rgba(148, 163, 184, 0.4);
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+			background: #020617;
+			transition:
+				transform 0.12s ease-out,
+				box-shadow 0.12s ease-out,
+				border-color 0.12s ease-out;
+		}
+
+		.gallery-grid a:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85);
+			border-color: rgba(96, 165, 250, 0.9);
 		}
 
 		.gallery-thumb {
 			display: block;
 			width: 100%;
-			height: 180px;
+			height: 190px;
 			object-fit: cover;
 		}
 
-		.gallery-item:hover {
-			transform: translateY(-4px);
-			box-shadow: 0 22px 45px rgba(15, 23, 42, 0.85);
-			border-color: rgba(96, 165, 250, 0.8);
-		}
-
-		.gallery-meta {
-			padding: 0.7rem 0.8rem 0.8rem;
-			display: flex;
-			flex-direction: column;
-			gap: 0.35rem;
-		}
-
-		.gallery-title {
-			font-size: 0.95rem;
-			font-weight: 600;
-		}
-
-		.gallery-tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.35rem;
-		}
-
-		.tag-pill {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.15rem 0.6rem;
-			border-radius: 999px;
-			font-size: 0.75rem;
-			color: var(--text-muted);
-			background: rgba(15, 23, 42, 0.8);
-			border: 1px solid rgba(148, 163, 184, 0.5);
-		}
-
-		@media (max-width: 1024px) {
+		@media (max-width: 900px) {
 			.gallery-grid {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 		}
 
 		@media (max-width: 640px) {
-			.main-shell {
-				padding-inline: 1rem;
-			}
-
-			.gallery-section {
-				padding: 1.25rem;
-				margin-left: -0.25rem;
-				margin-right: -0.25rem;
-				border-radius: 1rem;
-			}
-
-			.gallery-header {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
 			.gallery-grid {
-				grid-template-columns: 1fr;
+				grid-template-columns: minmax(0, 1fr);
 			}
 
 			.gallery-thumb {
-				height: 200px;
-			}
-		}
-
-		/* FOOTER */
-
-		.footer {
-			margin-top: auto;
-			padding: 1.25rem;
-			border-top: 1px solid var(--border-subtle);
-			font-size: 0.8rem;
-			color: var(--text-muted);
-		}
-
-		.footer-inner {
-			max-width: 1100px;
-			margin: 0 auto;
-			display: flex;
-			justify-content: space-between;
-			gap: 0.75rem;
-			align-items: center;
-		}
-
-		@media (max-width: 768px) {
-			.footer-inner {
-				flex-direction: column;
-				align-items: flex-start;
+				height: 220px;
 			}
 		}
 	</style>
 </head>
 <body>
-	<div class="main-shell">
-		<header class="header">
-			<div class="brand-row">
-				<div>
-					<div class="site-title">Bateson Family Lights</div>
-					<div class="site-subtitle">Synchronized Christmas lights in Northwest Ohio</div>
+	<main id="top">
+		<!-- NAV -->
+		<nav class="nav nav-collapsed">
+			<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+				<div class="nav-title">
+					<span>🎄 </span>
+					<span class="logo-script">Bateson Family Lights</span>
+					<span> 🎄</span>
+				</div>
+				<span class="hamburger-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="nav-links" id="nav-links">
+				<a href="index.html">Home</a>
+				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
+				<a href="local-shows.html">Local Shows</a>
+				<a href="contact.html">Contact Us</a>
+				<a href="gallery.html" class="nav-active">Gallery</a>
+			</div>
+		</nav>
+
+		<div class="string-lights">
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+		</div>
+
+		<!-- HERO (simple title for gallery) -->
+		<section class="hero">
+			<div class="hero-inner">
+				<div class="hero-top">
+					<div>
+						<div class="badge">
+							<span>📸</span>
+							<span>Bateson Family Lights • Display Gallery</span>
+						</div>
+
+						<h1 class="hero-title">
+							<span class="em">Display Gallery</span>
+						</h1>
+
+						<p class="hero-subtitle">
+							A look back at Bateson Family Lights through the years. Newest years are shown first.
+							Tap any photo to view a larger version in a new tab.
+						</p>
+					</div>
 				</div>
 			</div>
-			<nav class="nav">
-				<a href="index.html" class="nav-link">Home</a>
-				<a href="local-shows.html" class="nav-link">Local Shows</a>
-				<a href="contact.html" class="nav-link">Contact</a>
-				<a href="gallery.html" class="nav-link nav-link--active">Gallery</a>
-			</nav>
-		</header>
+		</section>
 
-		<section id="gallery" class="gallery-section">
-			<div class="gallery-header">
-				<div>
-					<h1>🎄 Display Gallery</h1>
-					<p>Photos from our Christmas displays over the years. Newest years are at the top.</p>
-					<div class="gallery-note">Tap any photo to open a larger version in a new tab.</div>
-				</div>
-			</div>
+		<!-- GALLERY CONTENT -->
+		<section class="gallery-card">
+			<p class="gallery-intro">
+				Below are photos grouped by year. Update the image paths to match the files in your
+				<code>/images/&lt;year&gt;/</code> folders. Keep the years in newest-to-oldest order.
+			</p>
 
-			<!-- 2025 (Most recent YEAR) -->
-			<article class="gallery-year">
-				<header class="gallery-year-header">
-					<span class="year-badge">2025</span>
-					<p class="year-caption">Latest setup – arches, singing trees, and more.</p>
-				</header>
-
+			<!-- 2025 (newest year) -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2025 Display</span>
+					<span class="year-pill">Most recent</span>
+				</h2>
 				<div class="gallery-grid">
-					<figure class="gallery-item">
-						<a href="images/2025/20251129_203700.jpg" target="_blank">
-							<img
-								src="images/2025/20251129_203700.jpg"
-								alt="2025 Bateson Family Lights – full front yard"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Front Yard Overview</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2025</span>
-								<span class="tag-pill">Arches</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<figure class="gallery-item">
-						<a href="images/2025/20251129_203704.jpg" target="_blank">
-							<img
-								src="images/2025/20251129_203704.jpg"
-								alt="2025 display close-up"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Driveway Angle</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2025</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<figure class="gallery-item">
-						<a href="images/2025/20251129_203709.jpg" target="_blank">
-							<img
-								src="images/2025/20251129_203709.jpg"
-								alt="Another 2025 view"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Side View</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2025</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<!-- Add more 2025 images here, copy a figure and change the filename -->
+					<!-- Replace filenames with your actual 2025 files -->
+					<a href="images/2025/20251129_203700.jpg" target="_blank">
+						<img src="images/2025/20251129_203700.jpg" alt="2025 display photo 1" class="gallery-thumb" loading="lazy" />
+					</a>
+					<a href="images/2025/20251129_203704.jpg" target="_blank">
+						<img src="images/2025/20251129_203704.jpg" alt="2025 display photo 2" class="gallery-thumb" loading="lazy" />
+					</a>
+					<a href="images/2025/20251129_203709.jpg" target="_blank">
+						<img src="images/2025/20251129_203709.jpg" alt="2025 display photo 3" class="gallery-thumb" loading="lazy" />
+					</a>
 				</div>
-			</article>
+			</div>
 
 			<!-- 2024 -->
-			<article class="gallery-year">
-				<header class="gallery-year-header">
-					<span class="year-badge">2024</span>
-					<p class="year-caption">Getting ready for the big expansion.</p>
-				</header>
-
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2024 Display</span>
+				</h2>
 				<div class="gallery-grid">
-					<figure class="gallery-item">
-						<a href="images/2024/FB_IMG_1764775783602.jpg" target="_blank">
-							<img
-								src="images/2024/FB_IMG_1764775783602.jpg"
-								alt="2024 Bateson Family Lights – front view"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Front View</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2024</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<figure class="gallery-item">
-						<a href="images/2024/FB_IMG_1764775788613.jpg" target="_blank">
-							<img
-								src="images/2024/FB_IMG_1764775788613.jpg"
-								alt="2024 display detail"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Display Detail</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2024</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<!-- Add more 2024 images if you want -->
+					<!-- Update filenames to match /images/2024/ -->
+					<a href="images/2024/FB_IMG_1764775783602.jpg" target="_blank">
+						<img src="images/2024/FB_IMG_1764775783602.jpg" alt="2024 display photo 1" class="gallery-thumb" loading="lazy" />
+					</a>
+					<a href="images/2024/FB_IMG_1764775788613.jpg" target="_blank">
+						<img src="images/2024/FB_IMG_1764775788613.jpg" alt="2024 display photo 2" class="gallery-thumb" loading="lazy" />
+					</a>
 				</div>
-			</article>
+			</div>
 
 			<!-- 2023 -->
-			<article class="gallery-year">
-				<header class="gallery-year-header">
-					<span class="year-badge">2023</span>
-					<p class="year-caption">A solid show with fewer props but same vibes.</p>
-				</header>
-
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2023 Display</span>
+				</h2>
 				<div class="gallery-grid">
-					<figure class="gallery-item">
-						<a href="images/2023/FB_IMG_1764775661921.jpg" target="_blank">
-							<img
-								src="images/2023/FB_IMG_1764775661921.jpg"
-								alt="2023 display photo"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Front View</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2023</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<figure class="gallery-item">
-						<a href="images/2023/FB_IMG_1764775665597.jpg" target="_blank">
-							<img
-								src="images/2023/FB_IMG_1764775665597.jpg"
-								alt="2023 display alternate angle"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Alternate Angle</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2023</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<!-- Add more 2023 images -->
+					<!-- Update filenames to match /images/2023/ -->
+					<a href="images/2023/FB_IMG_1764775661921.jpg" target="_blank">
+						<img src="images/2023/FB_IMG_1764775661921.jpg" alt="2023 display photo 1" class="gallery-thumb" loading="lazy" />
+					</a>
+					<a href="images/2023/FB_IMG_1764775665597.jpg" target="_blank">
+						<img src="images/2023/FB_IMG_1764775665597.jpg" alt="2023 display photo 2" class="gallery-thumb" loading="lazy" />
+					</a>
 				</div>
-			</article>
+			</div>
 
-			<!-- Repeat pattern for 2022 → 2014 (OLDER years lower on the page) -->
-			<!-- Example for 2022 -->
-
-			<article class="gallery-year">
-				<header class="gallery-year-header">
-					<span class="year-badge">2022</span>
-					<p class="year-caption">More props appearing, layout evolving.</p>
-				</header>
-
+			<!-- 2022 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2022 Display</span>
+				</h2>
 				<div class="gallery-grid">
-					<figure class="gallery-item">
-						<a href="images/2022/FB_IMG_17647775341982.jpg" target="_blank">
-							<img
-								src="images/2022/FB_IMG_17647775341982.jpg"
-								alt="2022 display photo"
-								class="gallery-thumb"
-								loading="lazy"
-							/>
-						</a>
-						<figcaption class="gallery-meta">
-							<div class="gallery-title">Night View</div>
-							<div class="gallery-tags">
-								<span class="tag-pill">2022</span>
-							</div>
-						</figcaption>
-					</figure>
-
-					<!-- Copy more & change filenames for other 2022 images -->
+					<!-- Example: update with one or more 2022 images -->
+					<a href="images/2022/FB_IMG_17647775341982.jpg" target="_blank">
+						<img src="images/2022/FB_IMG_17647775341982.jpg" alt="2022 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
 				</div>
-			</article>
+			</div>
 
-			<!-- You can continue with 2021, 2020, 2019, ..., 2014 in the same way.
-			     Just make sure the article for the NEWEST YEAR stays at the top. -->
+			<!-- 2021 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2021 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2021/FB_IMG_1764775236109.jpg" target="_blank">
+						<img src="images/2021/FB_IMG_1764775236109.jpg" alt="2021 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2020 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2020 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2020/FB_IMG_1764775156859.jpg" target="_blank">
+						<img src="images/2020/FB_IMG_1764775156859.jpg" alt="2020 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2019 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2019 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2019/FB_IMG_1764775052969.jpg" target="_blank">
+						<img src="images/2019/FB_IMG_1764775052969.jpg" alt="2019 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2018 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2018 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2018/FB_IMG_17647775010362.jpg" target="_blank">
+						<img src="images/2018/FB_IMG_17647775010362.jpg" alt="2018 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2017 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2017 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2017/FB_IMG_1764774974621.jpg" target="_blank">
+						<img src="images/2017/FB_IMG_1764774974621.jpg" alt="2017 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2016 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2016 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2016/FB_IMG_1764774471837.jpg" target="_blank">
+						<img src="images/2016/FB_IMG_1764774471837.jpg" alt="2016 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2015 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2015 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2015/FB_IMG_1764774527710.jpg" target="_blank">
+						<img src="images/2015/FB_IMG_1764774527710.jpg" alt="2015 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
+
+			<!-- 2014 -->
+			<div class="gallery-year">
+				<h2>
+					<span class="year-label">2014 Display</span>
+				</h2>
+				<div class="gallery-grid">
+					<a href="images/2014/Screenshot_20251203_100024_Facebook.jpg" target="_blank">
+						<img src="images/2014/Screenshot_20251203_100024_Facebook.jpg" alt="2014 display photo" class="gallery-thumb" loading="lazy" />
+					</a>
+				</div>
+			</div>
 		</section>
-	</div>
 
-	<footer class="footer">
-		<div class="footer-inner">
+		<footer class="footer">
 			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
-			<div>Northwest Ohio • Tune in and enjoy the show!</div>
-		</div>
-	</footer>
+			<div>
+				Created by the Bateson family • Merry Christmas & Happy Holidays! 🎅
+			</div>
+		</footer>
+	</main>
 
 	<script>
+		// NAV COLLAPSE / EXPAND
+		(function () {
+			const nav = document.querySelector(".nav");
+			const toggle = document.querySelector(".nav-toggle");
+			const links = document.getElementById("nav-links");
+			if (!nav || !toggle || !links) return;
+
+			nav.classList.add("nav-collapsed");
+			toggle.setAttribute("aria-expanded", "false");
+
+			function setExpanded(expanded) {
+				if (expanded) {
+					nav.classList.remove("nav-collapsed");
+				} else {
+					nav.classList.add("nav-collapsed");
+				}
+				toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+			}
+
+			toggle.addEventListener("click", () => {
+				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				setExpanded(!isExpanded);
+			});
+		})();
+
+		// footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
 	</script>
 </body>
