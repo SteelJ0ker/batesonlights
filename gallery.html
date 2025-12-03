@@ -506,9 +506,9 @@
 				<a href="index.html">Home</a>
 				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
 				<a id="nav-requests-link" href="index.html#jukebox">Requests</a>
+				<a href="gallery.html" class="nav-active">Gallery</a>
 				<a href="local-shows.html">Local Shows</a>
 				<a href="contact.html">Contact Us</a>
-				<a href="gallery.html" class="nav-active">Gallery</a>
 			</div>
 		</nav>
 
@@ -545,173 +545,78 @@
 		</section>
 
 		<!-- GALLERY CONTENT -->
-		<section class="gallery-card">
-			<p class="gallery-intro">
-				Below are photos grouped by year. Update the image paths to match the files in your
-				<code>/images/&lt;year&gt;/</code> folders. Keep the years in newest-to-oldest order.
-			</p>
+		<!-- GALLERY CONTENT (auto-loaded from GitHub) -->
+<section class="gallery-card" id="gallery-root">
+	<p class="gallery-intro">
+		Photos are grouped by year, newest first. Images are loaded automatically
+		from the <code>/images/&lt;year&gt;/</code> folders in the GitHub repo.
+	</p>
 
-			<!-- 2025 (newest year) -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2025 Display</span>
-					<span class="year-pill">Most recent</span>
-				</h2>
-				<div class="gallery-grid">
-					<!-- Replace filenames with your actual 2025 files -->
-					<a href="images/2025/20251129_203700.jpg" target="_blank">
-						<img src="images/2025/20251129_203700.jpg" alt="2025 display photo 1" class="gallery-thumb" loading="lazy" />
-					</a>
-					<a href="images/2025/20251129_203704.jpg" target="_blank">
-						<img src="images/2025/20251129_203704.jpg" alt="2025 display photo 2" class="gallery-thumb" loading="lazy" />
-					</a>
-					<a href="images/2025/20251129_203709.jpg" target="_blank">
-						<img src="images/2025/20251129_203709.jpg" alt="2025 display photo 3" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<!-- Just define the years; JS will fill in the images -->
+	<div class="gallery-year" data-year="2025">
+		<h2>
+			<span class="year-label">2025 Display</span>
+			<span class="year-pill">Most recent</span>
+		</h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2024 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2024 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<!-- Update filenames to match /images/2024/ -->
-					<a href="images/2024/FB_IMG_1764775783602.jpg" target="_blank">
-						<img src="images/2024/FB_IMG_1764775783602.jpg" alt="2024 display photo 1" class="gallery-thumb" loading="lazy" />
-					</a>
-					<a href="images/2024/FB_IMG_1764775788613.jpg" target="_blank">
-						<img src="images/2024/FB_IMG_1764775788613.jpg" alt="2024 display photo 2" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2024">
+		<h2><span class="year-label">2024 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2023 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2023 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<!-- Update filenames to match /images/2023/ -->
-					<a href="images/2023/FB_IMG_1764775661921.jpg" target="_blank">
-						<img src="images/2023/FB_IMG_1764775661921.jpg" alt="2023 display photo 1" class="gallery-thumb" loading="lazy" />
-					</a>
-					<a href="images/2023/FB_IMG_1764775665597.jpg" target="_blank">
-						<img src="images/2023/FB_IMG_1764775665597.jpg" alt="2023 display photo 2" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2023">
+		<h2><span class="year-label">2023 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2022 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2022 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<!-- Example: update with one or more 2022 images -->
-					<a href="images/2022/FB_IMG_17647775341982.jpg" target="_blank">
-						<img src="images/2022/FB_IMG_17647775341982.jpg" alt="2022 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2022">
+		<h2><span class="year-label">2022 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2021 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2021 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2021/FB_IMG_1764775236109.jpg" target="_blank">
-						<img src="images/2021/FB_IMG_1764775236109.jpg" alt="2021 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2021">
+		<h2><span class="year-label">2021 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2020 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2020 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2020/FB_IMG_1764775156859.jpg" target="_blank">
-						<img src="images/2020/FB_IMG_1764775156859.jpg" alt="2020 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2020">
+		<h2><span class="year-label">2020 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2019 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2019 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2019/FB_IMG_1764775052969.jpg" target="_blank">
-						<img src="images/2019/FB_IMG_1764775052969.jpg" alt="2019 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2019">
+		<h2><span class="year-label">2019 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2018 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2018 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2018/FB_IMG_17647775010362.jpg" target="_blank">
-						<img src="images/2018/FB_IMG_17647775010362.jpg" alt="2018 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2018">
+		<h2><span class="year-label">2018 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2017 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2017 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2017/FB_IMG_1764774974621.jpg" target="_blank">
-						<img src="images/2017/FB_IMG_1764774974621.jpg" alt="2017 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2017">
+		<h2><span class="year-label">2017 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2016 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2016 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2016/FB_IMG_1764774471837.jpg" target="_blank">
-						<img src="images/2016/FB_IMG_1764774471837.jpg" alt="2016 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2016">
+		<h2><span class="year-label">2016 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2015 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2015 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2015/FB_IMG_1764774527710.jpg" target="_blank">
-						<img src="images/2015/FB_IMG_1764774527710.jpg" alt="2015 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
+	<div class="gallery-year" data-year="2015">
+		<h2><span class="year-label">2015 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
 
-			<!-- 2014 -->
-			<div class="gallery-year">
-				<h2>
-					<span class="year-label">2014 Display</span>
-				</h2>
-				<div class="gallery-grid">
-					<a href="images/2014/Screenshot_20251203_100024_Facebook.jpg" target="_blank">
-						<img src="images/2014/Screenshot_20251203_100024_Facebook.jpg" alt="2014 display photo" class="gallery-thumb" loading="lazy" />
-					</a>
-				</div>
-			</div>
-		</section>
+	<div class="gallery-year" data-year="2014">
+		<h2><span class="year-label">2014 Display</span></h2>
+		<div class="gallery-grid"></div>
+	</div>
+</section>
+
 
 		<footer class="footer">
 			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
@@ -750,5 +655,83 @@
 		// footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
 	</script>
+	
+	<script>
+	// Auto-load gallery images from GitHub /images/<year>/ folders
+	(function () {
+		const GITHUB_USER = "SteelJ0ker";
+		const REPO = "batesonlights";
+		const BRANCH = "main";
+
+		const years = [
+			2025, 2024, 2023, 2022, 2021,
+			2020, 2019, 2018, 2017, 2016,
+			2015, 2014
+		];
+
+		years.forEach((year) => {
+			const yearEl = document.querySelector(
+				'.gallery-year[data-year="' + year + '"]'
+			);
+			if (!yearEl) return;
+
+			const grid = yearEl.querySelector(".gallery-grid");
+			if (!grid) return;
+
+			const apiUrl =
+				"https://api.github.com/repos/" +
+				GITHUB_USER +
+				"/" +
+				REPO +
+				"/contents/images/" +
+				year;
+
+			fetch(apiUrl)
+				.then((resp) => {
+					if (!resp.ok) {
+						console.warn("No images for year", year, resp.status);
+						return [];
+					}
+					return resp.json();
+				})
+				.then((files) => {
+					if (!Array.isArray(files)) return;
+
+					files
+						.filter((f) => f.type === "file" && /\.(jpe?g|png|gif|webp)$/i.test(f.name))
+						.forEach((file) => {
+							const rawUrl =
+								"https://raw.githubusercontent.com/" +
+								GITHUB_USER +
+								"/" +
+								REPO +
+								"/" +
+								BRANCH +
+								"/images/" +
+								year +
+								"/" +
+								file.name;
+
+							const a = document.createElement("a");
+							a.href = rawUrl;
+							a.target = "_blank";
+							a.rel = "noopener noreferrer";
+
+							const img = document.createElement("img");
+							img.src = rawUrl;
+							img.loading = "lazy";
+							img.alt = "Bateson Family Lights " + year;
+							img.className = "gallery-thumb";
+
+							a.appendChild(img);
+							grid.appendChild(a);
+						});
+				})
+				.catch((err) => {
+					console.error("Error loading images for year", year, err);
+				});
+		});
+	})();
+</script>
 </body>
 </html>
