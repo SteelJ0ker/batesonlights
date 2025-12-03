@@ -733,5 +733,116 @@
 		});
 	})();
 </script>
+
+<!-- Control Listen Live and Requests lionk being active -->
+<script>
+// ====== SAME ON-AIR LOGIC USED IN INDEX ======
+
+const RF_OVERRIDE_MODE = "auto";   // leave auto unless you force override
+
+function getEasternNow() {
+    const now = new Date();
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false
+    }).formatToParts(now);
+
+    const v = {};
+    for (const p of parts) {
+        if (p.type !== "literal") v[p.type] = parseInt(p.value, 10);
+    }
+
+    return new Date(v.year, v.month - 1, v.day, v.hour, v.minute, v.second);
+}
+
+function dateToYMDInt(d) {
+    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+
+function getThanksgiving(year) {
+    const novFirst = new Date(year, 10, 1);
+    const dow = novFirst.getDay();
+    const offset = (4 - dow + 7) % 7;
+    const firstThu = 1 + offset;
+    return new Date(year, 10, firstThu + 21);
+}
+
+function isWithinShowWindow(easternNow) {
+    const year = easternNow.getFullYear();
+    const ymdNow = dateToYMDInt(easternNow);
+
+    const thisThanks = getThanksgiving(year);
+    const nextJan2 = new Date(year + 1, 0, 2);
+
+    const prevThanks = getThanksgiving(year - 1);
+    const thisJan2 = new Date(year, 0, 2);
+
+    const inSeason =
+        (ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2)) ||
+        (ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2));
+
+    if (!inSeason) return false;
+
+    const dow = easternNow.getDay();
+    const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+    const start = 18 * 60;           // 6:00 PM
+    const weekdayEnd = 21 * 60 + 30; // 9:30 PM
+    const weekendEnd = 23 * 60;      // 11:00 PM
+
+    const end = dow <= 4 ? weekdayEnd : weekendEnd;
+
+    return minutes >= start && minutes < end;
+}
+
+function updateNavState() {
+    const navListen = document.getElementById("nav-listen-link");
+    const navRequests = document.getElementById("nav-requests-link");
+
+    if (!navListen || !navRequests) return;
+
+    let onAir;
+
+    if (RF_OVERRIDE_MODE === "forceon") onAir = true;
+    else if (RF_OVERRIDE_MODE === "forceoff") onAir = false;
+    else onAir = isWithinShowWindow(getEasternNow());
+
+    if (onAir) {
+        // LISTEN enabled
+        navListen.classList.remove("disabled-nav");
+        navListen.href = "https://pulsemesh.io/d/SGVT/smart";
+        navListen.target = "_blank";
+        navListen.rel = "noopener noreferrer";
+
+        // REQUESTS enabled
+        navRequests.classList.remove("disabled-nav");
+        navRequests.href = "index.html#jukebox";
+    } else {
+        // LISTEN disabled
+        navListen.classList.add("disabled-nav");
+        navListen.href = "#";
+        navListen.removeAttribute("target");
+        navListen.removeAttribute("rel");
+
+        // REQUESTS disabled
+        navRequests.classList.add("disabled-nav");
+        navRequests.href = "#";
+    }
+
+    console.log("GALLERY | onAir:", onAir);
+}
+
+updateNavState();
+setInterval(updateNavState, 60 * 1000);
+</script>
+
+<!-- ************************************************* -->
+
 </body>
 </html>
