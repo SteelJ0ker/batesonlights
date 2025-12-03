@@ -642,8 +642,10 @@ https://www.facebook.com/batesonlights"
 		</footer>
 	</main>
 
+	<script src="rf-config.js"></script>
+	
 	<script>
-		// NAV COLLAPSE
+		// -------- NAV COLLAPSE / EXPAND --------
 		(function () {
 			const nav = document.querySelector(".nav");
 			const toggle = document.querySelector(".nav-toggle");
@@ -671,8 +673,8 @@ https://www.facebook.com/batesonlights"
 		// Footer year
 		document.getElementById("year").textContent = new Date().getFullYear();
 
-		// ---- Same show schedule logic as index, but only controls nav links ----
-		const RF_OVERRIDE_MODE = "auto"; // "auto" | "forceon" | "forceoff"
+		// --------- OVERRIDE FLAG FROM SHARED CONFIG ---------
+		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 		function getEasternNow() {
 			const now = new Date();
