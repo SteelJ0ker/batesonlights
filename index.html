@@ -1086,6 +1086,8 @@
 		</footer>
 	</main>
 
+	<script src="rf-config.js"></script>
+
 	<script>
 		// -------- NAV COLLAPSE / EXPAND --------
 		(function () {
@@ -1130,7 +1132,8 @@
 		});
 
 		// --------- HARD-CODED OVERRIDE FLAG ---------
-		const RF_OVERRIDE_MODE = "auto";
+		//const RF_OVERRIDE_MODE = "auto";
+		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 		// --------- TIME / SCHEDULE HELPERS ---------
 		function getEasternNow() {
