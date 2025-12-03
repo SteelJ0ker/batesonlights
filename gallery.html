@@ -424,8 +424,15 @@
 			gap: 8px;
 		}
 
-		.gallery-year h2 span.year-label {
+		.gallery-year h2 span.year-label {			
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
 			font-weight: 700;
+			letter-spacing: 0.04em;
+			
 		}
 
 		.gallery-year h2 span.year-pill {
@@ -547,72 +554,68 @@
 		<!-- GALLERY CONTENT -->
 		<!-- GALLERY CONTENT (auto-loaded from GitHub) -->
 <section class="gallery-card" id="gallery-root">
-	<p class="gallery-intro">
-		Photos are grouped by year, newest first. Images are loaded automatically
-		from the <code>/images/&lt;year&gt;/</code> folders in the GitHub repo.
-	</p>
-
 	<!-- Just define the years; JS will fill in the images -->
 	<div class="gallery-year" data-year="2025">
 		<h2>
-			<span class="year-label">2025 Display</span>
+			<span class="year-label">2025</span>
 			<span class="year-pill">Most recent</span>
 		</h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2024">
-		<h2><span class="year-label">2024 Display</span></h2>
+		<h2><span class="year-label">2024</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2023">
-		<h2><span class="year-label">2023 Display</span></h2>
+		<h2><span class="year-label">2023</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2022">
-		<h2><span class="year-label">2022 Display</span></h2>
+		<h2><span class="year-label">2022</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2021">
-		<h2><span class="year-label">2021 Display</span></h2>
+		<h2><span class="year-label">2021</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2020">
-		<h2><span class="year-label">2020 Display</span></h2>
+		<h2><span class="year-label">2020</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2019">
-		<h2><span class="year-label">2019 Display</span></h2>
+		<h2><span class="year-label">2019</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2018">
-		<h2><span class="year-label">2018 Display</span></h2>
+		<h2><span class="year-label">2018</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2017">
-		<h2><span class="year-label">2017 Display</span></h2>
+		<h2><span class="year-label">2017</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2016">
-		<h2><span class="year-label">2016 Display</span></h2>
+		<h2><span class="year-label">2016</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2015">
-		<h2><span class="year-label">2015 Display</span></h2>
+		<h2><span class="year-label">2015</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 
 	<div class="gallery-year" data-year="2014">
-		<h2><span class="year-label">2014 Display</span></h2>
+		<h2><span class="year-label">2014</span>
+			<span class="year-pill">Year One</span></h2>
 		<div class="gallery-grid"></div>
 	</div>
 </section>
