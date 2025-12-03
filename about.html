@@ -1,1 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>About | Bateson Family Lights</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Learn the story behind Bateson Family Lights – a family Christmas display in Swanton, Ohio, featuring synchronized lights, music, and over 10,000 LEDs." />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+	<style>
+		:root {
+			--bg: #04040b;
+			--bg-alt: #0c1020;
+			--card: #101627;
+			--accent-green: #22c55e;
+			--accent-red: #fb7185;
+			--text-main: #f5f7ff;
+			--text-muted: #9ca3c7;
+			--border-subtle: rgba(255, 255, 255, 0.06);
+			--shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.75);
+			--radius-xl: 24px;
+		}
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+				sans-serif;
+			background:
+				radial-gradient(circle at top, #102540 0, #04040b 55%, #020208 100%),
+				url("https://images.pexels.com/photos/6880135/pexels-photo-6880135.jpeg?auto=compress&cs=tinysrgb&w=1200")
+					center/cover fixed;
+			color: var(--text-main);
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+		}
+
+		main {
+			width: 100%;
+			max-width: 960px;
+			padding: 16px 16px 40px;
+			margin: 0 auto 40px;
+		}
+
+		/* =========================
+		   NAV PILL (COLLAPSIBLE)
+		=========================*/
+		.nav {
+			position: sticky;
+			top: 8px;
+			z-index: 50;
+			margin: 0 auto;
+			max-width: 520px;
+			padding: 6px 8px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.92);
+			border: 1px solid rgba(148, 163, 184, 0.3);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(10px);
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.nav-toggle {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+			width: 100%;
+			padding: 4px 8px;
+			border-radius: 999px;
+			border: none;
+			background: transparent;
+			color: var(--text-main);
+			cursor: pointer;
+		}
+
+		.nav-toggle:focus-visible {
+			outline: 2px solid var(--accent-green);
+			outline-offset: 2px;
+		}
+
+		.nav-title {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.9rem;
+			font-weight: 600;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.logo-script {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: 1.05rem;
+		}
+
+		.nav-toggle-label {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			margin-left: auto;
+		}
+
+		.nav-toggle-icon {
+			font-size: 0.85rem;
+			transition: transform 0.18s ease;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+			padding: 6px 6px 8px;
+			font-size: 0.82rem;
+			flex-wrap: wrap;
+
+			max-height: 260px;
+			overflow: hidden;
+			opacity: 1;
+			transform-origin: top;
+			transform: scaleY(1);
+			transition:
+				max-height 0.18s ease,
+				opacity 0.18s ease,
+				transform 0.18s ease;
+		}
+
+		/* collapsed state */
+		.nav.nav-collapsed .nav-links {
+			max-height: 0;
+			opacity: 0;
+			transform: scaleY(0.9);
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.nav.nav-collapsed .nav-toggle-icon {
+			transform: rotate(0deg);
+		}
+
+		.nav:not(.nav-collapsed) .nav-toggle-icon {
+			transform: rotate(180deg);
+		}
+
+		.nav-links a {
+			color: var(--text-muted);
+			text-decoration: none;
+			padding: 3px 8px;
+			border-radius: 999px;
+			border: 1px solid transparent;
+			transition: background 0.12s, color 0.12s, border-color 0.12s;
+			white-space: nowrap;
+		}
+
+		.nav-links a:hover {
+			background: rgba(15, 23, 42, 0.95);
+			color: var(--text-main);
+			border-color: rgba(148, 163, 184, 0.6);
+		}
+		
+		.disabled-nav {
+			opacity: 0.4;
+			pointer-events: none;
+		}
+
+		@media (max-width: 640px) {
+		.nav {
+			max-width: 100%;
+			border-radius: 18px;
+		}
+
+		.nav-links {
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 4px;
+		}
+
+		.nav-links a {
+			flex: 0 0 auto;
+			text-align: center;
+			padding: 4px 8px;
+		}
+		}
+
+		.hamburger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			width: 18px;
+		}
+
+		.hamburger-icon span {
+			display: block;
+			height: 2px;
+			width: 100%;
+			background: var(--text-main);
+			border-radius: 2px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		/* transform when open */
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(3) {
+			transform: translateY(-5px) rotate(-45deg);
+		}
+
+		/* STRING LIGHTS DECORATION */
+		.string-lights {
+			position: relative;
+			height: 32px;
+			margin: 10px 0 -8px;
+		}
+
+		.string-lights::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 12px;
+			height: 2px;
+			background: rgba(148, 163, 184, 0.4);
+			border-radius: 999px;
+		}
+
+		.bulb {
+			position: absolute;
+			top: 10px;
+			width: 10px;
+			height: 16px;
+			border-radius: 40% 40% 60% 60%;
+			background: #22c55e;
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+			transform-origin: top center;
+			animation: sway 3s ease-in-out infinite alternate;
+		}
+
+		.bulb.red {
+			background: var(--accent-red);
+			box-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
+		}
+
+		.bulb.gold {
+			background: #fbbf24;
+			box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
+		}
+
+		.bulb:nth-child(1) { left: 10%; animation-delay: 0s; }
+		.bulb:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+		.bulb:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+		.bulb:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+		.bulb:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+		.bulb:nth-child(6) { left: 85%; animation-delay: 2s; }
+
+		@keyframes sway {
+			from { transform: rotate(-6deg); }
+			to   { transform: rotate(6deg); }
+		}
+
+		.hero {
+			background: rgba(7, 10, 25, 0.55);
+			border-radius: var(--radius-xl);
+			box-shadow: var(--shadow-soft);
+			padding: 6px 18px 10px;
+			border: 1px solid var(--border-subtle);
+			position: relative;
+			overflow: hidden;
+			margin-top: 15px !important;
+		}
+
+		.hero::before {
+			display: none;
+		}
+
+		.hero-inner {
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-top {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 14px;
+			align-items: stretch;
+		}
+
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			background: rgba(0, 0, 0, 0.55);
+			border-radius: 999px;
+			padding: 4px 10px;
+			color: var(--text-muted);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			margin-bottom: 2px;
+		}
+
+		.badge-dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: #22c55e;
+			box-shadow: 0 0 10px #22c55e;
+		}
+
+		.hero-title {
+			font-size: clamp(2.1rem, 4vw, 2.6rem);
+			font-weight: 800;
+			letter-spacing: 0.03em;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.hero-title span.em {
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		.hero-highlight {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.8rem;
+			color: #fef9c3;
+			background: rgba(248, 250, 252, 0.05);
+			padding: 5px 9px;
+			border-radius: 999px;
+			border: 1px solid rgba(248, 250, 252, 0.18);
+		}
+
+		.hero-subtitle {
+			margin: 6px 0 10px;
+			font-size: 0.98rem;
+			color: var(--text-muted);
+			max-width: 36rem;
+		}
+
+		.hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 8px 0 0;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 10px 16px;
+			border-radius: 999px;
+			font-size: 0.92rem;
+			font-weight: 600;
+			text-decoration: none;
+			border: 1px solid transparent;
+			cursor: pointer;
+			transition:
+				transform 0.11s ease-out,
+				box-shadow 0.12s ease-out,
+				background 0.12s ease-out,
+				border-color 0.12s ease-out,
+				color 0.12s ease-out;
+			white-space: nowrap;
+		}
+
+		.btn-primary {
+			background: radial-gradient(circle at 0 0, #22c55e, #16a34a);
+			color: #020617;
+			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
+		}
+
+		.btn-primary:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 18px 38px rgba(34, 197, 94, 0.7);
+		}
+
+		.btn-secondary {
+			background: radial-gradient(circle at 0 0, #fb7185, #e11d48);
+			color: #020617;
+			border-color: rgba(248, 113, 113, 0.7);
+			box-shadow: 0 14px 30px rgba(248, 113, 113, 0.45);
+		}
+
+		.btn-secondary:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 18px 38px rgba(248, 113, 113, 0.7);
+		}
+
+		.btn-icon {
+			font-size: 1.05rem;
+			line-height: 1;
+		}
+
+		.hero-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 10px;
+			font-size: 0.8rem;
+			color: var(--text-muted);
+		}
+
+		.pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 4px 10px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.25);
+		}
+
+		.pill-dot {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--accent-red);
+			box-shadow: 0 0 10px var(--accent-red);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+			gap: 18px;
+			margin-top: 22px;
+		}
+
+		.card {
+			background: var(--bg-alt);
+			border-radius: var(--radius-xl);
+			border: 1px solid var(--border-subtle);
+			padding: 14px 14px 16px;
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+		}
+
+		.card h2 {
+			font-size: 1rem;
+			margin: 0 0 8px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.card h2 span.icon {
+			font-size: 1.1rem;
+		}
+
+		.card p {
+			margin: 4px 0;
+			font-size: 0.9rem;
+			color: var(--text-muted);
+			line-height: 1.5;
+		}
+
+		.footer {
+			margin-top: 18px;
+			padding: 10px 6px 0;
+			font-size: 0.78rem;
+			color: var(--text-muted);
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			border-top: 1px solid rgba(148, 163, 184, 0.18);
+		}
+
+		.footer a {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.hero {
+				padding: 12px 12px 18px;
+			}
+
+			.grid {
+				grid-template-columns: minmax(0, 1fr);
+			}
+
+			.footer {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+		
+		/* Pacifico for logo + hero title */
+		.logo-script,
+		.hero-title .em {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-weight: 400;
+			letter-spacing: 0.04em;
+		}
+
+		.hero-title .em {
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		/* Make nav logo bigger and green */
+		.nav-title .logo-script {
+			font-size: 1.35rem;
+			color: var(--accent-green);
+			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+		}
+
+		.nav-links a.nav-active {
+			background: rgba(34, 197, 94, 0.2);
+			border-color: rgba(34, 197, 94, 0.7);
+			color: #bbf7d0;
+		}
+	</style>
+</head>
+<body>
+	<main id="top">
+		<!-- NAV -->
+		<nav class="nav nav-collapsed">
+			<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+				<div class="nav-title">
+					<span>🎄 </span>
+					<span class="logo-script">Bateson Family Lights</span>
+					<span> 🎄</span>
+				</div>
+				<span class="hamburger-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="nav-links" id="nav-links">
+				<a href="index.html#top">Home</a>
+				<a href="https://pulsemesh.io/d/SGVT/smart" target="_blank" id="nav-listen-link">Listen Live</a>
+				<a href="index.html#jukebox" id="nav-requests-link">Requests</a>
+				<a href="gallery.html">Gallery</a>
+				<a href="local-shows.html">Local Shows</a>
+				<a href="about.html" class="nav-active">About</a>
+				<a href="contact.html">Contact Us</a>
+			</div>
+		</nav>
+
+		<div class="string-lights">
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+		</div>
+
+		<!-- HERO -->
+		<section class="hero">
+			<div class="hero-inner">
+				<div class="hero-top">
+					<div>
+						<div class="badge">
+							<span class="badge-dot"></span>
+							<span>Our Story • Bateson Family Lights</span>
+						</div>
+
+						<h1 class="hero-title">
+							<span class="em">About Bateson Family Lights</span>
+						</h1>
+
+						<div class="hero-highlight">
+							✨ A family tradition of Christmas lights, music, and shared holiday joy.
+						</div>
+
+						<p class="hero-subtitle">
+							What began as a small tribute to a family display has grown into a
+							synchronized light show in Swanton, Ohio — with thousands of LEDs,
+							interactive song requests, and smiles from visitors near and far.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ABOUT CONTENT -->
+		<section class="grid">
+			<article class="card">
+				<h2>
+					<span class="icon">📖</span>
+					How It All Started
+				</h2>
+				<p>
+					The desire to create our display came from my father, who ran a Christmas
+					display in Liberty Center, Ohio for many years. Our family relocated to
+					Swanton, Ohio in 2013 and once I returned from my deployment in 2014, we kicked off our own Christmas display tradition.
+				</p>
+				<p>
+					We started small with a six-outlet device that randomly turned different sets
+					of lights on and off. After experiencing the joy that the display brought to
+					our family, friends, and neighbors, we decided to keep building — adding a
+					little more each year.
+				</p>
+			</article>
+
+			<article class="card">
+				<h2>
+					<span class="icon">💡</span>
+					Today’s Display & Beyond
+				</h2>
+				<p>
+					Our 2025 display is powered by five Light-O-Rama controllers providing 80
+					channels, one 24-port EasyLight controller that runs all three singing trees,
+					and an AlphaPix 4 that feeds the DMX network to our other controllers — all
+					controlled by a Raspberry Pi 3B+ running Falcon Player (FPP).
+				</p>
+				<p>
+					This year we also integrated PulseMesh so visitors can listen from their
+					phones, which is perfect when walking through the display. We launched this
+					website to make it easy for on-site guests to pick their favorite sequence and
+					help decide what plays next.
+				</p>
+				<p>
+					The 2025 show uses just over 10,000 LEDs, keeping power consumption low while
+					still filling the yard with joyful light. Our biggest addition this year are the
+					21 red and white arches along the sidewalk for everyone to enjoy.
+				</p>
+				<p>
+					We already have bigger plans for our 2026 display and are hard at work behind
+					the scenes. We can’t wait to debut what’s coming next!
+				</p>
+				<p>
+					<strong>Please enjoy the show!</strong><br />
+					~ Christopher Bateson
+				</p>
+			</article>
+		</section>
+
+		<footer class="footer">
+			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
+			<div>
+				Created by the Bateson family • Merry Christmas & Happy Holidays! 🎅
+			</div>
+		</footer>
+	</main>
+
+	<script>
+		// -------- NAV COLLAPSE / EXPAND --------
+		(function () {
+			const nav = document.querySelector(".nav");
+			const toggle = document.querySelector(".nav-toggle");
+			const links = document.getElementById("nav-links");
+			if (!nav || !toggle || !links) return;
+
+			nav.classList.add("nav-collapsed");
+			toggle.setAttribute("aria-expanded", "false");
+
+			function setExpanded(expanded) {
+				if (expanded) {
+					nav.classList.remove("nav-collapsed");
+				} else {
+					nav.classList.add("nav-collapsed");
+				}
+				toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+			}
+
+			toggle.addEventListener("click", () => {
+				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				setExpanded(!isExpanded);
+			});
+		})();
+
+		// --------- FOOTER YEAR ---------
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>
 
