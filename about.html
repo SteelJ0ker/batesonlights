@@ -636,7 +636,8 @@
 					Our 2025 display is powered by five Light-O-Rama controllers providing 80
 					channels, one 24-port EasyLight controller that runs all three singing trees,
 					and an AlphaPix 4 that feeds the DMX network to our other controllers — all
-					controlled by a Raspberry Pi 3B+ running Falcon Player (FPP).
+					controlled by a Raspberry Pi 3B+ running Falcon Player (FPP). 
+					All this syncronized to 14 different songs!
 				</p>
 				<p>
 					This year we also integrated PulseMesh so visitors can listen from their
@@ -696,7 +697,138 @@
 
 		// --------- FOOTER YEAR ---------
 		document.getElementById("year").textContent = new Date().getFullYear();
+
+		// --------- HARD-CODED OVERRIDE FLAG ---------
+		// Matches index.html behavior; will honor window.RF_OVERRIDE_MODE if it exists.
+		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
+
+		// --------- TIME / SCHEDULE HELPERS ---------
+		function getEasternNow() {
+			const now = new Date();
+			const parts = new Intl.DateTimeFormat("en-US", {
+				timeZone: "America/New_York",
+				year: "numeric",
+				month: "numeric",
+				day: "numeric",
+				hour: "numeric",
+				minute: "numeric",
+				second: "numeric",
+				hour12: false
+			}).formatToParts(now);
+
+			const values = {};
+			for (const p of parts) {
+				if (p.type !== "literal") {
+					values[p.type] = parseInt(p.value, 10);
+				}
+			}
+
+			return new Date(
+				values.year,
+				values.month - 1,
+				values.day,
+				values.hour,
+				values.minute,
+				values.second
+			);
+		}
+
+		function dateToYMDInt(d) {
+			return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+		}
+
+		function getThanksgiving(year) {
+			const novFirst = new Date(year, 10, 1); // November = 10
+			const dayOfWeek = novFirst.getDay(); // 0=Sun..6=Sat
+			const offsetToThursday = (4 - dayOfWeek + 7) % 7; // Thursday = 4
+			const firstThursdayDate = 1 + offsetToThursday;
+			const thanksgivingDate = firstThursdayDate + 21; // 4th Thursday
+			return new Date(year, 10, thanksgivingDate);
+		}
+
+		function isWithinShowWindow(easternNow) {
+			const year = easternNow.getFullYear();
+			const ymdNow = dateToYMDInt(easternNow);
+
+			// Season: Thanksgiving -> Jan 2
+			const thisThanks = getThanksgiving(year);
+			const nextJan2 = new Date(year + 1, 0, 2);
+
+			const prevThanks = getThanksgiving(year - 1);
+			const thisJan2 = new Date(year, 0, 2);
+
+			const inSeasonCurrent =
+				ymdNow >= dateToYMDInt(thisThanks) && ymdNow <= dateToYMDInt(nextJan2);
+			const inSeasonPrevious =
+				ymdNow >= dateToYMDInt(prevThanks) && ymdNow <= dateToYMDInt(thisJan2);
+
+			const inSeason = inSeasonCurrent || inSeasonPrevious;
+			if (!inSeason) return false;
+
+			// Time of day window (Eastern)
+			const dow = easternNow.getDay(); // 0=Sun..6=Sat
+			const minutes = easternNow.getHours() * 60 + easternNow.getMinutes();
+
+			const SHOW_START_MINUTES = 18 * 60;      // 18:00
+			const WEEKDAY_END        = 21 * 60 + 30; // 21:30
+			const WEEKEND_END        = 23 * 60;      // 23:00
+
+			let endMinutes;
+			if (dow >= 0 && dow <= 4) {
+				endMinutes = WEEKDAY_END; // Sun–Thu
+			} else {
+				endMinutes = WEEKEND_END; // Fri–Sat
+			}
+
+			return minutes >= SHOW_START_MINUTES && minutes < endMinutes;
+		}
+
+		// --------- NAV LINK VISIBILITY / STATE ---------
+		function updateNavLinksVisibility() {
+			const navListen = document.getElementById("nav-listen-link");
+			const navRequests = document.getElementById("nav-requests-link");
+
+			let onAir;
+			if (RF_OVERRIDE_MODE === "forceon") {
+				onAir = true;
+			} else if (RF_OVERRIDE_MODE === "forceoff") {
+				onAir = false;
+			} else {
+				const easternNow = getEasternNow();
+				onAir = isWithinShowWindow(easternNow);
+			}
+
+			// Listen Live nav link
+			if (navListen) {
+				if (onAir) {
+					navListen.classList.remove("disabled-nav");
+					navListen.href = "https://pulsemesh.io/d/SGVT/smart";
+					navListen.target = "_blank";
+					navListen.rel = "noopener noreferrer";
+				} else {
+					navListen.classList.add("disabled-nav");
+					navListen.href = "#";
+					navListen.removeAttribute("target");
+					navListen.removeAttribute("rel");
+				}
+			}
+
+			// Requests nav link
+			if (navRequests) {
+				if (onAir) {
+					navRequests.classList.remove("disabled-nav");
+					navRequests.href = "index.html#jukebox";
+				} else {
+					navRequests.classList.add("disabled-nav");
+					navRequests.href = "#";
+				}
+			}
+
+			console.log("ABOUT | RF_OVERRIDE_MODE:", RF_OVERRIDE_MODE, "| onAir:", onAir);
+		}
+
+		updateNavLinksVisibility();
+		setInterval(updateNavLinksVisibility, 60 * 1000);
 	</script>
 </body>
 </html>
-
