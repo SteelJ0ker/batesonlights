@@ -175,21 +175,22 @@
 		}
 
 		@media (max-width: 640px) {
-			.nav {
-				max-width: 100%;
-				border-radius: 18px;
-			}
+		.nav {
+			max-width: 100%;
+			border-radius: 18px;
+		}
 
-			.nav-links {
-				flex-wrap: wrap;
-				justify-content: flex-start;
-			}
+		.nav-links {
+			flex-wrap: wrap;          /* allow wrapping */
+			justify-content: center;  /* keep them centered */
+			gap: 4px;                 /* tight spacing */
+		}
 
-			.nav-links a {
-				flex: 1 1 calc(50% - 6px);
-				text-align: center;
-				padding: 6px 0;
-			}
+		.nav-links a {
+			flex: 0 0 auto;           /* no forced 50% width */
+			text-align: center;
+			padding: 4px 8px;         /* smaller pills */
+		}
 		}
 
 		.hamburger-icon {
