@@ -416,9 +416,13 @@
 			margin-top: 18px;
 		}
 
+		/* Make the year header look like a clickable pill */
 		.gallery-year h2 {
-			font-size: 1rem;
-			margin: 0 0 10px;
+			cursor: pointer;
+			padding: 4px 10px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.45);
 			display: flex;
 			align-items: center;
 			gap: 8px;
@@ -442,11 +446,47 @@
 			border: 1px solid rgba(148, 163, 184, 0.5);
 			color: var(--text-muted);
 		}
+		
+		/* Add a little caret arrow at the end of the header */
+		.gallery-year h2::after {
+			content: "▾";
+			margin-left: auto;
+			font-size: 0.85rem;
+			opacity: 0.8;
+			transition: transform 0.2s ease;
+		}
+		
+		/* Rotate caret when collapsed */
+		.gallery-year.collapsed h2::after {
+			transform: rotate(-90deg);
+		}
 
+		/* Make the grid collapsible */
 		.gallery-grid {
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 10px;
+		
+			/* NEW bits for collapsing */
+			max-height: 1200px;
+			overflow: hidden;
+			opacity: 1;
+			transform-origin: top;
+			transform: scaleY(1);
+			transition:
+				max-height 0.22s ease,
+				opacity 0.18s ease,
+				transform 0.18s ease,
+				margin-top 0.18s ease;
+			margin-top: 10px;
+		}
+		
+		/* When collapsed, hide the grid */
+		.gallery-year.collapsed .gallery-grid {
+			max-height: 0;
+			opacity: 0;
+			transform: scaleY(0.96);
+			margin-top: 0;
 		}
 
 		.gallery-grid a {
@@ -491,6 +531,32 @@
 			}
 		}
 	</style>
+
+	<script>
+		// Make each gallery year collapsible (default collapsed)
+		(function () {
+			const yearBlocks = document.querySelectorAll(".gallery-year");
+	
+			yearBlocks.forEach((yearEl) => {
+				const header = yearEl.querySelector("h2");
+				const grid = yearEl.querySelector(".gallery-grid");
+				if (!header || !grid) return;
+	
+				// Start collapsed by default
+				const year = yearEl.getAttribute("data-year");
+
+				// Collapse everything except 2025
+				if (year !== "2025") {
+					yearEl.classList.add("collapsed");
+				}
+	
+				header.addEventListener("click", () => {
+					yearEl.classList.toggle("collapsed");
+				});
+			});
+		})();
+	</script>
+
 </head>
 <body>
 	<main id="top">
@@ -542,7 +608,7 @@
 						</h1>
 
 						<p class="hero-subtitle">
-							A look back at Bateson Family Lights through the years. Newest years are shown first.
+							A look back at Bateson Family Lights through the years.<br> 
 							Tap any photo to view a larger version in a new tab.
 						</p>
 					</div>
