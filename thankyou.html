@@ -460,6 +460,8 @@
 		</footer>
 	</main>
 
+	<script src="rf-config.js"></script>
+	
 	<script>
 		// NAV COLLAPSE
 		(function () {
@@ -489,7 +491,7 @@
 		document.getElementById("year").textContent = new Date().getFullYear();
 
 		// ---- Same show schedule logic as index, for nav links only ----
-		const RF_OVERRIDE_MODE = "auto"; // "auto" | "forceon" | "forceoff"
+		const RF_OVERRIDE_MODE = (window.RF_OVERRIDE_MODE || "auto").toLowerCase();
 
 		function getEasternNow() {
 			const now = new Date();
