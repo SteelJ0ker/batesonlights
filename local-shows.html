@@ -202,7 +202,7 @@
 
 			.nav-links {
 				flex-wrap: wrap;
-				justify-content: center;
+				justify-content: dolores;
 				gap: 4px;
 			}
 
@@ -439,6 +439,18 @@
 			font-size: 0.75rem;
 		}
 
+		/* PulseMesh highlight */
+		.pulsemesh-badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 2px 8px;
+			border-radius: 999px;
+			background: rgba(56, 189, 248, 0.16);
+			border: 1px solid rgba(56, 189, 248, 0.7);
+			color: #e0f2fe;
+			font-size: 0.76rem;
+		}
+
 		/* SHOWS LAYOUT */
 		.shows-section {
 			margin-top: 22px;
@@ -458,23 +470,11 @@
 			color: var(--text-muted);
 		}
 
-		.shows-toolbar-left {
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-			min-width: 0;
-		}
-
-		.shows-toolbar-caption {
-			font-size: 0.8rem;
-			color: var(--text-muted);
-			max-width: 32rem;
-		}
-
 		.shows-toolbar-right {
 			display: flex;
 			align-items: center;
-			gap: 8px;
+			gap: 10px;
+			flex-wrap: wrap;
 		}
 
 		.sort-select {
@@ -486,11 +486,71 @@
 			font-size: 0.84rem;
 		}
 
+		/* View toggle (List / Map) */
+		.view-toggle {
+			display: inline-flex;
+			border-radius: 999px;
+			border: 1px solid rgba(148,163,184,0.45);
+			overflow: hidden;
+			background: rgba(15,23,42,0.9);
+		}
+
+		.view-btn {
+			border: none;
+			background: transparent;
+			color: var(--text-muted);
+			font-size: 0.8rem;
+			padding: 4px 10px;
+			cursor: pointer;
+			white-space: nowrap;
+		}
+
+		.view-btn-active {
+			background: rgba(15,23,42,1);
+			color: var(--accent-green);
+		}
+
 		@media (max-width: 640px) {
 			.shows-toolbar {
 				flex-direction: column;
 				align-items: flex-start;
 			}
+		}
+
+		/* Region filter chips */
+		.region-filter-card {
+			margin-top: 6px;
+			padding: 10px 12px;
+			font-size: 0.82rem;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.region-filter-label {
+			color: var(--text-muted);
+		}
+
+		.region-chips {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		.region-chip {
+			border: 1px solid rgba(148,163,184,0.5);
+			background: rgba(15,23,42,0.9);
+			color: var(--text-muted);
+			border-radius: 999px;
+			padding: 4px 9px;
+			font-size: 0.78rem;
+			cursor: pointer;
+		}
+
+		.region-chip-active {
+			color: var(--accent-green);
+			border-color: rgba(34,197,94,0.7);
+			background: rgba(15,23,42,1);
 		}
 
 		.shows-grid {
@@ -502,57 +562,41 @@
 
 		.show-card { display: flex; flex-direction: column; }
 
-		/* View Toggle */
-		.view-toggle {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 3px;
-			padding: 2px;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.95);
-			border: 1px solid rgba(148, 163, 184, 0.5);
+		/* Map card */
+		.map-card {
+			display: none; /* default: hidden (we start in List view) */
 		}
 
-		.view-toggle-btn {
-			border: none;
-			border-radius: 999px;
-			background: transparent;
+		.map-title {
+			margin: 0 0 4px;
+			font-size: 1.05rem;
+		}
+
+		.map-subtitle {
+			margin: 0 0 8px;
+			font-size: 0.86rem;
 			color: var(--text-muted);
-			font-size: 0.78rem;
-			padding: 4px 10px;
-			cursor: pointer;
-			transition: background 0.15s, color 0.15s, box-shadow 0.15s;
-			white-space: nowrap;
 		}
 
-		.view-toggle-btn.is-active {
-			background: rgba(34,197,94,0.18);
-			color: #fefce8;
-			box-shadow: 0 0 0 1px rgba(34,197,94,0.55);
-		}
-
-		/* MAP CARD */
-		.shows-map {
-			margin-top: 8px;
-		}
-
-		.shows-map-wrapper {
+		.map-frame-wrapper {
+			position: relative;
+			width: 100%;
+			padding-top: 65%; /* 16:10-ish aspect */
 			border-radius: var(--radius-xl);
 			overflow: hidden;
 			border: 1px solid var(--border-subtle);
-			box-shadow: var(--shadow-soft);
+			box-shadow: 0 14px 30px rgba(0,0,0,0.8);
 		}
 
-		.shows-map-embed {
-			display: block;
+		.map-frame-wrapper iframe {
+			position: absolute;
+			inset: 0;
 			width: 100%;
-			min-height: 320px;
-			height: 420px;
+			height: 100%;
 			border: 0;
 		}
 
-		.shows-map-note {
+		.map-hint {
 			margin-top: 8px;
 			font-size: 0.8rem;
 			color: var(--text-muted);
@@ -669,6 +713,7 @@
 	</div>
 
 	<!-- HERO -->
+   
 	<section class="hero">
 		<div class="badge">
 			<span class="badge-dot"></span>
@@ -757,42 +802,59 @@
 			</div>
 		</article>
 
-		<!-- SORT & VIEW TOOLBAR -->
+		<!-- SORT TOOLBAR + VIEW TOGGLE -->
 		<article class="card shows-toolbar">
-			<div class="shows-toolbar-left">
-				<div class="view-toggle" aria-label="View mode">
-					<button type="button" class="view-toggle-btn is-active" data-view="list" aria-pressed="true">
-						List
-					</button>
-					<button type="button" class="view-toggle-btn" data-view="map" aria-pressed="false">
-						Map
-					</button>
-				</div>
-				<div class="shows-toolbar-caption">
-					Browse shows from the Christmas Junkies flyer. Sort by region or city in List view,
-					or switch to Map view to see everything on a driving map.
-				</div>
+			<div>
+				Browse shows from the Christmas Junkies flyer. Sort by region or city to plan your route.
 			</div>
 			<div class="shows-toolbar-right">
-				<label for="shows-sort">Sort by:</label>
-				<select id="shows-sort" class="sort-select">
-					<option value="region" selected>Region</option>
-					<option value="city">City (A–Z)</option>
-				</select>
+				<div class="view-toggle" aria-label="View mode" role="tablist">
+					<button type="button" class="view-btn view-btn-active" data-view="list">List</button>
+					<button type="button" class="view-btn" data-view="map">Map</button>
+				</div>
+				<div>
+					<label for="shows-sort">Sort by:</label>
+					<select id="shows-sort" class="sort-select">
+						<option value="region" selected>Region</option>
+						<option value="city">City (A–Z)</option>
+					</select>
+				</div>
 			</div>
 		</article>
 
-		<!-- MAP VIEW -->
-		<div id="shows-map" class="shows-map card" style="display:none;">
-			<div class="shows-map-wrapper">
-				<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1SPwQZeslFmi_EBepd0qVPGK3rXhDk58&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+		<!-- REGION FILTER CHIPS -->
+		<article class="card region-filter-card">
+			<div class="region-filter-label">Filter by region:</div>
+			<div class="region-chips" id="region-chips">
+				<button type="button" class="region-chip region-chip-active" data-region="all">All Regions</button>
+				<button type="button" class="region-chip" data-region="South Toledo / Perrysburg / Bowling Green">South Toledo / Perrysburg / Bowling Green</button>
+				<button type="button" class="region-chip" data-region="Rural / West Area">Rural / West Area</button>
+				<button type="button" class="region-chip" data-region="Holland / Springfield / Sylvania Area">Holland / Springfield / Sylvania Area</button>
+				<button type="button" class="region-chip" data-region="Lakeshore Region">Lakeshore Region</button>
+				<button type="button" class="region-chip" data-region="Rossford / Oregon / Northwood">Rossford / Oregon / Northwood</button>
+				<button type="button" class="region-chip" data-region="Michigan">Michigan</button>
 			</div>
-			<p class="shows-map-note">
-				Tip: Tap a show pin for directions or details. Use List view for radio station info, show times, and links.
-			</p>
-		</div>
+		</article>
 
-		<!-- LIST VIEW GRID -->
+		<!-- MAP CARD (lazy-loaded iframe) -->
+		<article class="card map-card" id="shows-map-card">
+			<h2 class="map-title">Local Shows Map</h2>
+			<p class="map-subtitle">View all 23 Christmas Junkies shows pinned on one map.</p>
+			<div class="map-frame-wrapper">
+				<iframe
+					id="shows-map-frame"
+					title="Christmas Junkies Local Shows Map"
+					data-src="https://www.google.com/maps/d/u/0/embed?mid=1SPwQZeslFmi_EBepd0qVPGK3rXhDk58&amp;ehbc=2E312F"
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+					allowfullscreen
+				></iframe>
+			</div>
+			<p class="map-hint">
+				Tip: Tap or click a pin to see the show name and get directions.
+			</p>
+		</article>
+
 		<div id="shows-grid" class="shows-grid">
 
 			<!-- South Toledo / Perrysburg / Bowling Green -->
@@ -911,7 +973,7 @@
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>93.1 FM</strong></span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:30 PM Su-Th</span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 11:00 PM Fr-Sa</span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh App</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span><span class="pulsemesh-badge">PulseMesh App</span></span></div>
 				</div>
 
 				<div class="show-actions">
@@ -950,7 +1012,7 @@
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.5 FM</strong></span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:30 PM</span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh App</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span><span class="pulsemesh-badge">PulseMesh App</span></span></div>
 				</div>
 
 				<div class="show-actions">
@@ -1027,7 +1089,7 @@
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>98.9 FM</strong></span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 9:00 PM Su-Th</span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:00 PM Fr-Sa</span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh App</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span><span class="pulsemesh-badge">PulseMesh App</span></span></div>
 				</div>
 
 				<div class="show-actions">
@@ -1065,7 +1127,7 @@
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>89.9 FM</strong></span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>6:00 PM to 10:00 PM</span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh App</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span><span class="pulsemesh-badge">PulseMesh App</span></span></div>
 				</div>
 
 				<div class="show-actions">
@@ -1257,7 +1319,7 @@
 				<div class="show-meta-list">
 					<div class="show-meta-row"><span class="show-meta-icon">📻</span><span><strong>88.3 FM</strong></span></div>
 					<div class="show-meta-row"><span class="show-meta-icon">🕒</span><span>5:30 PM to 10:00 PM</span></div>
-					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span>PulseMesh App</span></div>
+					<div class="show-meta-row"><span class="show-meta-icon">📡</span><span><span class="pulsemesh-badge">PulseMesh App</span></span></div>
 				</div>
 
 				<div class="show-actions">
@@ -1688,82 +1750,65 @@ updateNavLinks();
 setInterval(updateNavLinks, 60000);
 
 /* ===============================
-   VIEW TOGGLE (List / Map)
+   SORTING + REGION FILTER + VIEW
 ================================*/
 (function () {
-	const mapContainer = document.getElementById("shows-map");
-	const listContainer = document.getElementById("shows-grid");
-	const sortRight = document.querySelector(".shows-toolbar-right");
-	const buttons = document.querySelectorAll(".view-toggle-btn");
-
-	if (!mapContainer || !listContainer || buttons.length === 0) return;
-
-	function setView(mode) {
-		buttons.forEach(btn => {
-			const isActive = btn.dataset.view === mode;
-			btn.classList.toggle("is-active", isActive);
-			btn.setAttribute("aria-pressed", isActive ? "true" : "false");
-		});
-
-		if (mode === "map") {
-			mapContainer.style.display = "block";
-			listContainer.style.display = "none";
-			if (sortRight) sortRight.style.display = "none";
-		} else {
-			mapContainer.style.display = "none";
-			listContainer.style.display = "";
-			if (sortRight) sortRight.style.display = "";
-		}
-	}
-
-	buttons.forEach(btn => {
-		btn.addEventListener("click", () => {
-			setView(btn.dataset.view || "list");
-		});
-	});
-
-	// default to list view
-	setView("list");
-})();
-
-/* ===============================
-   SORTING LOGIC (Region / City)
-================================*/
-(function () {
-	const sort = document.getElementById("shows-sort");
+	const sortSelect = document.getElementById("shows-sort");
 	const grid = document.getElementById("shows-grid");
-	if (!sort || !grid) return;
+	const mapCard = document.getElementById("shows-map-card");
+	const mapFrame = document.getElementById("shows-map-frame");
+	const viewButtons = document.querySelectorAll(".view-btn");
+	const regionChips = document.querySelectorAll(".region-chip");
+
+	if (!sortSelect || !grid) return;
 
 	const cards = Array.from(grid.querySelectorAll(".show-card"));
+	let currentSort = sortSelect.value || "region";
+	let currentRegion = "all";
+	let currentView = "list";
+	let mapLoaded = false;
 
-	function sortCards(mode) {
-		const sorted = cards.slice().sort((a, b) => {
-			const regionA = (a.dataset.region || "").toLowerCase();
-			const regionB = (b.dataset.region || "").toLowerCase();
-			const cityA = (a.dataset.city || "").toLowerCase();
-			const cityB = (b.dataset.city || "").toLowerCase();
-			const nameA = (a.dataset.name || "").toLowerCase();
-			const nameB = (b.dataset.name || "").toLowerCase();
+	function sortComparator(a, b, mode) {
+		const regionA = (a.dataset.region || "").toLowerCase();
+		const regionB = (b.dataset.region || "").toLowerCase();
+		const cityA = (a.dataset.city || "").toLowerCase();
+		const cityB = (b.dataset.city || "").toLowerCase();
+		const nameA = (a.dataset.name || "").toLowerCase();
+		const nameB = (b.dataset.name || "").toLowerCase();
 
-			if (mode === "city") {
-				if (cityA !== cityB) return cityA < cityB ? -1 : 1;
-				return nameA < nameB ? -1 : 1;
-			}
-
-			// Default: region -> city -> show name
-			if (regionA !== regionB) return regionA < regionB ? -1 : 1;
+		if (mode === "city") {
 			if (cityA !== cityB) return cityA < cityB ? -1 : 1;
 			return nameA < nameB ? -1 : 1;
-		});
+		}
 
-		grid.innerHTML = "";
-		sorted.forEach(c => grid.appendChild(c));
+		// Default: region -> city -> show name
+		if (regionA !== regionB) return regionA < regionB ? -1 : 1;
+		if (cityA !== cityB) return cityA < cityB ? -1 : 1;
+		return nameA < nameB ? -1 : 1;
 	}
 
-	sort.addEventListener("change", () => sortCards(sort.value));
-	sortCards(sort.value || "region");
-})();
-</script>
+	function applyFilterAndSort() {
+		const sorted = cards.slice().sort((a, b) => sortComparator(a, b, currentSort));
+		grid.innerHTML = "";
 
-</body>
-</html>
+		const regionFilterLower = currentRegion.toLowerCase();
+
+		sorted.forEach(card => {
+			const cardRegion = (card.dataset.region || "").toLowerCase();
+			const match =
+				currentRegion === "all" ||
+				cardRegion === regionFilterLower;
+
+			card.style.display = match ? "" : "none";
+			grid.appendChild(card);
+		});
+	}
+
+	sortSelect.addEventListener("change", () => {
+		currentSort = sortSelect.value || "region";
+		applyFilterAndSort();
+	});
+
+	regionChips.forEach(chip => {
+		chip.addEventListener("click", () => {
+			regionCh
