@@ -883,36 +883,31 @@ function updateNavState() {
 updateNavState();
 setInterval(updateNavState, 60 * 1000);
 </script>
-
-
-
-	<script>
-		// Make each gallery year collapsible (default collapsed)
-		(function () {
-			const yearBlocks = document.querySelectorAll(".gallery-year");
 	
-			yearBlocks.forEach((yearEl) => {
-				const header = yearEl.querySelector("h2");
-				const grid = yearEl.querySelector(".gallery-grid");
-				if (!header || !grid) return;
-	
-				//// Start collapsed by default
-				//yearEl.classList.add("collapsed");
-				
-				const year = yearEl.getAttribute("data-year");
+<script>
+  // Make each gallery year collapsible
+  document.addEventListener("DOMContentLoaded", function () {
+    const yearBlocks = document.querySelectorAll(".gallery-year");
 
-				// Collapse everything except 2025
-				if (year !== "2025") {
-					yearEl.classList.add("collapsed");
-				}
-	
-				header.addEventListener("click", () => {
-					yearEl.classList.toggle("collapsed");
-				});
-			});
-		})();
-	</script>
-	
+    yearBlocks.forEach((yearEl) => {
+      const header = yearEl.querySelector("h2");
+      const grid = yearEl.querySelector(".gallery-grid");
+      if (!header || !grid) return;
+
+      const year = (yearEl.dataset.year || "").trim();
+
+      // Collapse everything except 2025
+      if (year !== "2025") {
+        yearEl.classList.add("collapsed");
+      }
+
+      header.addEventListener("click", function () {
+        yearEl.classList.toggle("collapsed");
+      });
+    });
+  });
+</script>
+
 <!-- ************************************************* -->
 
 </body>
