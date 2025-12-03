@@ -543,12 +543,14 @@
 				if (!header || !grid) return;
 	
 				// Start collapsed by default
-				const year = yearEl.getAttribute("data-year");
+				yearEl.classList.add("collapsed");
+				
+				//const year = yearEl.getAttribute("data-year");
 
-				// Collapse everything except 2025
-				if (year !== "2025") {
-					yearEl.classList.add("collapsed");
-				}
+				//// Collapse everything except 2025
+				//if (year !== "2025") {
+				//	yearEl.classList.add("collapsed");
+				//}
 	
 				header.addEventListener("click", () => {
 					yearEl.classList.toggle("collapsed");
