@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Bateson Family Lights | Closed for the Season</title>
+	<title>Bateson Family Lights | Season Closed</title>
 
-	<meta name="description" content="Bateson Family Lights is closed for the season. Thank you for an amazing year — we’ll see you again Thanksgiving Night 2026!">
+	<meta name="description" content="Bateson Family Lights is closed for the season. Join us again Thanksgiving Night 2026!">
 	<meta name="theme-color" content="#22c55e">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,20 +20,64 @@
 			--bg-card: #121826;
 			--text-main: #e5e7eb;
 			--text-muted: #9ca3af;
+			--nav-bg: #0f172a;
 		}
 
-		* {
-			box-sizing: border-box;
-		}
+		* { box-sizing: border-box; }
 
 		body {
 			margin: 0;
-			font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-family: Inter, system-ui, sans-serif;
 			background: radial-gradient(circle at top, #0f172a 0%, var(--bg-dark) 60%);
 			color: var(--text-main);
 			min-height: 100vh;
 			display: flex;
 			flex-direction: column;
+		}
+
+		/* NAV */
+		nav {
+			background: var(--nav-bg);
+			padding: 0.75rem 1.25rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+		}
+
+		.nav-title {
+			font-family: Pacifico, cursive;
+			font-size: 1.6rem;
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.nav-links a {
+			color: var(--text-main);
+			text-decoration: none;
+			font-weight: 600;
+			padding: 0.4rem 0.75rem;
+			border-radius: 0.5rem;
+			transition: background 0.15s ease;
+		}
+
+		.nav-links a:hover {
+			background: rgba(255,255,255,0.08);
+		}
+
+		/* DISABLED LINKS */
+		.nav-links .disabled {
+			color: #6b7280;
+			cursor: not-allowed;
+			pointer-events: none;
+			background: rgba(255,255,255,0.04);
 		}
 
 		header {
@@ -72,30 +116,29 @@
 			text-align: center;
 		}
 
-		.card h2 {
-			margin-top: 0;
-			font-size: 1.9rem;
-			color: #f9fafb;
-		}
-
 		.badge {
 			display: inline-block;
-			margin: 0.75rem 0 1.25rem;
+			margin-bottom: 1.25rem;
 			padding: 0.4rem 0.9rem;
 			border-radius: 999px;
-			font-weight: 600;
+			font-weight: 700;
 			background: rgba(239, 68, 68, 0.15);
 			color: var(--accent-red);
 			font-size: 0.85rem;
-			letter-spacing: 0.03em;
 			text-transform: uppercase;
+			letter-spacing: 0.04em;
+		}
+
+		.card h2 {
+			margin-top: 0;
+			font-size: 1.9rem;
 		}
 
 		.card p {
 			font-size: 1.05rem;
 			line-height: 1.65;
 			color: var(--text-muted);
-			margin-bottom: 2rem;
+			margin-bottom: 1.5rem;
 		}
 
 		.highlight {
@@ -108,38 +151,22 @@
 			justify-content: center;
 			gap: 1rem;
 			flex-wrap: wrap;
+			margin-top: 1.5rem;
 		}
 
 		.btn {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
 			padding: 0.75rem 1.25rem;
 			border-radius: 0.75rem;
 			font-weight: 600;
 			text-decoration: none;
-			transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-		}
-
-		.btn-primary {
 			background: var(--accent-green);
 			color: #052e16;
+			box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+			transition: transform 0.15s ease;
 		}
 
-		.btn-primary:hover {
+		.btn:hover {
 			transform: translateY(-2px);
-			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.35);
-		}
-
-		.btn-secondary {
-			background: #1f2937;
-			color: var(--text-main);
-		}
-
-		.btn-secondary:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
 		}
 
 		footer {
@@ -153,30 +180,42 @@
 
 <body>
 
+	<nav>
+		<a href="/" class="nav-title">Bateson Family Lights</a>
+
+		<div class="nav-links">
+			<a class="disabled">Listen Live</a>
+			<a class="disabled">Request</a>
+			<a href="/gallery.html">Gallery</a>
+			<a class="disabled">Local Shows</a>
+			<a href="/about.html">About</a>
+			<a href="/contact.html">Contact</a>
+		</div>
+	</nav>
+
 	<header>
-		<h1>Bateson Family Lights</h1>
-		<p>Thank you for an incredible season 🎄</p>
+		<h1>Season Closed</h1>
+		<p>Thanks for another amazing year 🎄</p>
 	</header>
 
 	<main>
 		<section class="card">
-			<span class="badge">Season Closed</span>
+			<span class="badge">Off for the Season</span>
 
-			<h2>We’re Taking a Little Winter Nap</h2>
+			<h2>The Lights Are Resting</h2>
 
 			<p>
-				The lights are packed away and the controllers are resting — but the planning never really stops.
-				Thank you to everyone who visited, tuned in, and supported our show this year.
+				The show has wrapped up for the year, but the planning is already underway.
+				Thank you to everyone who visited, tuned in, and supported Bateson Family Lights.
 			</p>
 
 			<p>
-				✨ We’ll be back brighter than ever on  
-				<span class="highlight">Thanksgiving Night 2026</span>.
+				✨ We’ll return on  
+				<span class="highlight">Thanksgiving Night 2026</span>
 			</p>
 
 			<div class="buttons">
-				<a href="/gallery.html" class="btn btn-primary">View the Gallery</a>
-				<a href="/about.html" class="btn btn-secondary">About the Show</a>
+				<a href="/gallery.html" class="btn">View the Gallery</a>
 			</div>
 		</section>
 	</main>
