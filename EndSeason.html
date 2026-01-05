@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bateson Family Lights | Closed for the Season</title>
+
+	<meta name="description" content="Bateson Family Lights is closed for the season. Thank you for an amazing year — we’ll see you again Thanksgiving Night 2026!">
+	<meta name="theme-color" content="#22c55e">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<style>
+		:root {
+			--accent-green: #22c55e;
+			--accent-red: #ef4444;
+			--bg-dark: #0b0f14;
+			--bg-card: #121826;
+			--text-main: #e5e7eb;
+			--text-muted: #9ca3af;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			background: radial-gradient(circle at top, #0f172a 0%, var(--bg-dark) 60%);
+			color: var(--text-main);
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		header {
+			padding: 3rem 1.5rem 2rem;
+			text-align: center;
+		}
+
+		header h1 {
+			font-family: Pacifico, cursive;
+			font-size: clamp(2.4rem, 5vw, 3.4rem);
+			margin: 0;
+			color: var(--accent-green);
+		}
+
+		header p {
+			margin-top: 0.75rem;
+			font-size: 1.1rem;
+			color: var(--text-muted);
+		}
+
+		main {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 1.5rem;
+		}
+
+		.card {
+			background: linear-gradient(180deg, #141b2e, var(--bg-card));
+			border-radius: 1.25rem;
+			padding: 2.5rem 2rem;
+			max-width: 720px;
+			width: 100%;
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+			text-align: center;
+		}
+
+		.card h2 {
+			margin-top: 0;
+			font-size: 1.9rem;
+			color: #f9fafb;
+		}
+
+		.badge {
+			display: inline-block;
+			margin: 0.75rem 0 1.25rem;
+			padding: 0.4rem 0.9rem;
+			border-radius: 999px;
+			font-weight: 600;
+			background: rgba(239, 68, 68, 0.15);
+			color: var(--accent-red);
+			font-size: 0.85rem;
+			letter-spacing: 0.03em;
+			text-transform: uppercase;
+		}
+
+		.card p {
+			font-size: 1.05rem;
+			line-height: 1.65;
+			color: var(--text-muted);
+			margin-bottom: 2rem;
+		}
+
+		.highlight {
+			color: var(--accent-green);
+			font-weight: 700;
+		}
+
+		.buttons {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.75rem 1.25rem;
+			border-radius: 0.75rem;
+			font-weight: 600;
+			text-decoration: none;
+			transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+		}
+
+		.btn-primary {
+			background: var(--accent-green);
+			color: #052e16;
+		}
+
+		.btn-primary:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.35);
+		}
+
+		.btn-secondary {
+			background: #1f2937;
+			color: var(--text-main);
+		}
+
+		.btn-secondary:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+		}
+
+		footer {
+			padding: 1.5rem;
+			text-align: center;
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<h1>Bateson Family Lights</h1>
+		<p>Thank you for an incredible season 🎄</p>
+	</header>
+
+	<main>
+		<section class="card">
+			<span class="badge">Season Closed</span>
+
+			<h2>We’re Taking a Little Winter Nap</h2>
+
+			<p>
+				The lights are packed away and the controllers are resting — but the planning never really stops.
+				Thank you to everyone who visited, tuned in, and supported our show this year.
+			</p>
+
+			<p>
+				✨ We’ll be back brighter than ever on  
+				<span class="highlight">Thanksgiving Night 2026</span>.
+			</p>
+
+			<div class="buttons">
+				<a href="/gallery.html" class="btn btn-primary">View the Gallery</a>
+				<a href="/about.html" class="btn btn-secondary">About the Show</a>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		© <span id="year"></span> Bateson Family Lights · Swanton, Ohio
+	</footer>
+
+	<script>
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
+
+</body>
+</html>
