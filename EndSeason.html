@@ -1,232 +1,957 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Bateson Family Lights | Season Closed</title>
+	<meta charset="UTF-8" />
+	<title>Bateson Family Lights | Closed for the Season</title>
 
-	<meta name="description" content="Bateson Family Lights is closed for the season. Join us again Thanksgiving Night 2026!">
-	<meta name="theme-color" content="#22c55e">
+	<!-- Facebook / Instagram / Messenger -->
+	<meta property="og:title" content="Bateson Family Lights – Closed for the Season">
+	<meta property="og:description" content="Thanks for an amazing season! We’ll be back Thanksgiving Night 2026.">
+	<meta property="og:image" content="https://batesonlights.com/batesonlights/images/batesonlights_banner.png">
+	<meta property="og:url" content="https://batesonlights.com/">
+	<meta property="og:type" content="website">
+	
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Bateson Family Lights – Closed for the Season">
+	<meta name="twitter:description" content="Thanks for an amazing season! We’ll be back Thanksgiving Night 2026.">
+	<meta name="twitter:image" content="https://batesonlights.com/batesonlights/images/batesonlights_banner.png">
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DVWWCE6BB"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-2DVWWCE6BB');
+	</script>
+	
+	<!-- Standard Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Bateson Family Lights is closed for the season. We’ll be back Thanksgiving Night 2026!" />
 
+	<!-- Optional: You can update these dates for next season if you want -->
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Event",
+	  "name": "Bateson Family Lights",
+	  "description": "Bateson Family Lights is a synchronized Christmas light show in Swanton, Ohio featuring music, singing trees, and an interactive song request system.",
+	  "eventStatus": "https://schema.org/EventScheduled",
+	  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+	  "image": [
+	    "https://batesonlights.com/batesonlights/images/batesonlights_banner.png"
+	  ],
+	  "url": "https://batesonlights.com/",
+	  "location": {
+	    "@type": "Place",
+	    "name": "Bateson Family Lights",
+	    "address": {
+	      "@type": "PostalAddress",
+	      "addressLocality": "Swanton",
+	      "addressRegion": "OH",
+	      "addressCountry": "US"
+	    }
+	  },
+	  "organizer": {
+	    "@type": "Organization",
+	    "name": "Bateson Family Lights",
+	    "url": "https://batesonlights.com/"
+	  },
+	  "offers": {
+	    "@type": "Offer",
+	    "price": "0",
+	    "priceCurrency": "USD",
+	    "availability": "https://schema.org/InStock"
+	  }
+	}
+	</script>
+
+	
+	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 	<style>
 		:root {
+			--bg: #04040b;
+			--bg-alt: #0c1020;
+			--card: #101627;
 			--accent-green: #22c55e;
-			--accent-red: #ef4444;
-			--bg-dark: #0b0f14;
-			--bg-card: #121826;
-			--text-main: #e5e7eb;
-			--text-muted: #9ca3af;
-			--nav-bg: #0f172a;
+			--accent-red: #fb7185;
+			--text-main: #f5f7ff;
+			--text-muted: #9ca3c7;
+			--border-subtle: rgba(255, 255, 255, 0.06);
+			--shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.75);
+			--radius-xl: 24px;
 		}
 
-		* { box-sizing: border-box; }
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
 
+		html,
 		body {
 			margin: 0;
-			font-family: Inter, system-ui, sans-serif;
-			background: radial-gradient(circle at top, #0f172a 0%, var(--bg-dark) 60%);
+			padding: 0;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+				sans-serif;
+			background:
+				radial-gradient(circle at top, #102540 0, #04040b 55%, #020208 100%),
+				url("https://images.pexels.com/photos/6880135/pexels-photo-6880135.jpeg?auto=compress&cs=tinysrgb&w=1200")
+					center/cover fixed;
 			color: var(--text-main);
 			min-height: 100vh;
 			display: flex;
-			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
 		}
 
-		/* NAV */
-		nav {
-			background: var(--nav-bg);
-			padding: 0.75rem 1.25rem;
+		main {
+			width: 100%;
+			max-width: 960px;
+			padding: 16px 16px 40px;
+			margin: 0 auto 40px;
+		}
+
+		/* =========================
+		   NAV PILL (COLLAPSIBLE)
+		=========================*/
+		.nav {
+			position: sticky;
+			top: 8px;
+			z-index: 50;
+			margin: 0 auto;
+			max-width: 520px;
+			padding: 6px 8px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.92);
+			border: 1px solid rgba(148, 163, 184, 0.3);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(10px);
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.nav-toggle {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			flex-wrap: wrap;
-			gap: 0.75rem;
+			gap: 8px;
+			width: 100%;
+			padding: 4px 8px;
+			border-radius: 999px;
+			border: none;
+			background: transparent;
+			color: var(--text-main);
+			cursor: pointer;
+		}
+
+		.nav-toggle:focus-visible {
+			outline: 2px solid var(--accent-green);
+			outline-offset: 2px;
 		}
 
 		.nav-title {
-			font-family: Pacifico, cursive;
-			font-size: 1.6rem;
-			color: var(--accent-green);
-			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.9rem;
+			font-weight: 600;
+		}
+
+		.logo-script {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: 1.05rem;
+		}
+
+		.nav-toggle-label {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			margin-left: auto;
+		}
+
+		.nav-toggle-icon {
+			font-size: 0.85rem;
+			transition: transform 0.18s ease;
 		}
 
 		.nav-links {
 			display: flex;
-			gap: 1rem;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+			padding: 6px 6px 8px;
+			font-size: 0.82rem;
 			flex-wrap: wrap;
+
+			max-height: 260px;
+			overflow: hidden;
+			opacity: 1;
+			transform-origin: top;
+			transform: scaleY(1);
+			transition:
+				max-height 0.18s ease,
+				opacity 0.18s ease,
+				transform 0.18s ease;
+		}
+
+		/* collapsed state */
+		.nav.nav-collapsed .nav-links {
+			max-height: 0;
+			opacity: 0;
+			transform: scaleY(0.9);
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.nav.nav-collapsed .nav-toggle-icon {
+			transform: rotate(0deg);
+		}
+
+		.nav:not(.nav-collapsed) .nav-toggle-icon {
+			transform: rotate(180deg);
 		}
 
 		.nav-links a {
-			color: var(--text-main);
+			color: var(--text-muted);
 			text-decoration: none;
-			font-weight: 600;
-			padding: 0.4rem 0.75rem;
-			border-radius: 0.5rem;
-			transition: background 0.15s ease;
+			padding: 3px 8px;
+			border-radius: 999px;
+			border: 1px solid transparent;
+			transition: background 0.12s, color 0.12s, border-color 0.12s;
+			white-space: nowrap;
 		}
 
 		.nav-links a:hover {
-			background: rgba(255,255,255,0.08);
+			background: rgba(15, 23, 42, 0.95);
+			color: var(--text-main);
+			border-color: rgba(148, 163, 184, 0.6);
 		}
-
-		/* DISABLED LINKS */
-		.nav-links .disabled {
-			color: #6b7280;
-			cursor: not-allowed;
+		
+		.disabled-nav {
+			opacity: 0.4;
 			pointer-events: none;
-			background: rgba(255,255,255,0.04);
 		}
 
-		header {
-			padding: 3rem 1.5rem 2rem;
-			text-align: center;
+		@media (max-width: 640px) {
+		.nav {
+			max-width: 100%;
+			border-radius: 18px;
 		}
 
-		header h1 {
-			font-family: Pacifico, cursive;
-			font-size: clamp(2.4rem, 5vw, 3.4rem);
-			margin: 0;
-			color: var(--accent-green);
-		}
-
-		header p {
-			margin-top: 0.75rem;
-			font-size: 1.1rem;
-			color: var(--text-muted);
-		}
-
-		main {
-			flex: 1;
-			display: flex;
+		.nav-links {
+			flex-wrap: wrap;
 			justify-content: center;
-			align-items: center;
-			padding: 1.5rem;
+			gap: 4px;
 		}
 
-		.card {
-			background: linear-gradient(180deg, #141b2e, var(--bg-card));
-			border-radius: 1.25rem;
-			padding: 2.5rem 2rem;
-			max-width: 720px;
-			width: 100%;
-			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+		.nav-links a {
+			flex: 0 0 auto;
 			text-align: center;
+			padding: 4px 8px;
+		}
+		}
+
+		.hamburger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			width: 18px;
+		}
+
+		.hamburger-icon span {
+			display: block;
+			height: 2px;
+			width: 100%;
+			background: var(--text-main);
+			border-radius: 2px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		/* transform when open */
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav:not(.nav-collapsed) .hamburger-icon span:nth-child(3) {
+			transform: translateY(-5px) rotate(-45deg);
+		}
+
+		/* STRING LIGHTS DECORATION */
+		.string-lights {
+			position: relative;
+			height: 32px;
+			margin: 10px 0 -8px;
+		}
+
+		.string-lights::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 12px;
+			height: 2px;
+			background: rgba(148, 163, 184, 0.4);
+			border-radius: 999px;
+		}
+
+		.bulb {
+			position: absolute;
+			top: 10px;
+			width: 10px;
+			height: 16px;
+			border-radius: 40% 40% 60% 60%;
+			background: #22c55e;
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+			transform-origin: top center;
+			animation: sway 3s ease-in-out infinite alternate;
+		}
+
+		.bulb.red {
+			background: var(--accent-red);
+			box-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
+		}
+
+		.bulb.gold {
+			background: #fbbf24;
+			box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
+		}
+
+		.bulb:nth-child(1) { left: 10%; animation-delay: 0s; }
+		.bulb:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+		.bulb:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+		.bulb:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+		.bulb:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+		.bulb:nth-child(6) { left: 85%; animation-delay: 2s; }
+
+		@keyframes sway {
+			from { transform: rotate(-6deg); }
+			to   { transform: rotate(6deg); }
+		}
+
+		.hero {
+			background: rgba(7, 10, 25, 0.55);
+			border-radius: var(--radius-xl);
+			box-shadow: var(--shadow-soft);
+			padding: 6px 18px 10px;
+			border: 1px solid var(--border-subtle);
+			position: relative;
+			overflow: hidden;
+			margin-top: 15px !important;
+		}
+
+		.hero::before { display: none; }
+
+		.hero-inner { position: relative; z-index: 1; }
+
+		.hero-top {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 14px;
+			align-items: stretch;
 		}
 
 		.badge {
-			display: inline-block;
-			margin-bottom: 1.25rem;
-			padding: 0.4rem 0.9rem;
-			border-radius: 999px;
-			font-weight: 700;
-			background: rgba(239, 68, 68, 0.15);
-			color: var(--accent-red);
-			font-size: 0.85rem;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.7rem;
 			text-transform: uppercase;
-			letter-spacing: 0.04em;
-		}
-
-		.card h2 {
-			margin-top: 0;
-			font-size: 1.9rem;
-		}
-
-		.card p {
-			font-size: 1.05rem;
-			line-height: 1.65;
+			letter-spacing: 0.12em;
+			background: rgba(0, 0, 0, 0.55);
+			border-radius: 999px;
+			padding: 4px 10px;
 			color: var(--text-muted);
-			margin-bottom: 1.5rem;
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			margin-bottom: 2px;
 		}
 
-		.highlight {
-			color: var(--accent-green);
-			font-weight: 700;
+		.badge-dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--accent-red);
+			box-shadow: 0 0 10px rgba(251, 113, 133, 0.9);
 		}
 
-		.buttons {
+		.hero-title {
+			font-size: clamp(2.1rem, 4vw, 2.6rem);
+			font-weight: 800;
+			letter-spacing: 0.03em;
+			margin: 0;
 			display: flex;
-			justify-content: center;
-			gap: 1rem;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.hero-title span.em {
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		.hero-highlight {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.8rem;
+			color: #fef9c3;
+			background: rgba(248, 250, 252, 0.05);
+			padding: 5px 9px;
+			border-radius: 999px;
+			border: 1px solid rgba(248, 250, 252, 0.18);
+		}
+
+		.hero-subtitle {
+			margin: 6px 0 10px;
+			font-size: 0.98rem;
+			color: var(--text-muted);
+			max-width: 36rem;
+		}
+
+		.hero-actions {
+			display: flex;
 			flex-wrap: wrap;
-			margin-top: 1.5rem;
+			gap: 10px;
+			margin: 8px 0 0;
 		}
 
 		.btn {
-			padding: 0.75rem 1.25rem;
-			border-radius: 0.75rem;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 10px 16px;
+			border-radius: 999px;
+			font-size: 0.92rem;
 			font-weight: 600;
 			text-decoration: none;
-			background: var(--accent-green);
-			color: #052e16;
-			box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
-			transition: transform 0.15s ease;
+			border: 1px solid transparent;
+			cursor: pointer;
+			transition:
+				transform 0.11s ease-out,
+				box-shadow 0.12s ease-out,
+				background 0.12s ease-out,
+				border-color 0.12s ease-out,
+				color 0.12s ease-out;
+			white-space: nowrap;
 		}
 
-		.btn:hover {
-			transform: translateY(-2px);
+		.btn-primary {
+			background: radial-gradient(circle at 0 0, #22c55e, #16a34a);
+			color: #020617;
+			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
 		}
 
-		footer {
-			padding: 1.5rem;
-			text-align: center;
-			font-size: 0.85rem;
+		.btn-secondary {
+			background: radial-gradient(circle at 0 0, #fb7185, #e11d48);
+			color: #020617;
+			border-color: rgba(248, 113, 113, 0.7);
+			box-shadow: 0 14px 30px rgba(248, 113, 113, 0.45);
+		}
+
+		.btn-icon {
+			font-size: 1.05rem;
+			line-height: 1;
+		}
+
+		/* Reused for Listen + Requests buttons when disabled */
+		.btn-listen.disabled,
+		.btn-request.disabled {
+		    opacity: 0.4;
+		    cursor: default;
+		    pointer-events: none;
+		    box-shadow: none;
+		}
+
+		.btn-icon-play {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.7em;
+			height: 1.7em;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.95);
+			box-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-icon-play::before {
+			content: "▶";
+			font-size: 0.9rem;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+			gap: 18px;
+			margin-top: 22px;
+		}
+
+		.card {
+			background: var(--bg-alt);
+			border-radius: var(--radius-xl);
+			border: 1px solid var(--border-subtle);
+			padding: 14px 14px 16px;
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+		}
+
+		.card h2 {
+			font-size: 1rem;
+			margin: 0 0 8px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.card h2 span.icon {
+			font-size: 1.1rem;
+		}
+
+		.card p {
+			margin: 4px 0;
+			font-size: 0.86rem;
 			color: var(--text-muted);
+		}
+
+		.schedule-list,
+		.info-list {
+			list-style: none;
+			padding: 0;
+			margin: 8px 0 0;
+			font-size: 0.86rem;
+		}
+
+		.schedule-list li,
+		.info-list li {
+			display: flex;
+			align-items: flex-start;
+			gap: 8px;
+			padding: 6px 0;
+			border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+		}
+
+		.schedule-list li:last-child,
+		.info-list li:last-child {
+			border-bottom: none;
+		}
+
+		.schedule-day {
+			font-weight: 600;
+			color: var(--text-main);
+			min-width: 80px;
+		}
+
+		.schedule-time {
+			color: var(--text-muted);
+		}
+
+		.info-label {
+			min-width: 72px;
+			font-weight: 600;
+			color: var(--text-main);
+		}
+
+		.info-value {
+			color: var(--text-muted);
+		}
+
+		.info-value a {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.info-value a:hover {
+			text-decoration: underline;
+		}
+
+		.rules {
+			margin-top: 8px;
+			font-size: 0.82rem;
+			color: var(--text-muted);
+			padding: 8px 10px;
+			border-radius: 14px;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px dashed rgba(148, 163, 184, 0.32);
+		}
+
+		.rules ul {
+			margin: 4px 0 0;
+			padding-left: 18px;
+		}
+
+		.rules li {
+			margin: 1px 0;
+		}
+
+		/* Show Schedule header meta (FM + Location) */
+		.schedule-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 4px 0 6px;
+		}
+
+		.pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 4px 10px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.25);
+		}
+
+		.pill-location {
+			text-decoration: none;
+			color: var(--text-main);
+			transition:
+				background 0.15s ease-out,
+				border-color 0.15s ease-out,
+				box-shadow 0.15s ease-out;
+		}
+
+		.pill-location:hover {
+			border-color: rgba(148, 163, 184, 0.6);
+			background: rgba(15, 23, 42, 0.95);
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+		}
+
+		/* Force FM dot to OFF (red) for offseason */
+		.pill-dot-fm {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--accent-red);
+			box-shadow: 0 0 8px rgba(251, 113, 133, 0.6);
+		}
+
+		.footer {
+			margin-top: 18px;
+			padding: 10px 6px 0;
+			font-size: 0.78rem;
+			color: var(--text-muted);
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			border-top: 1px solid rgba(148, 163, 184, 0.18);
+		}
+
+		.footer a {
+			color: var(--accent-green);
+			text-decoration: none;
+		}
+
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.hero {
+				padding: 12px 12px 18px;
+			}
+
+			.grid {
+				grid-template-columns: minmax(0, 1fr);
+			}
+
+			.footer {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+		
+		/* Pacifico for logo + hero title */
+		.logo-script,
+		.hero-title .em {
+			font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-weight: 400;
+			letter-spacing: 0.04em;
+		}
+
+		.hero-title .em {
+			text-transform: none;
+			font-size: clamp(2.4rem, 4.6vw, 3rem);
+			color: var(--accent-green);
+			text-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+		}
+
+		/* Make nav logo bigger and green */
+		.nav-title .logo-script {
+			font-size: 1.35rem;
+			color: var(--accent-green);
+			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+		}
+
+		.nav-title {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		
+		.nav-toggle {
+			justify-content: space-between;
+		}
+
+		.nav-links a.nav-active {
+			background: rgba(34, 197, 94, 0.2);
+			border-color: rgba(34, 197, 94, 0.7);
+			color: #bbf7d0;
 		}
 	</style>
 </head>
-
 <body>
+	<main id="top">
+		<!-- NAV -->
+		<nav class="nav nav-collapsed">
+			<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+				<div class="nav-title">
+					<span>🎄 </span>
+					<span class="logo-script">Bateson Family Lights</span>
+					<span> 🎄</span>
+				</div>
+				<span class="hamburger-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="nav-links" id="nav-links">
+				<a href="#top" class="nav-active">Home</a>
+				<a id="nav-listen-link" class="disabled-nav" href="#">Listen Live</a>
+				<a id="nav-requests-link" class="disabled-nav" href="#">Requests</a>
+				<a href="gallery.html">Gallery</a>
+				<a class="disabled-nav" href="#">Local Shows</a>
+				<a href="about.html">About</a>
+				<a href="contact.html">Contact Us</a>
+			</div>
+		</nav>
 
-	<nav>
-		<a href="/" class="nav-title">Bateson Family Lights</a>
-
-		<div class="nav-links">
-			<a class="disabled">Listen Live</a>
-			<a class="disabled">Request</a>
-			<a href="/gallery.html">Gallery</a>
-			<a class="disabled">Local Shows</a>
-			<a href="/about.html">About</a>
-			<a href="/contact.html">Contact</a>
+		<div class="string-lights">
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
+			<div class="bulb"></div>
+			<div class="bulb red"></div>
+			<div class="bulb gold"></div>
 		</div>
-	</nav>
 
-	<header>
-		<h1>Season Closed</h1>
-		<p>Thanks for another amazing year 🎄</p>
-	</header>
+		<!-- HERO -->
+		<section class="hero">
+			<div class="hero-inner">
+				<div class="hero-top">
+					<div>
+						<div class="badge">
+							<span class="badge-dot"></span>
+							<span>Bateson Family Lights • Christmas Light Show</span>
+						</div>
 
-	<main>
-		<section class="card">
-			<span class="badge">Off for the Season</span>
+						<h1 class="hero-title">
+							<span class="em">Closed for the Season</span>
+						</h1>
 
-			<h2>The Lights Are Resting</h2>
+						<div class="hero-highlight">
+							✨ Thanks for an amazing season — see you again Thanksgiving Night 2026!
+						</div>
 
-			<p>
-				The show has wrapped up for the year, but the planning is already underway.
-				Thank you to everyone who visited, tuned in, and supported Bateson Family Lights.
-			</p>
+						<p class="hero-subtitle">
+							We’re packed up for the year, but the planning never stops.
+							Check out the gallery and relive some favorites. We’ll be back brighter than ever on
+							<strong>Thanksgiving Night 2026</strong>.
+						</p>
 
-			<p>
-				✨ We’ll return on  
-				<span class="highlight">Thanksgiving Night 2026</span>
-			</p>
+						<div class="hero-actions">
+							<a class="btn btn-primary btn-listen disabled" id="listen-live-btn" href="#">
+								<span class="btn-icon btn-icon-play"></span>
+								<span id="listen-live-label">Listen Live (Off Season)</span>
+							</a>
 
-			<div class="buttons">
-				<a href="/gallery.html" class="btn">View the Gallery</a>
+							<a class="btn btn-secondary btn-request disabled" href="#">
+								<span class="btn-icon">🎶</span>
+								<span>Requests (Off Season)</span>
+							</a>
+
+							<a class="btn btn-primary" href="gallery.html" style="background: radial-gradient(circle at 0 0, #22c55e, #16a34a);">
+								<span class="btn-icon">📸</span>
+								<span>View the Gallery</span>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
+
+		<!-- SCHEDULE + INFO -->
+		<section class="grid">
+			<article class="card">
+				<h2>
+					<span class="icon">🕒</span>
+					Show Schedule
+				</h2>
+
+				<div class="schedule-meta">
+					<div class="pill pill-fm" id="fm-radio-pill">
+						<span class="pill-dot-fm" id="fm-radio-dot"></span>
+						<span>FM Radio: <strong>93.1 FM</strong></span>
+					</div>
+
+					<a
+						class="pill pill-location"
+						href="https://www.google.com/maps/search/?api=1&query=108+East+St+Clair+Street%2C+Swanton%2C+OH+43558"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<span>📍</span>
+						<span>Bateson Family Lights • Swanton, Oh</span>
+					</a>
+				</div>
+
+				<p style="margin: 6px 0 10px; color: var(--text-muted); font-size: 0.9rem;">
+					<strong>Off Season:</strong> We’re currently closed. We’ll return <strong>Thanksgiving Night 2026</strong>.
+					(During show season, the schedule below applies.)
+				</p>
+
+				<ul class="schedule-list">
+					<li>
+						<span class="schedule-day">Static Display</span>
+						<span class="schedule-time">4:00 AM – 7:00 AM / 4:00 PM – 6:00 PM Daily</span>
+					</li>
+					<li>
+						<span class="schedule-day">Sun–Thu</span>
+						<span class="schedule-time">6:00 PM – 9:30 PM</span>
+					</li>
+					<li>
+						<span class="schedule-day">Fri–Sat</span>
+						<span class="schedule-time">6:00 PM – 11:00 PM</span>
+					</li>
+					<li>
+						<span class="schedule-day">Christmas Eve</span>
+						<span class="schedule-time">Extended show 🎅</span>
+					</li>
+				</ul>
+
+				<div class="rules">
+					<strong>Friendly Reminders:</strong>
+					<ul>
+						<li>Please be respectful of our neighbors.</li>
+						<li>Do not block driveways or fire hydrants.</li>
+						<li>Dim your headlights while parked.</li>
+						<li>Enjoy the show & share your photos! #BatesonLights</li>
+					</ul>
+				</div>
+			</article>
+
+			<article class="card">
+				<h2>
+					<span class="icon">🎁</span>
+					Show Info
+				</h2>
+				<ul class="info-list">
+					<li>
+						<span class="info-label">Address</span>
+						<span class="info-value">108 East St. Clair Street, Swanton, Oh</span>
+					</li>
+					<li>
+						<span class="info-label">Listen</span>
+						<span class="info-value">
+							On-site: <strong>93.1 FM</strong><br />
+							Phone: <span style="opacity:0.75;">Off season</span>
+						</span>
+					</li>
+					<li>
+						<span class="info-label">Facebook</span>
+						<span class="info-value">
+							<a
+								href="https://www.facebook.com/batesonlights"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								facebook.com/batesonlights
+							</a>
+						</span>
+					</li>
+					<li>
+						<span class="info-label">Show Info</span>
+						<span class="info-value">
+							<ul>
+								<li>Over 10,000 LEDs programmed to 14 songs your family is sure to enjoy!</li>
+								<li>Utilizing 5 Light-O-Rama 16 Channel Controllers for 80 channels total!</li>
+								<li>On-site guests can unlock song requests by scanning the QR code at the display (during show season).</li>
+							</ul>
+						</span>
+					</li>
+				</ul>
+				<p style="margin-top: 10px;">
+					Thank you for visiting and supporting Bateson Family Lights!
+				</p>
+			</article>
+		</section>
+
+		<!-- JUKEBOX (REMOTE FALCON) -->
+		<!-- Off-season: hidden + not loaded -->
+		<section id="jukebox" class="embed-section" style="display:none"></section>
+
+		<footer class="footer">
+			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
+			<div>
+				Created by the Bateson family • Merry Christmas & Happy Holidays! 🎅
+			</div>
+		</footer>
 	</main>
 
-	<footer>
-		© <span id="year"></span> Bateson Family Lights · Swanton, Ohio
-	</footer>
-
 	<script>
-		document.getElementById("year").textContent = new Date().getFullYear();
-	</script>
+		// -------- NAV COLLAPSE / EXPAND --------
+		(function () {
+			const nav = document.querySelector(".nav");
+			const toggle = document.querySelector(".nav-toggle");
+			const links = document.getElementById("nav-links");
+			if (!nav || !toggle || !links) return;
 
+			nav.classList.add("nav-collapsed");
+			toggle.setAttribute("aria-expanded", "false");
+
+			function setExpanded(expanded) {
+				if (expanded) {
+					nav.classList.remove("nav-collapsed");
+				} else {
+					nav.classList.add("nav-collapsed");
+				}
+				toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+			}
+
+			toggle.addEventListener("click", () => {
+				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				setExpanded(!isExpanded);
+			});
+		})();
+
+		// --------- BASIC UI SETUP ---------
+		document.getElementById("year").textContent = new Date().getFullYear();
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const labelEl = document.getElementById("listen-live-label");
+			if (!labelEl) return;
+
+			const isMobile =
+				/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				);
+
+			if (isMobile) {
+				labelEl.textContent = "Listen Live (Off Season)";
+			}
+		});
+	</script>
 </body>
 </html>
