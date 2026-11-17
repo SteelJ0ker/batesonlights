@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Bateson Family Lights | Closed for the Season</title>
+	<title>Bateson Family Lights | Christmas Light Show</title>
 
 	<!-- Facebook / Instagram / Messenger -->
-	<meta property="og:title" content="Bateson Family Lights – Closed for the Season">
-	<meta property="og:description" content="Thanks for an amazing season! We’ll be back Thanksgiving Night 2026.">
+	<meta property="og:title" content="Bateson Family Lights – Swanton, Ohio Christmas Display">
+	<meta property="og:description" content="Visit the Bateson Family Lights synchronized Christmas display in Swanton, Ohio. See the show dates, countdown, and song requests.">
 	<meta property="og:image" content="https://batesonlights.com/batesonlights/images/batesonlights_banner.png">
 	<meta property="og:url" content="https://batesonlights.com/">
 	<meta property="og:type" content="website">
 	
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Bateson Family Lights – Closed for the Season">
-	<meta name="twitter:description" content="Thanks for an amazing season! We’ll be back Thanksgiving Night 2026.">
+	<meta name="twitter:title" content="Bateson Family Lights – Swanton, Ohio Christmas Display">
+	<meta name="twitter:description" content="Enjoy synchronized Christmas lights, music, and live song requests.">
 	<meta name="twitter:image" content="https://batesonlights.com/batesonlights/images/batesonlights_banner.png">
 	
 	<!-- Google tag (gtag.js) -->
@@ -29,44 +29,8 @@
 	
 	<!-- Standard Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Bateson Family Lights is closed for the season. We’ll be back Thanksgiving Night 2026!" />
-
-	<!-- Optional: You can update these dates for next season if you want -->
-	<script type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "Event",
-	  "name": "Bateson Family Lights",
-	  "description": "Bateson Family Lights is a synchronized Christmas light show in Swanton, Ohio featuring music, singing trees, and an interactive song request system.",
-	  "eventStatus": "https://schema.org/EventScheduled",
-	  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-	  "image": [
-	    "https://batesonlights.com/batesonlights/images/batesonlights_banner.png"
-	  ],
-	  "url": "https://batesonlights.com/",
-	  "location": {
-	    "@type": "Place",
-	    "name": "Bateson Family Lights",
-	    "address": {
-	      "@type": "PostalAddress",
-	      "addressLocality": "Swanton",
-	      "addressRegion": "OH",
-	      "addressCountry": "US"
-	    }
-	  },
-	  "organizer": {
-	    "@type": "Organization",
-	    "name": "Bateson Family Lights",
-	    "url": "https://batesonlights.com/"
-	  },
-	  "offers": {
-	    "@type": "Offer",
-	    "price": "0",
-	    "priceCurrency": "USD",
-	    "availability": "https://schema.org/InStock"
-	  }
-	}
-	</script>
+	<meta name="description" content="Bateson Family Lights in Swanton, Ohio — synced Christmas lights, music, a seasonal countdown, and an interactive song jukebox." />
+	<script id="event-schema" type="application/ld+json"></script>
 
 	
 	<!-- Fonts -->
@@ -224,11 +188,11 @@
 		.nav-links a {
 			color: var(--text-muted);
 			text-decoration: none;
-			padding: 3px 8px;
+			padding: 3px 8px; /* smaller pill padding so they’re tighter */
 			border-radius: 999px;
 			border: 1px solid transparent;
 			transition: background 0.12s, color 0.12s, border-color 0.12s;
-			white-space: nowrap;
+			white-space: nowrap;          /* keep each label on one line */
 		}
 
 		.nav-links a:hover {
@@ -249,15 +213,15 @@
 		}
 
 		.nav-links {
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 4px;
+			flex-wrap: wrap;          /* allow wrapping */
+			justify-content: center;  /* keep them centered */
+			gap: 4px;                 /* tight spacing */
 		}
 
 		.nav-links a {
-			flex: 0 0 auto;
+			flex: 0 0 auto;           /* no forced 50% width */
 			text-align: center;
-			padding: 4px 8px;
+			padding: 4px 8px;         /* smaller pills */
 		}
 		}
 
@@ -341,19 +305,24 @@
 		}
 
 		.hero {
-			background: rgba(7, 10, 25, 0.55);
+			background: rgba(7, 10, 25, 0.55);   /* much more see-through */
 			border-radius: var(--radius-xl);
 			box-shadow: var(--shadow-soft);
-			padding: 6px 18px 10px;
+			padding: 6px 18px 10px;              /* shorter box */
 			border: 1px solid var(--border-subtle);
 			position: relative;
 			overflow: hidden;
 			margin-top: 15px !important;
 		}
 
-		.hero::before { display: none; }
+		.hero::before {
+			display: none;
+		}
 
-		.hero-inner { position: relative; z-index: 1; }
+		.hero-inner {
+			position: relative;
+			z-index: 1;
+		}
 
 		.hero-top {
 			display: grid;
@@ -381,8 +350,8 @@
 			width: 6px;
 			height: 6px;
 			border-radius: 50%;
-			background: var(--accent-red);
-			box-shadow: 0 0 10px rgba(251, 113, 133, 0.9);
+			background: #22c55e;
+			box-shadow: 0 0 10px #22c55e;
 		}
 
 		.hero-title {
@@ -453,6 +422,11 @@
 			box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
 		}
 
+		.btn-primary:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 18px 38px rgba(34, 197, 94, 0.7);
+		}
+
 		.btn-secondary {
 			background: radial-gradient(circle at 0 0, #fb7185, #e11d48);
 			color: #020617;
@@ -460,36 +434,41 @@
 			box-shadow: 0 14px 30px rgba(248, 113, 113, 0.45);
 		}
 
+		.btn-secondary:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 18px 38px rgba(248, 113, 113, 0.7);
+		}
+
 		.btn-icon {
 			font-size: 1.05rem;
 			line-height: 1;
 		}
 
-		/* Reused for Listen + Requests buttons when disabled */
-		.btn-listen.disabled,
-		.btn-request.disabled {
-		    opacity: 0.4;
-		    cursor: default;
-		    pointer-events: none;
-		    box-shadow: none;
+		.hero-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 10px;
+			font-size: 0.8rem;
+			color: var(--text-muted);
 		}
 
-		.btn-icon-play {
+		.pill {
 			display: inline-flex;
 			align-items: center;
-			justify-content: center;
-			width: 1.7em;
-			height: 1.7em;
+			gap: 6px;
+			padding: 4px 10px;
 			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.95);
-			box-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
-			position: relative;
-			overflow: hidden;
+			background: rgba(15, 23, 42, 0.9);
+			border: 1px solid rgba(148, 163, 184, 0.25);
 		}
 
-		.btn-icon-play::before {
-			content: "▶";
-			font-size: 0.9rem;
+		.pill-dot {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--accent-red);
+			box-shadow: 0 0 10px var(--accent-red);
 		}
 
 		.grid {
@@ -603,14 +582,8 @@
 			margin: 4px 0 6px;
 		}
 
-		.pill {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			padding: 4px 10px;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px solid rgba(148, 163, 184, 0.25);
+		.pill-fm {
+			transition: box-shadow 0.15s ease-out, border-color 0.15s ease-out;
 		}
 
 		.pill-location {
@@ -628,13 +601,79 @@
 			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
 		}
 
-		/* Force FM dot to OFF (red) for offseason */
+		/* FM dot is RED when off-air, turns GREEN when on-air */
 		.pill-dot-fm {
 			width: 7px;
 			height: 7px;
 			border-radius: 50%;
-			background: var(--accent-red);
+			background: var(--accent-red); /* offline = red */
 			box-shadow: 0 0 8px rgba(251, 113, 133, 0.6);
+			transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
+		}
+
+		.pill-dot-fm.on-air {
+			background: #22c55e;           /* online = green */
+			box-shadow: 0 0 10px #22c55e;
+		}
+
+		.pill-fm.on-air {
+			border-color: rgba(34, 197, 94, 0.8);
+			box-shadow: 0 0 12px rgba(34, 197, 94, 0.55);
+		}
+
+		.embed-section {
+			margin-top: 22px;
+		}
+
+		.embed-card {
+			background: var(--bg-alt);
+			border-radius: var(--radius-xl);
+			border: 1px solid var(--border-subtle);
+			padding: 14px 14px 16px;
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+			margin-bottom: 18px;
+		}
+
+		.embed-card h2 {
+			font-size: 1rem;
+			margin: 0 0 6px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.embed-card h2 span.icon {
+			font-size: 1.1rem;
+		}
+
+		.embed-card p {
+			margin: 4px 0 10px;
+			font-size: 0.86rem;
+			color: var(--text-muted);
+		}
+
+		/* RF wrapper: simple container, no aspect-ratio tricks */
+		.embed-frame-wrapper {
+			position: relative;
+			width: 100%;
+			border-radius: 18px;
+			overflow: hidden;
+			border: 1px solid rgba(148, 163, 184, 0.28);
+			background: radial-gradient(circle at top, #020617, #020617);
+		}
+
+		/* iframe: controls its own height */
+		.embed-frame {
+			width: 100%;
+			border: none;
+			display: block;
+			height: 700px;   /* desktop height */
+		}
+
+		.embed-note {
+			margin-top: 6px;
+			font-size: 0.78rem;
+			color: var(--text-muted);
 		}
 
 		.footer {
@@ -670,6 +709,11 @@
 				flex-direction: column;
 				align-items: flex-start;
 			}
+
+			/* give RF a bit more room on phones */
+			.embed-frame {
+				height: 820px;
+			}
 		}
 		
 		/* Pacifico for logo + hero title */
@@ -689,19 +733,148 @@
 
 		/* Make nav logo bigger and green */
 		.nav-title .logo-script {
-			font-size: 1.35rem;
-			color: var(--accent-green);
+			font-size: 1.35rem;          /* tweak this up/down as you like */
+			color: var(--accent-green);  /* same green as hero */
 			text-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+		}
+
+		
+		/* --- Special styling for the Listen Live button --- */
+		.btn-listen {
+			position: relative;
+			overflow: hidden;
+			animation: buttonGlow 2.4s ease-in-out infinite;
+		}
+
+		.btn-listen::before {
+			content: "";
+			position: absolute;
+			inset: -4px;
+			border-radius: inherit;
+			box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+			opacity: 0;
+			z-index: -1;
+			animation: buttonHalo 2.4s ease-in-out infinite;
+		}
+		
+		/* Reused for Listen + Requests buttons when disabled */
+		.btn-listen.disabled,
+		.btn-request.disabled {
+		    opacity: 0.4;
+		    cursor: default;
+		    pointer-events: none;
+		    box-shadow: none;
+		}
+
+		.btn-icon-play {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.7em;
+			height: 1.7em;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.95);
+			box-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-icon-play::before {
+			content: "▶";
+			font-size: 0.9rem;
+			transform: translateX(0);
+			animation: playNudge 1.2s ease-in-out infinite;
+		}
+
+		@keyframes buttonGlow {
+			0%, 100% {
+				box-shadow: 0 14px 30px rgba(34, 197, 94, 0.45);
+			}
+			50% {
+				box-shadow: 0 18px 40px rgba(34, 197, 94, 0.9);
+			}
+		}
+
+		@keyframes buttonHalo {
+			0%, 100% {
+				opacity: 0;
+				transform: scale(0.95);
+			}
+			50% {
+				opacity: 1;
+				transform: scale(1.05);
+			}
+		}
+
+		@keyframes playNudge {
+			0%, 100% {
+				transform: translateX(0);
+			}
+			50% {
+				transform: translateX(2px);
+			}
+		}
+
+		/* Remote Falcon on-air/off-air layout */
+		#remote-falcon-live {
+			display: block;
+			margin-top: 10px;
+		}
+
+		#remote-falcon-offair {
+			display: block;
+			margin-top: 14px;
+			text-align: center;
+			padding: 20px 12px;
+			border-radius: 18px;
+			background: rgba(15, 23, 42, 0.75);
+			border: 1px solid rgba(148, 163, 184, 0.22);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+		}
+
+		#remote-falcon-offair h3 {
+			margin: 6px 0 6px;
+			font-size: 1.3rem;
+			color: var(--text-main);
+		}
+
+		#remote-falcon-offair p {
+			margin: 4px 0;
+			font-size: 0.9rem;
+			color: var(--text-muted);
+		}
+
+		#remote-falcon-offair ul {
+			list-style: none;
+			padding: 0;
+			margin: 10px 0;
+			font-size: 0.95rem;
+		}
+
+		#remote-falcon-offair li {
+			margin: 2px 0;
+			color: var(--text-main);
+		}
+
+		.offair-icon {
+			font-size: 2.4rem;
+			margin-bottom: 8px;
+		}
+
+		.offair-timezone-note {
+			opacity: 0.8;
+			font-size: 0.85rem;
+			color: var(--text-muted);
 		}
 
 		.nav-title {
 			width: 100%;
 			display: flex;
-			justify-content: center;
+			justify-content: center;   /* centers the text */
 		}
 		
 		.nav-toggle {
-			justify-content: space-between;
+			justify-content: space-between;   /* keeps hamburger on the right */
 		}
 
 		.nav-links a.nav-active {
@@ -709,6 +882,39 @@
 			border-color: rgba(34, 197, 94, 0.7);
 			color: #bbf7d0;
 		}
+
+
+		/* ====== AUTOMATIC SEASON / COUNTDOWN ====== */
+		[hidden] { display: none !important; }
+		.season-hero-layout { grid-template-columns: minmax(0, 1.4fr) minmax(295px, 0.95fr); gap: 18px; align-items: center; }
+		.hero { padding: 18px; }
+		.season-hero-copy { min-width: 0; }
+		.season-hero-copy .hero-title { line-height: 1.4; }
+		.season-hero-copy .hero-title .em { font-size: clamp(1.8rem, 3.1vw, 2.6rem); }
+		.season-hero-copy .hero-subtitle { font-size: 0.88rem; line-height: 1.48; }
+		.season-hero-copy .hero-highlight { font-size: 0.78rem; line-height: 1.35; border-color: rgba(251,191,36,.44); }
+		.season-hero-copy .hero-actions { gap: 9px; }
+		.season-hero-copy .hero-actions .btn { padding: 10px 13px; font-size: 0.82rem; }
+		.btn-gallery { background: radial-gradient(circle at 0 0, #20ed6a, #16a34a); }
+		.countdown-panel { position:relative; isolation:isolate; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; min-height:260px; overflow:hidden; padding: 15px 13px 93px; border-radius:23px; border:2px solid #59f49b; background:radial-gradient(ellipse at top, #0c2940 0%, #040a19 65%,#0b1931 100%); box-shadow:0 0 9px rgba(50,240,135,.78),inset 0 0 18px rgba(36,196,101,.2),0 0 25px rgba(36,196,101,.12); text-align:center; }
+		.countdown-panel-header { position:relative; z-index:1; display:flex; gap:7px; align-items:center; justify-content:center; white-space:nowrap; color:#f8fbfa; font-size:1.1rem; }
+		.countdown-script { font-family: 'Pacifico',cursive; font-size:1.12rem; font-weight:normal; }
+		.countdown-date { z-index:1; position:relative; color:#e7f0ff; font-size:.75rem; margin-top:5px; margin-bottom:13px; }
+		.countdown-numbers { position:relative; z-index:1; width:100%; display:flex; gap:8px; align-items:stretch; justify-content:center; }
+		.countdown-tile { background:rgba(3,12,24,.92); border-radius:13px; border:1px solid #62f2a1; box-shadow:0 0 10px rgba(61,233,135,.5),inset 0 0 9px rgba(43,204,109,.12); min-width:0; width:100%; padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:1px; }
+		.countdown-tile strong { color:#77f17a; font-size:clamp(1.6rem,3.25vw,2.25rem); font-weight:850; font-variant-numeric:tabular-nums; line-height:1.2; text-shadow:0 0 10px rgba(77,241,116,.5); }
+		.countdown-tile span { font-size:.7rem; letter-spacing:.04em; color:#f8fafc; }
+		.countdown-day-tile { max-width:160px; padding:8px 12px; }
+		.countdown-day-tile strong { font-size:clamp(2.6rem,4.8vw,3.7rem); }
+		.countdown-live-message { z-index:1; position:relative; display:flex; flex-direction:column; justify-content:center; gap:10px; margin-top:16px; }
+		.countdown-live-message > span { font-family:'Pacifico',cursive; font-size:clamp(1.9rem,3vw,2.7rem); color:#4ade80; text-shadow:0 0 15px rgba(74,222,128,.8); }
+		.countdown-live-message small { color:#e9f1ff; font-size:.86rem; line-height:1.4; }
+		.countdown-landscape { position:absolute; bottom:0; left:0; right:0; width:100%; height:101px; z-index:0; pointer-events:none; }
+		.season-schedule-note { margin: 6px 0 8px !important; font-size: .86rem !important; }
+		.season-schedule-note strong { color:#edf7ff; }
+		#hero-open .hero-title .em { font-size:clamp(1.65rem,3vw,2.3rem); }
+		@media (max-width: 850px) { .season-hero-layout { grid-template-columns:1fr; } .countdown-panel { min-height:240px; max-width: 620px; width:100%; margin: 0 auto; } .countdown-tile strong { font-size: 2.2rem; } .countdown-day-tile strong { font-size:3.6rem; } }
+		@media (max-width: 520px) { .hero { padding:13px; } .season-hero-copy .hero-actions { gap:8px; } .season-hero-copy .hero-actions .btn { font-size:.78rem; padding:9px 11px; } .countdown-panel { padding-left:9px; padding-right:9px; } .countdown-script { font-size:1rem; } .countdown-tile strong { font-size:1.65rem; } .countdown-day-tile strong { font-size:3.2rem; } }
 	</style>
 </head>
 <body>
@@ -729,10 +935,10 @@
 			</button>
 			<div class="nav-links" id="nav-links">
 				<a href="#top" class="nav-active">Home</a>
-				<a id="nav-listen-link" class="disabled-nav" href="#">Listen Live</a>
-				<a id="nav-requests-link" class="disabled-nav" href="#">Requests</a>
+				<a id="nav-listen-link" href="https://pulsemesh.io/d/SGVT/smart" target="_blank">Listen Live</a>
+				<a id="nav-requests-link" href="#jukebox">Requests</a>
 				<a href="gallery.html">Gallery</a>
-				<a class="disabled-nav" href="#">Local Shows</a>
+				<a id="nav-local-shows-link" href="local-shows.html">Local Shows</a>
 				<a href="about.html">About</a>
 				<a href="contact.html">Contact Us</a>
 			</div>
@@ -748,46 +954,63 @@
 		</div>
 
 		<!-- HERO -->
-		<section class="hero">
+		<section class="hero" aria-label="Bateson Family Lights homepage">
 			<div class="hero-inner">
-				<div class="hero-top">
-					<div>
-						<div class="badge">
-							<span class="badge-dot"></span>
-							<span>Bateson Family Lights • Christmas Light Show</span>
+				<div class="hero-top season-hero-layout">
+					<div class="season-hero-copy">
+						<div class="badge"><span class="badge-dot" id="hero-badge-dot"></span><span>Bateson Family Lights • Christmas Light Show</span></div>
+
+						<div id="hero-closed">
+							<h1 class="hero-title"><span class="em">Closed for the Season</span></h1>
+							<div class="hero-highlight">✨ The lights return on <span id="hero-next-season">Thanksgiving Night</span>!</div>
+							<p class="hero-subtitle">We're packed up for the year, but the planning never stops. Check out the gallery and relive some favorites. We'll be back brighter than ever on <strong id="hero-next-date">Thanksgiving Night</strong>!</p>
 						</div>
 
-						<h1 class="hero-title">
-							<span class="em">Closed for the Season</span>
-						</h1>
-
-						<div class="hero-highlight">
-							✨ Thanks for an amazing season — see you again Thanksgiving Night 2026!
+						<div id="hero-open" hidden>
+							<h1 class="hero-title"><span class="em">Welcome to Bateson Family Lights</span></h1>
+							<div class="hero-highlight">✨ Synchronized Christmas lights set to music — fun for the whole family.</div>
+							<p class="hero-subtitle">Park, tune in to <strong>93.1 FM</strong>, and enjoy the show. When we're on air, use your phone to listen or pick the next song!</p>
 						</div>
-
-						<p class="hero-subtitle">
-							We’re packed up for the year, but the planning never stops.
-							Check out the gallery and relive some favorites. We’ll be back brighter than ever on
-							<strong>Thanksgiving Night 2026</strong>.
-						</p>
 
 						<div class="hero-actions">
-							<a class="btn btn-primary btn-listen disabled" id="listen-live-btn" href="#">
-								<span class="btn-icon btn-icon-play"></span>
-								<span id="listen-live-label">Listen Live (Off Season)</span>
-							</a>
-
-							<a class="btn btn-secondary btn-request disabled" href="#">
-								<span class="btn-icon">🎶</span>
-								<span>Requests (Off Season)</span>
-							</a>
-
-							<a class="btn btn-primary" href="gallery.html" style="background: radial-gradient(circle at 0 0, #22c55e, #16a34a);">
-								<span class="btn-icon">📸</span>
-								<span>View the Gallery</span>
-							</a>
+							<a class="btn btn-primary btn-listen disabled" id="listen-live-btn" href="#" aria-disabled="true"><span class="btn-icon btn-icon-play"></span><span id="listen-live-label">Listen Live</span></a>
+							<a class="btn btn-secondary btn-request disabled" id="request-btn" href="#" aria-disabled="true"><span class="btn-icon">🎶</span><span id="request-label">Requests</span></a>
+							<a class="btn btn-primary btn-gallery" href="gallery.html"><span class="btn-icon">📸</span><span>View the Gallery</span></a>
 						</div>
 					</div>
+
+					<aside class="countdown-panel" id="countdown-panel" aria-label="Christmas light show countdown">
+						<div class="countdown-panel-header"><span id="countdown-icon">🗓️</span><span class="countdown-script" id="countdown-heading">Countdown to Go Live</span></div>
+						<div class="countdown-date" id="countdown-date">Thanksgiving Night • 6:00 PM Eastern</div>
+						<div id="countdown-days" class="countdown-numbers">
+							<div class="countdown-tile countdown-day-tile"><strong id="days-left">--</strong><span>DAYS</span></div>
+						</div>
+						<div id="countdown-final" class="countdown-numbers countdown-final" hidden>
+							<div class="countdown-tile"><strong id="hours-left">--</strong><span>HOURS</span></div>
+							<div class="countdown-tile"><strong id="minutes-left">--</strong><span>MINUTES</span></div>
+							<div class="countdown-tile"><strong id="seconds-left">--</strong><span>SECONDS</span></div>
+						</div>
+						<div id="countdown-live" class="countdown-live-message" hidden><span id="live-message-title">🎄 We're LIVE! 🎄</span><small id="live-message-subtitle">Tune in to 93.1 FM and enjoy the show!</small></div>
+						<div id="countdown-delayed" class="countdown-live-message" hidden><span>Opening Night Update</span><small>Please check back soon for an updated start time.</small></div>
+						<svg class="countdown-landscape" viewBox="0 0 460 114" role="presentation" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMax slice">
+							<defs>
+								<linearGradient id="snowHill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5b9ac7"/><stop offset="1" stop-color="#081a36"/></linearGradient>
+								<filter id="glowTree"><feGaussianBlur stdDeviation="2.6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+							</defs>
+							<path d="M0 87 Q50 55 110 80 T240 80 T460 78 V114 H0Z" fill="url(#snowHill)"/>
+							<path d="M0 96 Q40 78 87 92 T192 96 T310 89 T460 95 V114 H0Z" fill="#112746"/>
+							<g fill="#133e63" stroke="#5b9bc5" stroke-width="1.5">
+								<path d="M20 87 L32 60 27 60 39 38 51 60 46 60 59 87Z"/><path d="M56 96 L69 62 64 62 77 45 89 62 84 62 97 96Z"/>
+								<path d="M93 91 L104 66 99 66 111 51 123 66 118 66 131 91Z"/><path d="M331 96 L345 64 340 64 354 43 368 64 363 64 378 96Z"/>
+								<path d="M381 88 L394 58 389 58 402 39 415 58 410 58 423 88Z"/><path d="M415 99 L426 71 421 71 433 55 446 71 440 71 452 99Z"/>
+							</g>
+							<g stroke="#ffd76b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glowTree)">
+								<path d="M230 27 C220 39 242 39 220 48 C209 54 251 55 213 66 C200 73 259 75 209 85 C203 88 248 92 257 98"/>
+								<path d="M230 10 L233 19 L243 19 L235 25 L237 34 L230 28 L223 34 L225 25 L218 19 L227 19Z" fill="#ffd76b" stroke-width="1"/>
+							</g>
+							<g fill="#f3f7ff"><circle cx="143" cy="22" r="1.2"/><circle cx="167" cy="37" r="0.9"/><circle cx="300" cy="30" r="1"/><circle cx="323" cy="18" r="1.2"/><circle cx="271" cy="18" r="0.8"/></g>
+						</svg>
+					</aside>
 				</div>
 			</div>
 		</section>
@@ -817,11 +1040,7 @@
 					</a>
 				</div>
 
-				<p style="margin: 6px 0 10px; color: var(--text-muted); font-size: 0.9rem;">
-					<strong>Off Season:</strong> We’re currently closed. We’ll return <strong>Thanksgiving Night 2026</strong>.
-					(During show season, the schedule below applies.)
-				</p>
-
+				<p class="season-schedule-note" id="season-schedule-note">Off Season: We return on Thanksgiving Night.</p>
 				<ul class="schedule-list">
 					<li>
 						<span class="schedule-day">Static Display</span>
@@ -866,7 +1085,7 @@
 						<span class="info-label">Listen</span>
 						<span class="info-value">
 							On-site: <strong>93.1 FM</strong><br />
-							Phone: <span style="opacity:0.75;">Off season</span>
+							Phone: <span id="phone-status-note">Off season</span>
 						</span>
 					</li>
 					<li>
@@ -887,7 +1106,8 @@
 							<ul>
 								<li>Over 10,000 LEDs programmed to 14 songs your family is sure to enjoy!</li>
 								<li>Utilizing 5 Light-O-Rama 16 Channel Controllers for 80 channels total!</li>
-								<li>On-site guests can unlock song requests by scanning the QR code at the display (during show season).</li>
+								<li>On-site guests can unlock song requests by scanning the QR code
+								at the display.</li>
 							</ul>
 						</span>
 					</li>
@@ -899,8 +1119,48 @@
 		</section>
 
 		<!-- JUKEBOX (REMOTE FALCON) -->
-		<!-- Off-season: hidden + not loaded -->
-		<section id="jukebox" class="embed-section" style="display:none"></section>
+		<section id="jukebox" class="embed-section" hidden>
+			<article class="embed-card" id="remote-falcon-section">
+				<h2>
+					<span class="icon">🎶</span>
+					Pick the Next Song
+				</h2>
+
+				<!-- LIVE (during show hours in Eastern time) -->
+				<div id="remote-falcon-live" hidden>
+					<div class="embed-frame-wrapper">
+						<iframe
+							class="embed-frame"
+							data-src="https://batesonfamilylights.remotefalcon.com"
+							title="Remote Falcon Viewer"
+						></iframe>
+					</div>
+
+					<p class="embed-note">
+						If the control panel doesn't appear, you can also open it in a new tab:
+						<a href="https://batesonfamilylights.remotefalcon.com" target="_blank" rel="noopener noreferrer">
+							Open Remote Falcon Viewer
+						</a>
+					</p>
+				</div>
+
+				<!-- OFF AIR (outside show hours or outside season) -->
+				<div id="remote-falcon-offair" hidden>
+					<div class="offair-icon">📻</div>
+					<h3>Jukebox Offline</h3>
+					<p>The request panel is only available during show hours:</p>
+
+					<ul>
+						<li>Sunday–Thursday: 6:00 PM – 9:30 PM</li>
+						<li>Friday–Saturday: 6:00 PM – 11:00 PM</li>
+					</ul>
+
+					<p class="offair-timezone-note">
+						Show season runs from Thanksgiving night through New Year's Day. All times are Eastern (US).
+					</p>
+				</div>
+			</article>
+		</section>
 
 		<footer class="footer">
 			<div>© <span id="year"></span> Bateson Family Lights. All rights reserved.</div>
@@ -910,48 +1170,193 @@
 		</footer>
 	</main>
 
+	<script src="rf-config.js"></script>
 	<script>
-		// -------- NAV COLLAPSE / EXPAND --------
 		(function () {
+			"use strict";
+			const PULSE_URL = "https://pulsemesh.io/d/SGVT/smart";
+			const MS_DAY = 24 * 60 * 60 * 1000;
+			const RF_OVERRIDE_MODE = String(window.RF_OVERRIDE_MODE || "auto").toLowerCase();
+			const SITE_OVERRIDE_MODE = String(window.SITE_OVERRIDE_MODE || "auto").toLowerCase();
+			const $ = id => document.getElementById(id);
+			const easternFormatter = new Intl.DateTimeFormat("en-US", {
+				timeZone: "America/New_York", year: "numeric", month: "numeric",
+				day: "numeric", weekday: "short", hour: "2-digit", minute: "2-digit",
+				second: "2-digit", hourCycle: "h23"
+			});
+
+			function easternParts(at) {
+				const result = {};
+				for (const part of easternFormatter.formatToParts(at)) {
+					if (part.type !== "literal") result[part.type] = part.value;
+				}
+				return {
+					year: Number(result.year), month: Number(result.month), day: Number(result.day),
+					weekday: result.weekday, hour: Number(result.hour),
+					minute: Number(result.minute), second: Number(result.second)
+				};
+			}
+
+			function thanksgivingDay(year) {
+					const weekdayOfNov1 = new Date(Date.UTC(year, 10, 1)).getUTCDay();
+					return 1 + (4 - weekdayOfNov1 + 7) % 7 + 21;
+			}
+			function seasonFor(year) {
+					const day = thanksgivingDay(year);
+					// Thanksgiving and New Year's Day always fall in Eastern Standard Time (UTC-05:00).
+					const starts = new Date(`${year}-11-${String(day).padStart(2, "0")}T18:00:00-05:00`);
+					// January 1 is the LAST night; switch to off-season at Jan 2, midnight EST.
+					const ends = new Date(`${year + 1}-01-02T00:00:00-05:00`);
+					return { year, day, starts, ends };
+			}
+			function getSeasonContext(now) {
+				const year = easternParts(now).year;
+				const last = seasonFor(year - 1);
+				const thisYear = seasonFor(year);
+				if (now >= last.starts && now < last.ends) return { active:true, season:last };
+				if (now >= thisYear.starts && now < thisYear.ends) return { active:true, season:thisYear };
+				return { active:false, season: now < thisYear.starts ? thisYear : seasonFor(year + 1) };
+			}
+			function duringScheduledShow(now, active) {
+				if (!active) return false;
+				if (RF_OVERRIDE_MODE === "forceon") return true;
+				if (RF_OVERRIDE_MODE === "forceoff") return false;
+				const ep = easternParts(now);
+				const minuteOfDay = ep.hour * 60 + ep.minute;
+				const end = ep.weekday === "Fri" || ep.weekday === "Sat" ? 23 * 60 : 21 * 60 + 30;
+				return minuteOfDay >= 18 * 60 && minuteOfDay < end;
+			}
+			function setVisible(id, show) { const node = $(id); if (node) node.hidden = !show; }
+			function setText(id, content) { const node = $(id); if (node && node.textContent !== content) node.textContent = content; }
+			function setLink(id, active, href, external) {
+				const node = $(id); if (!node) return;
+				node.classList.toggle("disabled", !active);
+				node.classList.toggle("disabled-nav", !active);
+				node.setAttribute("aria-disabled", active ? "false" : "true");
+				node.href = active ? href : "#";
+				if (active && external) { node.target = "_blank"; node.rel = "noopener noreferrer"; }
+				else { node.removeAttribute("target"); node.removeAttribute("rel"); }
+			}
+
+			let previousPhase = "";
+			let previousOnAir = null;
+			let previousSeasonYear = null;
+			const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+			function updateEventSchema(season) {
+				const event = {
+					"@context":"https://schema.org", "@type":"Event",
+					"name":"Bateson Family Lights",
+					"description":"Synchronized Christmas lights, music, singing trees, and an interactive song request system in Swanton, Ohio.",
+					"startDate":`${season.year}-11-${String(season.day).padStart(2,"0")}T18:00:00-05:00`,
+					"endDate":`${season.year + 1}-01-01T${[0,1,2,3,4].includes(new Date(Date.UTC(season.year + 1, 0, 1)).getUTCDay()) ? "21:30" : "23:00"}:00-05:00`,
+					"eventStatus":"https://schema.org/EventScheduled",
+					"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+					"url":"https://batesonlights.com/",
+					"location":{"@type":"Place","name":"Bateson Family Lights", "address":{"@type":"PostalAddress","streetAddress":"108 East St. Clair Street","addressLocality":"Swanton","addressRegion":"OH","postalCode":"43558","addressCountry":"US"}},
+					"organizer":{"@type":"Organization","name":"Bateson Family Lights","url":"https://batesonlights.com/"},
+					"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"}
+				};
+				$("event-schema").textContent = JSON.stringify(event);
+			}
+
+			function refresh() {
+				const now = new Date();
+				const context = getSeasonContext(now);
+				const naturalActive = context.active;
+				const active = SITE_OVERRIDE_MODE === "forceopen" ||
+					(SITE_OVERRIDE_MODE !== "forceclosed" && naturalActive);
+				const phase = active ? "open" : "closed";
+				const onAir = duringScheduledShow(now, active);
+				const season = context.season;
+
+				if (phase !== previousPhase) {
+					setVisible("hero-closed", !active);
+					setVisible("hero-open", active);
+					setVisible("jukebox", active);
+					$("hero-badge-dot").style.background = active ? "#22c55e" : "#fb7185";
+				}
+				if (season.year !== previousSeasonYear) {
+					const fullDate = `Thursday, November ${season.day}, ${season.year} at 6:00 PM Eastern`;
+					setText("hero-next-date", fullDate);
+					setText("hero-next-season", `Thanksgiving Night ${season.year}`);
+					setText("countdown-date", `Thanksgiving ${season.year} • 6:00 PM Eastern`);
+					updateEventSchema(season);
+					previousSeasonYear = season.year;
+				}
+
+				const remaining = season.starts.getTime() - now.getTime();
+				const delayed = !active && remaining <= 0;
+				const finalDay = !active && remaining > 0 && remaining <= MS_DAY;
+				setVisible("countdown-days", !active && !finalDay && !delayed);
+				setVisible("countdown-final", finalDay);
+				setVisible("countdown-live", active);
+				setVisible("countdown-delayed", delayed);
+				if (active) {
+					setText("countdown-icon", "🎄");
+					setText("countdown-heading", "Bateson Family Lights");
+					setText("countdown-date", `Christmas Show Season ${season.year}`);
+					setText("live-message-title", onAir ? "🎄 We're LIVE! 🎄" : "🎄 Show Season Is Here! 🎄");
+					setText("live-message-subtitle", onAir ? "Tune in to 93.1 FM and enjoy the show!" : "The synchronized show starts at 6:00 PM Eastern each night.");
+				} else {
+					setText("countdown-icon", "🗓️");
+					setText("countdown-heading", "Countdown to Go Live");
+					setText("countdown-date", `Thanksgiving ${season.year} • 6:00 PM Eastern`);
+					if (remaining > 0) {
+						if (finalDay) {
+								const totalSeconds = Math.ceil(remaining / 1000);
+								setText("hours-left", String(Math.floor(totalSeconds / 3600)).padStart(2, "0"));
+								setText("minutes-left", String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0"));
+								setText("seconds-left", String(totalSeconds % 60).padStart(2, "0"));
+							} else {
+								// Day-only view uses Eastern calendar days, changing at midnight Eastern.
+								const et = easternParts(now);
+								const calendarDays = Math.round((Date.UTC(season.year, 10, season.day) - Date.UTC(et.year, et.month - 1, et.day)) / MS_DAY);
+								setText("days-left", String(calendarDays));
+							}
+					}
+				}
+
+				if (phase !== previousPhase || onAir !== previousOnAir) {
+					setVisible("remote-falcon-live", onAir);
+					setVisible("remote-falcon-offair", active && !onAir);
+					// Load Remote Falcon only when on-air; unload it off-air to avoid needless polling.
+					const rfFrame = document.querySelector("#remote-falcon-live iframe");
+					if (rfFrame) {
+						if (onAir && !rfFrame.hasAttribute("src")) rfFrame.src = rfFrame.dataset.src;
+						if (!onAir && rfFrame.hasAttribute("src")) rfFrame.removeAttribute("src");
+					}
+					$("fm-radio-dot").classList.toggle("on-air", onAir);
+					$("fm-radio-pill").classList.toggle("on-air", onAir);
+					setLink("listen-live-btn", onAir, PULSE_URL, true);
+					setLink("nav-listen-link", onAir, PULSE_URL, true);
+					setLink("request-btn", onAir, "#jukebox", false);
+					setLink("nav-requests-link", onAir, "#jukebox", false);
+					setLink("nav-local-shows-link", active, "local-shows.html", false);
+					setText("listen-live-label", onAir && isMobile ? "Tap to Listen" : "Listen Live");
+					setText("request-label", "Song Requests");
+					setText("phone-status-note", onAir ? "Listen Live available" : active ? "Off air" : "Off season");
+					setText("season-schedule-note", active ? (onAir ? "On Air: The synchronized show is scheduled to be running!" : "Off Air: The synchronized show begins at 6:00 PM Eastern during show season.") : `Off Season: We'll return on Thanksgiving Night ${season.year}. (The schedule below applies during show season.)`);
+					previousPhase = phase;
+					previousOnAir = onAir;
+				}
+			}
+
+			// Navigation pill toggle (kept from original homepage).
 			const nav = document.querySelector(".nav");
 			const toggle = document.querySelector(".nav-toggle");
-			const links = document.getElementById("nav-links");
-			if (!nav || !toggle || !links) return;
-
-			nav.classList.add("nav-collapsed");
-			toggle.setAttribute("aria-expanded", "false");
-
-			function setExpanded(expanded) {
-				if (expanded) {
-					nav.classList.remove("nav-collapsed");
-				} else {
-					nav.classList.add("nav-collapsed");
-				}
-				toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+			if (nav && toggle) {
+				toggle.addEventListener("click", () => {
+					const expanded = toggle.getAttribute("aria-expanded") !== "true";
+					nav.classList.toggle("nav-collapsed", !expanded);
+					toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+				});
 			}
-
-			toggle.addEventListener("click", () => {
-				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
-				setExpanded(!isExpanded);
-			});
+			$("year").textContent = String(easternParts(new Date()).year);
+			refresh();
+			// Updates the countdown every second and also detects launch / New Year's season changes.
+			setInterval(refresh, 1000);
 		})();
-
-		// --------- BASIC UI SETUP ---------
-		document.getElementById("year").textContent = new Date().getFullYear();
-
-		document.addEventListener("DOMContentLoaded", function () {
-			const labelEl = document.getElementById("listen-live-label");
-			if (!labelEl) return;
-
-			const isMobile =
-				/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				);
-
-			if (isMobile) {
-				labelEl.textContent = "Listen Live (Off Season)";
-			}
-		});
 	</script>
 </body>
 </html>
