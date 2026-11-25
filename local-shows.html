@@ -775,7 +775,10 @@
 <button class="view-btn" data-view="map" type="button">🗺 Map</button>
 </div>
 </div>
-<div class="map-wrapper" hidden="" id="map-wrapper"><p class="show-summary">Choose a 2026 display to see its location on the map. Only displays from this year’s flyer are included.</p><label for="map-show-select">Choose display: </label><select class="sort-select" id="map-show-select" style="max-width:100%;margin:8px 0 12px;"><optgroup label="South Toledo / Perrysburg / Bowling Green"><option value="21266 Hull Prairie, Bowling Green, OH, USA">Lights on Hull Prairie — Bowling Green</option><option value="14568 Monarch Ct., Perrysburg, OH, USA">Lights on Monarch — Perrysburg</option><option value="3033 Dorian Dr., Toledo, OH, USA">Adkins Family Lights — Toledo</option></optgroup><optgroup label="Rural / West Area"><option value="206 E. Williams St., Archbold, OH, USA">Lights on Williams — Archbold</option><option value="15251 Milton, Grand Rapids, OH, USA">Lights on Milton — Grand Rapids</option><option selected="selected" value="108 E. St. Clair St., Swanton, OH, USA">Bateson Family Lights — Swanton</option></optgroup><optgroup label="Holland / Springfield / Sylvania Area"><option value="2230 N. Irwin, Holland, OH, USA">Katafiasz Light Show — Holland</option><option value="8941 Sylvania Ave., Sylvania, OH, USA">Hamady Holiday Lights — Sylvania</option><option value="5530 Grey Dr., Sylvania, OH, USA">Lights on Grey Drive — Sylvania</option><option value="8747 Kellie Lane, Sylvania, OH, USA">Lights on Kellie Lane — Sylvania</option><option value="6850 Hampsford Cir., Toledo, OH, USA">A Kersten Khristmas — Toledo</option><option value="6851 Hampsford Cir., Toledo, OH, USA">Holiday Lights on Hampsford — Toledo</option><option value="7257 Turncreek Dr., Toledo, OH, USA">Lights on Fieldbrook — Toledo</option></optgroup><optgroup label="Lakeshore Region"><option value="419 E. 5th St., Port Clinton, OH, USA">Lempke Family Light Display — Port Clinton</option><option value="111 Michigan Ave., Sandusky, OH, USA">Do You Hear What I See? — Sandusky</option><option value="1205 Malboro St., Sandusky, OH, USA">Marlboro Street Lights — Sandusky</option></optgroup><optgroup label="Rossford / Oregon / Northwood"><option value="1935 S. Freedom, Northwood, OH, USA">Buschmann's Lights — Northwood</option><option value="538 S. Wheeling St., Oregon, OH, USA">Christmas on Wheeling — Oregon</option><option value="1265 S. Wynn Rd., Oregon, OH, USA">Christmas on Wynn Road — Oregon</option><option value="1100 Grasser St., Oregon, OH, USA">Lights on Grasser — Oregon</option><option value="107 Birch Drive, Rossford, OH, USA">The Ageless Childs Christmas — Rossford</option><option value="2019 Nevada St., Toledo, OH, USA">Lighting Up Nevada Street — Toledo</option></optgroup><optgroup label="Michigan"><option value="1721 Linzden Pl., Temperance, MI, USA">Lights at Bragden — Temperance</option></optgroup><optgroup label="Findlay / South Area"><option value="701 E. Melrose Ave., Findlay, OH, USA">Christmas Magic on Melrose — Findlay</option></optgroup></select><a class="pill-link pill-link-primary" href="#" id="map-open-link" rel="noopener noreferrer" target="_blank">📍 Open selected display in Google Maps</a><iframe allowfullscreen="" id="shows-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="margin-top:12px;" title="Selected 2026 Christmas light show location"></iframe></div>
+<div class="map-wrapper" hidden="" id="map-wrapper">
+<iframe allowfullscreen="" data-src="https://www.google.com/maps/d/u/0/embed?mid=1SPwQZeslFmi_EBepd0qVPGK3rXhDk58&amp;ehbc=2E312F&amp;noprof=1" id="shows-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Christmas Junkies Local Shows Map">
+</iframe>
+</div>
 </article>
 <!-- FEATURED SHOW: Holiday Lights on Rome Court -->
 
@@ -949,46 +952,56 @@ updateNavLinks();
 setInterval(updateNavLinks, 60000);
 
 /* ===============================
-   2026 MAP / LIST VIEW TOGGLE
-   Select a 2026 show; no legacy/dark pins appear.
+   MAP / LIST VIEW TOGGLE + LAZY MAP
 ================================*/
 (function() {
-    const buttons = document.querySelectorAll('.view-btn');
-    const wrapper = document.getElementById('map-wrapper');
-    const frame = document.getElementById('shows-map');
-    const selector = document.getElementById('map-show-select');
-    const openLink = document.getElementById('map-open-link');
-    const grid = document.getElementById('shows-grid');
-    const toolbar = document.getElementById('shows-toolbar-card');
-    const courtesy = document.getElementById('courtesy-card');
-    let loadedAddress = '';
+	const viewButtons = document.querySelectorAll(".view-btn");
+	const mapWrapper = document.getElementById("map-wrapper");
+	const mapIframe = document.getElementById("shows-map");
+	const showsGrid = document.getElementById("shows-grid");
+	const toolbarCard = document.getElementById("shows-toolbar-card");
+	const courtesyCard = document.getElementById("courtesy-card");
 
-    function mapUrl(addr) {
-        return 'https://www.google.com/maps?q=' + encodeURIComponent(addr) + '&output=embed';
-    }
-    function openUrl(addr) {
-        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr);
-    }
-    function updateMap() {
-        if (!selector || !frame) return;
-        const addr = selector.value;
-        if (loadedAddress !== addr) {
-            frame.src = mapUrl(addr);
-            loadedAddress = addr;
-        }
-        if (openLink) openLink.href = openUrl(addr);
-    }
-    function setView(view) {
-        buttons.forEach(b => b.classList.toggle('is-active', b.dataset.view === view));
-        if (wrapper) wrapper.hidden = view !== 'map';
-        if (grid) grid.style.display = view === 'map' ? 'none' : 'grid';
-        if (toolbar) toolbar.style.display = view === 'map' ? 'none' : '';
-        if (courtesy) courtesy.style.display = view === 'map' ? 'none' : '';
-        if (view === 'map') updateMap();
-    }
-    if (selector) selector.addEventListener('change', updateMap);
-    buttons.forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
-    setView('list');
+	let currentView = "list";
+	let mapLoaded = false;
+
+	function ensureMapLoaded() {
+		if (mapLoaded || !mapIframe) return;
+		const src = mapIframe.dataset.src;
+		if (src) {
+			mapIframe.src = src;
+			mapLoaded = true;
+		}
+	}
+
+	function setView(view) {
+		if (!viewButtons.length) return;
+		currentView = view;
+
+		viewButtons.forEach(btn => {
+			btn.classList.toggle("is-active", btn.dataset.view === view);
+		});
+
+		if (view === "map") {
+			if (mapWrapper) mapWrapper.hidden = false;
+			if (showsGrid) showsGrid.style.display = "none";
+			if (toolbarCard) toolbarCard.style.display = "none";
+			if (courtesyCard) courtesyCard.style.display = "none";
+			ensureMapLoaded();
+		} else {
+			if (mapWrapper) mapWrapper.hidden = true;
+			if (showsGrid) showsGrid.style.display = "grid";
+			if (toolbarCard) toolbarCard.style.display = "";
+			if (courtesyCard) courtesyCard.style.display = "";
+		}
+	}
+
+	viewButtons.forEach(btn => {
+		btn.addEventListener("click", () => setView(btn.dataset.view));
+	});
+
+	// Initial state
+	setView("list");
 })();
 
 /* ===============================
